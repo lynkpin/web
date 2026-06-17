@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户协议与隐私政策</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #2C2C2A;
+    background: #F8F7F4;
+    padding: 24px 16px 60px;
+  }
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .hero {
+    background: #1D9E75;
+    padding: 36px 40px 32px;
+    color: #fff;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    font-size: 13px;
+    opacity: 0.82;
+    line-height: 1.6;
+  }
+  .tab-bar {
+    display: flex;
+    border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #888780;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active {
+    color: #0F6E56;
+    border-bottom-color: #1D9E75;
+  }
+  .tab-content {
+    display: none;
+    padding: 32px 40px 40px;
+  }
+  .tab-content.active { display: block; }
+
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #0F6E56;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #E1F5EE;
+    color: #0F6E56;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section p {
+    font-size: 13px;
+    color: #444441;
+    line-height: 1.9;
+    margin-bottom: 10px;
+  }
+  .section ul {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  .section ul li {
+    font-size: 13px;
+    color: #444441;
+    line-height: 1.9;
+    padding: 5px 0 5px 18px;
+    position: relative;
+    border-bottom: 0.5px solid rgba(0,0,0,0.05);
+  }
+  .section ul li:last-child { border-bottom: none; }
+  .section ul li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 14px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #5DCAA5;
+  }
+
+  .highlight-box {
+    background: #E1F5EE;
+    border-radius: 10px;
+    border: 0.5px solid #9FE1CB;
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+  .highlight-box p {
+    font-size: 13px;
+    color: #085041;
+    margin: 0;
+    line-height: 1.7;
+  }
+  strong { font-weight: 500; color: #0F6E56; }
+
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .info-card {
+    background: #F8F7F4;
+    border-radius: 10px;
+    border: 0.5px solid rgba(0,0,0,0.08);
+    padding: 12px 14px;
+  }
+  .info-card .card-label {
+    font-size: 11px;
+    color: #888780;
+    margin-bottom: 4px;
+  }
+  .info-card .card-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #2C2C2A;
+    line-height: 1.5;
+  }
+
+  .contact-block {
+    background: #F8F7F4;
+    border-radius: 12px;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #E1F5EE;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 20px; height: 20px; }
+  .contact-label { font-size: 12px; color: #888780; margin-bottom: 2px; }
+  .contact-value { font-size: 14px; font-weight: 500; color: #0F6E56; }
+
+  .footer-note {
+    text-align: center;
+    padding: 20px 40px;
+    border-top: 0.5px solid rgba(0,0,0,0.07);
+    font-size: 12px;
+    color: #888780;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 28px 24px 24px; }
+    .tab-content { padding: 24px 24px 32px; }
+    .contact-block { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div class="hero-badge">法律文件</div>
+    <h1>用户协议与隐私政策</h1>
+    <p>在使用本游戏前，请认真阅读以下条款。继续使用即视为您同意接受本协议全部内容的约束。</p>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('intro')">前言</button>
+    <button class="tab-btn" onclick="switchTab('agreement')">用户协议</button>
+    <button class="tab-btn" onclick="switchTab('privacy')">隐私政策</button>
+    <button class="tab-btn" onclick="switchTab('other')">其他</button>
+  </div>
+
+  <!-- 前言 -->
+  <div class="tab-content active" id="tab-intro">
+    <div class="section">
+      <div class="highlight-box">
+        <p>欢迎您使用本游戏产品及相关服务。在使用本游戏前，请您认真阅读以下《用户协议》及《隐私政策》。您的下载、安装、注册、登录及使用本游戏的全部行为，均视为您已充分阅读、理解并同意接受本协议全部条款的约束。</p>
+      </div>
+      <p style="margin-top:14px;">本协议适用于本游戏及游戏内所有功能、服务、衍生内容。<strong>如果您不同意本协议任意条款，请立即停止使用本游戏。</strong></p>
+    </div>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="card-label">适用范围</div>
+        <div class="card-value">游戏全部功能及服务</div>
+      </div>
+      <div class="info-card">
+        <div class="card-label">游戏类型</div>
+        <div class="card-value">独立开发休闲娱乐</div>
+      </div>
+      <div class="info-card">
+        <div class="card-label">联系邮箱</div>
+        <div class="card-value">lynkpingame@outlook.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 用户协议 -->
+  <div class="tab-content" id="tab-agreement">
+    <div class="section">
+      <div class="section-title"><span class="num">1</span>服务说明</div>
+      <p>本游戏为独立开发休闲娱乐类游戏，为用户提供游戏娱乐、内容体验、互动服务等相关功能。开发者保留随时优化、更新、调整游戏功能、玩法、界面及服务内容的权利，无需单独通知用户。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">2</span>用户使用规范</div>
+      <p>用户在使用本游戏过程中，承诺遵守以下规则：</p>
+      <ul>
+        <li>遵守国家法律法规及网络文明规范，不得利用本游戏从事任何违法、违规、侵权、低俗及危害网络安全的行为。</li>
+        <li>禁止使用外挂、脚本、作弊工具、篡改客户端、破解游戏等方式破坏游戏公平性。</li>
+        <li>禁止恶意刷屏、辱骂、骚扰、欺诈、传播不良信息、引流广告等破坏游戏环境的行为。</li>
+        <li>禁止私自倒卖、破解、反编译、二次封装、盗用游戏资源及内容。</li>
+      </ul>
+      <p>如用户存在违规行为，开发者有权采取包括但不限于提醒、限制功能、封禁账号、终止服务等处理措施。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">3</span>知识产权声明</div>
+      <p>本游戏内所有文字、美术、音效、模型、玩法设计、代码及相关内容的知识产权均归开发者所有。<strong>未经开发者书面许可，任何个人或组织不得复制、转载、篡改、商用、二次分发。</strong></p>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">4</span>免责声明</div>
+      <p>本游戏为免费娱乐产品，在法律允许的最大范围内，开发者不对因网络波动、设备问题、系统兼容、第三方问题导致的无法登录、卡顿、数据异常等问题承担赔偿责任。用户自愿承担使用本游戏产生的全部风险。</p>
+    </div>
+  </div>
+
+  <!-- 隐私政策 -->
+  <div class="tab-content" id="tab-privacy">
+    <div class="section">
+      <div class="section-title"><span class="num">1</span>信息收集说明</div>
+      <div class="highlight-box">
+        <p>本游戏高度重视用户隐私保护，坚持最小必要原则，<strong>不会主动收集用户身份证、手机号、通讯录、位置等敏感个人信息。</strong></p>
+      </div>
+      <p style="margin-top:12px;">可能收集的非敏感信息包括：</p>
+      <ul>
+        <li><strong>设备基础信息：</strong>设备型号、系统版本、设备标识（用于防作弊、异常登录识别）</li>
+        <li><strong>游戏运行日志：</strong>崩溃日志、报错信息（用于修复 BUG、优化游戏体验）</li>
+        <li><strong>本地游戏存档数据：</strong>仅保存在用户本地设备，不上传云端（如有云存档功能则仅存储游戏进度数据）</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">2</span>信息使用方式</div>
+      <p>我们收集的信息仅用于：</p>
+      <ul>
+        <li>保障游戏正常运行、适配设备、修复异常问题</li>
+        <li>识别作弊、违规行为，维护游戏公平环境</li>
+        <li>优化游戏玩法、提升用户体验</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">3</span>信息共享与披露</div>
+      <p>我们<strong>不会</strong>向任何第三方出售、出租、分享您的个人信息。以下情况除外：</p>
+      <ul>
+        <li>经用户本人明确同意授权</li>
+        <li>国家司法机关、行政机关依法要求提供的情况</li>
+        <li>为保障用户、公众、开发者合法权益所必要的情形</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">4</span>信息存储与安全</div>
+      <p>游戏本地数据存储于用户设备中，用户可自行删除游戏清除所有本地数据。云端数据将采用安全技术保护，防止泄露、篡改、丢失。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">5</span>未成年人保护</div>
+      <p>我们高度重视未成年人网络保护，未成年人请在监护人陪同及同意前提下使用本游戏。如发现未成年人违规使用或信息问题，可联系我们处理。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">6</span>用户权利</div>
+      <p>用户有权拒绝非必要信息授权，有权通过删除游戏清除本地数据。如需咨询隐私相关问题，可通过文末联系方式联系开发者。</p>
+    </div>
+  </div>
+
+  <!-- 其他 -->
+  <div class="tab-content" id="tab-other">
+    <div class="section">
+      <div class="section-title"><span class="num">!</span>协议更新</div>
+      <p>开发者有权根据运营及法规要求不定期更新本用户协议及隐私政策，更新后将通过游戏内页面更新展示，<strong>更新后继续使用游戏即视为同意更新后的协议内容。</strong></p>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="num">@</span>联系方式</div>
+      <p>如您对本协议内容、隐私规则有疑问或投诉建议，可通过以下方式联系开发者：</p>
+      <div class="contact-block">
+        <div class="contact-icon">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="16" height="12" rx="2" stroke="#0F6E56" stroke-width="1.2"/>
+            <path d="M2 7l8 5 8-5" stroke="#0F6E56" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-label">开发者邮箱</div>
+          <div class="contact-value">lynkpingame@outlook.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    本协议自用户首次使用本游戏时生效，受中华人民共和国法律管辖。<br>
+    如有任何问题请发送邮件至 lynkpingame@outlook.com
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(function(btn, i) {
+    var names = ['intro','agreement','privacy','other'];
+    btn.classList.toggle('active', names[i] === name);
+  });
+  document.querySelectorAll('.tab-content').forEach(function(el) {
+    el.classList.toggle('active', el.id === 'tab-' + name);
+  });
+}
+</script>
+</body>
+</html>
