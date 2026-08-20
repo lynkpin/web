@@ -138,6 +138,11 @@
   }
   .hero p.lead b{color:var(--txt)}
   .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+  .join-mail{
+    width:100%;text-align:center;font-size:13px;color:var(--txt-dim);
+    letter-spacing:.3px;transition:color .2s;
+  }
+  .join-mail:hover{color:var(--accent)}
   .btn{
     display:inline-flex;align-items:center;gap:9px;
     padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;
@@ -187,11 +192,6 @@
     padding:16px 18px;transition:transform .2s,border-color .2s;
   }
   .point:hover{transform:translateY(-3px);border-color:rgba(255,184,77,.4)}
-  .point .ico{
-    width:34px;height:34px;border-radius:9px;flex:none;
-    background:rgba(255,184,77,.12);color:var(--accent);
-    display:flex;align-items:center;justify-content:center;font-size:16px;
-  }
   .point b{display:block;font-size:14px;margin-bottom:2px}
   .point span{font-size:12.5px;color:var(--txt-dim)}
   .about-visual{
@@ -413,19 +413,15 @@
         </p>
         <div class="about-points">
           <div class="point reveal reveal-d2">
-            <div class="ico">🎮</div>
             <div><b data-i18n="point1_t">玩法驱动</b><span data-i18n="point1_d">先好玩，再谈其他</span></div>
           </div>
           <div class="point reveal reveal-d2">
-            <div class="ico">🌍</div>
             <div><b data-i18n="point2_t">全球发行</b><span data-i18n="point2_d">十余种语言支持</span></div>
           </div>
           <div class="point reveal reveal-d2">
-            <div class="ico">🤝</div>
             <div><b data-i18n="point3_t">玩家同行</b><span data-i18n="point3_d">认真倾听每一份反馈</span></div>
           </div>
           <div class="point reveal reveal-d2">
-            <div class="ico">🚀</div>
             <div><b data-i18n="point4_t">持续更新</b><span data-i18n="point4_d">长期运营，不断进化</span></div>
           </div>
         </div>
@@ -576,7 +572,8 @@
           <span data-i18n="chip1">游戏策划</span><span data-i18n="chip2">Unity 开发</span><span data-i18n="chip3">3D 美术</span><span data-i18n="chip4">动效设计</span><span data-i18n="chip5">UI 设计</span>
         </div>
         <div class="hero-actions" style="justify-content:center">
-          <a class="btn btn-primary" href="#contact" data-i18n="join_btn">联系我们投递简历</a>
+          <a class="btn btn-primary" href="mailto:lynkpingame@outlook.com" data-i18n="join_btn">联系我们投递简历</a>
+          <a class="join-mail" href="mailto:lynkpingame@outlook.com">lynkpingame@outlook.com</a>
         </div>
       </div>
     </div>
@@ -607,6 +604,7 @@
         <h4 data-i18n="foot_contact">联系</h4>
         <p>📍 <span data-i18n="foot_addr1">广州市番禺区小谷围街明志街 1 号</span></p>
         <p data-i18n="foot_addr2">信息枢纽楼 3 楼</p>
+        <a href="mailto:lynkpingame@outlook.com">lynkpingame@outlook.com</a>
         <a href="https://store.steampowered.com/curator/45260156/" target="_blank" rel="noopener" data-i18n="foot_steam">Steam 开发者主页</a>
         <a href="https://space.bilibili.com/477798708" target="_blank" rel="noopener" data-i18n="foot_bili">哔哩哔哩官方账号</a>
       </div>
@@ -813,12 +811,21 @@ function applyLang(lang) {
   localStorage.setItem(LS_KEY, lang);
 }
 
-// 初始化：优先读取本地存储，默认中文
-const savedLang = localStorage.getItem(LS_KEY) || 'zh';
+// 初始化：优先 URL 参数 ?lang=en|zh，其次本地存储，默认中文
+const urlLang = new URLSearchParams(location.search).get('lang');
+const savedLang = (urlLang === 'zh' || urlLang === 'en')
+  ? urlLang
+  : (localStorage.getItem(LS_KEY) || 'zh');
 applyLang(savedLang);
 
 document.querySelectorAll('.lang-switch button').forEach(btn => {
-  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  btn.addEventListener('click', () => {
+    applyLang(btn.dataset.lang);
+    // 同步 URL 参数，方便分享/收藏时保留语言
+    const url = new URL(location.href);
+    url.searchParams.set('lang', btn.dataset.lang);
+    history.replaceState(null, '', url);
+  });
 });
 
 // 导航滚动背景
