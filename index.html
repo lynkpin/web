@@ -1,772 +1,640 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>User Agreement & Privacy Policy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>广州灵品互娱信息科技有限公司 · Lynkpin Game — 独立游戏开发工作室</title>
+<meta name="description" content="广州灵品互娱信息科技有限公司（Lynkpin Game）——独立游戏开发工作室，代表作《神器行者：重生》《萌宠不摸鱼：Lofi猫》，新作《王牌餐车》即将推出。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230e1420'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23ffb84d'>L</text></svg>">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  :root{
+    --bg:#0a0e16;
+    --bg-soft:#0e1420;
+    --card:#121a28;
+    --card-2:#16202f;
+    --line:rgba(255,255,255,.08);
+    --txt:#e8ecf3;
+    --txt-dim:#9aa6b8;
+    --txt-faint:#66738a;
+    --accent:#ffb84d;
+    --accent-2:#ff8a5c;
+    --steam:#1b2838;
+    --steam-btn:#66c0f4;
+    --radius:16px;
+    --shadow:0 20px 50px rgba(0,0,0,.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:rgba(255,184,77,.3)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
 
-  body {
-    font-family: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.8;
-    color: #4B5563;
-    background: #F5F6F8;
-    padding: 40px 16px 80px;
-    -webkit-font-smoothing: antialiased;
-  }
-  ::selection { background: rgba(30,64,175,0.14); }
-
-  .container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #FFFFFF;
-    border-radius: 20px;
-    border: 1px solid rgba(15,23,42,0.08);
-    box-shadow:
-      0 24px 48px -28px rgba(15,23,42,0.18),
-      0 8px 18px -12px rgba(15,23,42,0.08);
-    overflow: hidden;
-  }
-  .container::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #2563EB, #1E40AF);
-    z-index: 5;
-  }
-
-  /* ---- Hero ---- */
-  .hero {
-    position: relative;
-    background: linear-gradient(150deg, #DBEAFE 0%, #BFDBFE 48%, #93C5FD 100%);
-    padding: 56px 48px 48px;
-    color: #1F2937;
-    overflow: hidden;
-    box-shadow: inset 0 -1px 0 rgba(15,23,42,0.06);
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: -120px; right: -80px;
-    width: 380px; height: 380px;
-    background: radial-gradient(circle, rgba(37,99,235,0.22), transparent 62%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
+  /* ---------- 背景装饰 ---------- */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;
     background:
-      radial-gradient(420px 240px at 100% -40px, rgba(30,64,175,0.14), transparent 65%);
-    pointer-events: none;
+      radial-gradient(900px 500px at 85% -10%,rgba(255,138,92,.10),transparent 60%),
+      radial-gradient(800px 480px at -10% 25%,rgba(102,192,244,.08),transparent 60%),
+      radial-gradient(700px 500px at 60% 110%,rgba(255,184,77,.07),transparent 60%),
+      var(--bg);
+  }
+  .grid-overlay{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);
   }
 
-  /* ---- Language switch ---- */
-  .lang-switch {
-    position: absolute;
-    top: 24px;
-    right: 28px;
-    z-index: 3;
-    display: flex;
-    background: rgba(255,255,255,0.82);
-    border: 1px solid rgba(15,23,42,0.10);
-    border-radius: 999px;
-    padding: 3px;
-    -webkit-backdrop-filter: blur(10px) saturate(1.3);
-            backdrop-filter: blur(10px) saturate(1.3);
-    box-shadow: 0 6px 16px -10px rgba(15,23,42,0.25);
+  /* ---------- 顶部导航 ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:rgba(10,14,22,.55);
+    border-bottom:1px solid transparent;
+    transition:background .3s,border-color .3s;
   }
-  .lang-switch button {
-    border: none;
-    background: none;
-    font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    color: #9CA3AF;
-    padding: 4px 13px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all 0.25s ease;
+  header.nav.scrolled{background:rgba(10,14,22,.88);border-color:var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+  .brand-logo{
+    width:38px;height:38px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;
+    color:#14100a;font-weight:900;font-size:19px;
+    box-shadow:0 4px 14px rgba(255,184,77,.35);
   }
-  .lang-switch button:hover { color: #4B5563; }
-  .lang-switch button.active {
-    background: linear-gradient(135deg, #2563EB, #1E40AF);
-    color: #FFFFFF;
-    box-shadow: 0 3px 10px -3px rgba(30,64,175,0.55);
+  .brand b{font-size:17px}
+  .brand small{display:block;font-size:10.5px;color:var(--txt-dim);font-weight:500;letter-spacing:2.5px}
+  nav.links{display:flex;gap:30px;font-size:14px;color:var(--txt-dim)}
+  nav.links a{position:relative;padding:4px 0;transition:color .2s}
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+    background:var(--accent);transition:width .25s;border-radius:2px;
+  }
+  nav.links a:hover{color:var(--txt)}
+  nav.links a:hover::after{width:100%}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;min-height:100vh;
+    display:flex;align-items:center;
+    padding:140px 0 90px;overflow:hidden;
+  }
+  .hero .orb{
+    position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;z-index:-1;
+  }
+  .orb-1{width:420px;height:420px;background:rgba(255,184,77,.16);top:-80px;right:-60px;animation:float1 14s ease-in-out infinite}
+  .orb-2{width:340px;height:340px;background:rgba(102,192,244,.13);bottom:-100px;left:8%;animation:float2 18s ease-in-out infinite}
+  @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+  @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-30px)}}
+
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:2px;color:var(--accent);
+    border:1px solid rgba(255,184,77,.35);border-radius:999px;
+    padding:7px 16px;background:rgba(255,184,77,.07);margin-bottom:26px;
+  }
+  .hero-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{
+    font-size:clamp(38px,6vw,64px);font-weight:900;line-height:1.15;
+    letter-spacing:.5px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(92deg,var(--accent) 10%,var(--accent-2) 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .en-name{
+    margin-top:14px;font-size:clamp(15px,2vw,19px);color:var(--txt-dim);
+    letter-spacing:3px;text-transform:uppercase;font-weight:600;
+  }
+  .hero p.lead{
+    margin-top:26px;max-width:640px;font-size:16.5px;color:var(--txt-dim);
+  }
+  .hero p.lead b{color:var(--txt)}
+  .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;
+    transition:transform .2s,box-shadow .2s,background .2s;
+    cursor:pointer;border:none;
+  }
+  .btn-primary{
+    background:linear-gradient(92deg,var(--accent),var(--accent-2));color:#171006;
+    box-shadow:0 10px 26px rgba(255,184,77,.3);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,184,77,.42)}
+  .btn-ghost{
+    background:rgba(255,255,255,.05);color:var(--txt);
+    border:1px solid var(--line);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+  .hero-stats{
+    display:flex;gap:0;margin-top:56px;
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:rgba(255,255,255,.03);overflow:hidden;
+    width:fit-content;
+  }
+  .hero-stats .stat{padding:18px 34px;border-left:1px solid var(--line);text-align:center}
+  .hero-stats .stat:first-child{border-left:none}
+  .hero-stats .num{font-size:26px;font-weight:900;color:var(--accent)}
+  .hero-stats .lbl{font-size:12px;color:var(--txt-dim);letter-spacing:1px;margin-top:2px}
+
+  /* ---------- 通用区 ---------- */
+  section{padding:110px 0}
+  .sec-head{text-align:center;max-width:680px;margin:0 auto 64px}
+  .sec-eyebrow{
+    font-size:12.5px;letter-spacing:3px;color:var(--accent);font-weight:700;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:.5px}
+  .sec-head p{margin-top:14px;color:var(--txt-dim);font-size:15.5px}
+
+  /* ---------- 关于 ---------- */
+  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center}
+  .about-copy h3{font-size:26px;font-weight:800;margin-bottom:18px}
+  .about-copy p{color:var(--txt-dim);margin-bottom:16px;font-size:15.5px}
+  .about-copy p b{color:var(--txt)}
+  .about-points{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+  .point{
+    display:flex;gap:12px;align-items:flex-start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;transition:transform .2s,border-color .2s;
+  }
+  .point:hover{transform:translateY(-3px);border-color:rgba(255,184,77,.4)}
+  .point .ico{
+    width:34px;height:34px;border-radius:9px;flex:none;
+    background:rgba(255,184,77,.12);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-size:16px;
+  }
+  .point b{display:block;font-size:14px;margin-bottom:2px}
+  .point span{font-size:12.5px;color:var(--txt-dim)}
+  .about-visual{
+    position:relative;border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line);box-shadow:var(--shadow);
+  }
+  .about-visual img{width:100%;height:100%;object-fit:cover;min-height:360px}
+  .about-visual .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:34px 22px 18px;
+    background:linear-gradient(transparent,rgba(5,8,14,.9));
+    font-size:12.5px;color:var(--txt-dim);
   }
 
-  .hero-brand {
-    position: relative;
-    z-index: 1;
-    margin-bottom: 22px;
+  /* ---------- 游戏区 ---------- */
+  #games{position:relative}
+  .game-card{
+    display:grid;grid-template-columns:460px 1fr;gap:0;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:20px;overflow:hidden;margin-bottom:44px;
+    box-shadow:var(--shadow);transition:transform .35s,border-color .35s;
   }
-  .brand-name {
-    font-family: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: #111827;
+  .game-card:hover{border-color:rgba(255,184,77,.35);transform:translateY(-4px)}
+  .game-card.flip{grid-template-columns:1fr 460px}
+  .game-card.flip .gc-media{order:2}
+  .game-card.flip .gc-body{order:1}
+  .gc-media{position:relative;overflow:hidden;background:#0c1220}
+  .gc-media .shot{
+    width:100%;aspect-ratio:16/9;object-fit:cover;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1);
   }
-  .hero h1 {
-    position: relative;
-    z-index: 1;
-    font-family: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: clamp(27px, 4.5vw, 36px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    color: #111827;
-    margin-bottom: 16px;
+  .game-card:hover .gc-media .shot{transform:scale(1.05)}
+  .gc-media::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,transparent 60%,rgba(18,26,40,.55));
+    pointer-events:none;
   }
-  .hero h1 .amp {
-    font-weight: 700;
-    background: linear-gradient(100deg, #2563EB 0%, #1E3A8A 100%);
-    -webkit-background-clip: text;
-            background-clip: text;
-    -webkit-text-fill-color: transparent;
-            color: transparent;
-    padding: 0 5px;
+  .game-card.flip .gc-media::after{background:linear-gradient(-90deg,transparent 60%,rgba(18,26,40,.55))}
+  .gc-status{
+    position:absolute;top:18px;left:18px;z-index:2;
+    font-size:12px;font-weight:800;letter-spacing:1.5px;
+    padding:7px 14px;border-radius:999px;color:#0c0f16;
+    background:linear-gradient(92deg,var(--accent),var(--accent-2));
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
   }
-  .hero p {
-    position: relative;
-    z-index: 1;
-    max-width: 560px;
-    font-size: 14px;
-    line-height: 1.78;
-    color: rgba(17,24,39,0.68);
+  .gc-status.soon{background:linear-gradient(92deg,#66c0f4,#4b8fd6);color:#071018}
+  .gc-body{padding:44px 46px;display:flex;flex-direction:column;justify-content:center}
+  .gc-title{font-size:30px;font-weight:900;letter-spacing:.5px}
+  .gc-en{margin-top:4px;font-size:13px;color:var(--txt-faint);letter-spacing:2px;text-transform:uppercase;font-weight:600}
+  .gc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tag{
+    font-size:12px;color:var(--txt-dim);
+    border:1px solid var(--line);background:rgba(255,255,255,.04);
+    padding:5px 12px;border-radius:999px;
+  }
+  .gc-desc{margin-top:20px;font-size:14.5px;color:var(--txt-dim)}
+  .gc-desc b{color:var(--txt)}
+  .gc-meta{
+    display:flex;gap:26px;margin-top:22px;font-size:13px;color:var(--txt-faint);
+    border-top:1px dashed var(--line);padding-top:18px;
+  }
+  .gc-meta b{color:var(--txt);font-size:14px;display:block;margin-bottom:1px}
+  .gc-actions{display:flex;align-items:center;gap:14px;margin-top:28px}
+  .btn-steam{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:13px 26px;border-radius:10px;font-size:14.5px;font-weight:800;
+    background:var(--steam-btn);color:#0b141f;
+    transition:transform .2s,box-shadow .2s,background .2s;
+  }
+  .btn-steam:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(102,192,244,.35);background:#7bc8f7}
+  .btn-steam svg{width:18px;height:18px}
+  .gc-price{font-size:13.5px;color:var(--txt-dim)}
+  .gc-price b{color:var(--accent);font-size:19px;margin-right:4px}
+
+  /* 截图预览 */
+  .gc-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+  .gc-shots img{
+    width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;
+    cursor:zoom-in;border:1px solid var(--line);
+    transition:transform .25s,box-shadow .25s;
+  }
+  .gc-shots img:hover{transform:scale(1.04);box-shadow:0 10px 22px rgba(0,0,0,.4)}
+
+  /* ---------- 联系/加入 ---------- */
+  .join{
+    border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative;
+    background:linear-gradient(120deg,rgba(255,184,77,.08),rgba(102,192,244,.06)),var(--card);
+  }
+  .join-inner{padding:70px 60px;text-align:center;position:relative;z-index:1}
+  .join h2{font-size:clamp(26px,3.6vw,36px);font-weight:900}
+  .join p{color:var(--txt-dim);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto;font-size:15px}
+  .join .chips{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .chips span{
+    font-size:13px;color:var(--txt);border:1px solid var(--line);
+    background:rgba(255,255,255,.05);padding:8px 18px;border-radius:999px;
   }
 
-  /* ---- Tab bar ---- */
-  .tab-bar {
-    display: flex;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(255,255,255,0.88);
-    -webkit-backdrop-filter: blur(16px) saturate(1.4);
-            backdrop-filter: blur(16px) saturate(1.4);
-    border-bottom: 1px solid rgba(15,23,42,0.08);
-    padding: 0 12px;
-  }
-  .tab-btn {
-    flex: 1;
-    position: relative;
-    padding: 16px 8px 15px;
-    font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: #9CA3AF;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.25s ease;
-  }
-  .tab-btn:hover { color: #4B5563; }
-  .tab-btn.active { color: #111827; }
-  .tab-btn::after {
-    content: "";
-    position: absolute;
-    left: 22%; right: 22%;
-    bottom: -1px;
-    height: 2px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, #2563EB, #1E40AF);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.32s ease;
-  }
-  .tab-btn.active::after { transform: scaleX(1); }
-
-  /* ---- Content ---- */
-  .tab-content { display: none; padding: 40px 48px 48px; }
-  .tab-content.active { display: block; animation: fadeUp 0.45s ease both; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* ---------- 页脚 ---------- */
+  footer{border-top:1px solid var(--line);background:rgba(8,11,18,.6);padding:60px 0 40px;margin-top:40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+  .foot-brand p{font-size:13.5px;color:var(--txt-dim);margin-top:14px;max-width:340px}
+  .foot-col h4{font-size:13px;letter-spacing:2px;color:var(--txt);margin-bottom:16px;text-transform:uppercase}
+  .foot-col a,.foot-col p{display:block;font-size:13.5px;color:var(--txt-dim);margin-bottom:10px;transition:color .2s}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-bottom{
+    margin-top:46px;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:12.5px;color:var(--txt-faint);
   }
 
-  .section { margin-bottom: 40px; }
-  .section:last-child { margin-bottom: 0; }
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: #111827;
-    margin-bottom: 16px;
-    padding-bottom: 13px;
-    border-bottom: 1px solid rgba(15,23,42,0.08);
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position:fixed;inset:0;z-index:200;background:rgba(4,6,10,.92);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .25s;
+    padding:4vh 4vw;
   }
-  .section-title .num {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    border: 1px solid rgba(30,64,175,0.30);
-    background: #EFF6FF;
-    color: #1E40AF;
-    font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+  .lightbox.open{opacity:1;pointer-events:auto}
+  .lightbox img{max-width:100%;max-height:92vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lightbox .close{
+    position:absolute;top:22px;right:26px;color:#fff;font-size:34px;cursor:pointer;
+    width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.2);border-radius:50%;transition:background .2s;
   }
-  .section p {
-    font-size: 14.5px;
-    color: #4B5563;
-    line-height: 1.9;
-    margin-bottom: 12px;
-  }
-  .section ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 14px;
-  }
-  .section ul li {
-    position: relative;
-    padding: 9px 0 9px 26px;
-    font-size: 14.5px;
-    color: #4B5563;
-    line-height: 1.85;
-    border-bottom: 1px dashed rgba(15,23,42,0.10);
-  }
-  .section ul li:last-child { border-bottom: none; }
-  .section ul li::before {
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 18px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #2563EB;
-    box-shadow: 0 0 0 3px rgba(37,99,235,0.16);
-  }
-  strong { font-weight: 600; color: #1E3A8A; }
+  .lightbox .close:hover{background:rgba(255,255,255,.12)}
 
-  .highlight-box {
-    position: relative;
-    background: #F8FAFC;
-    border: 1px solid rgba(30,64,175,0.14);
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin: 16px 0 20px;
-  }
-  .highlight-box::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    border-radius: 14px 0 0 14px;
-    background: linear-gradient(180deg, #2563EB, #1E40AF);
-  }
-  .highlight-box p {
-    font-size: 14.5px;
-    color: #475569;
-    margin: 0;
-    line-height: 1.85;
-  }
-  .highlight-box strong { color: #1E3A8A; }
+  /* ---------- 动画 ---------- */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
 
-  .info-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 14px;
-    margin: 24px 0 0;
+  /* ---------- 响应式 ---------- */
+  @media(max-width:960px){
+    .game-card,.game-card.flip{grid-template-columns:1fr}
+    .game-card.flip .gc-media{order:-1}
+    .game-card.flip .gc-body{order:1}
+    .gc-body{padding:34px 28px}
+    .about-grid{grid-template-columns:1fr}
+    .hero-stats .stat{padding:14px 20px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
   }
-  .info-card {
-    background: #FFFFFF;
-    border: 1px solid rgba(15,23,42,0.08);
-    border-radius: 16px;
-    padding: 18px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  }
-  .info-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(30,64,175,0.45);
-    box-shadow: 0 14px 26px -18px rgba(15,23,42,0.25);
-  }
-  .info-card .card-label {
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #1E40AF;
-    margin-bottom: 8px;
-  }
-  .info-card .card-value {
-    font-size: 14px;
-    font-weight: 500;
-    color: #111827;
-    line-height: 1.55;
-  }
-
-  .contact-block {
-    background: #F8FAFC;
-    border: 1px solid rgba(15,23,42,0.08);
-    border-radius: 18px;
-    padding: 22px 26px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-top: 10px;
-  }
-  .contact-icon {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 25%, #EFF6FF, #F8FAFC);
-    border: 1px solid rgba(30,64,175,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .contact-icon svg { width: 22px; height: 22px; }
-  .contact-icon svg rect,
-  .contact-icon svg path { stroke: #1E40AF; }
-  .contact-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: #6B7280;
-    margin-bottom: 3px;
-  }
-  .contact-value {
-    font-family: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14.5px;
-    font-weight: 500;
-    color: #1E40AF;
-  }
-  .contact-value a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(30,64,175,0.35);
-    transition: border-color 0.2s ease;
-  }
-  .contact-value a:hover { border-bottom-color: #1E3A8A; }
-
-  .footer-note {
-    background: #F8FAFC;
-    color: rgba(17,24,39,0.60);
-    text-align: center;
-    padding: 28px 40px;
-    border-top: 1px solid rgba(15,23,42,0.08);
-    font-size: 12.5px;
-    line-height: 1.85;
-  }
-  .footer-note a {
-    color: #1E40AF;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(30,64,175,0.40);
-    transition: border-color 0.2s ease;
-  }
-  .footer-note a:hover { border-bottom-color: #1E3A8A; }
-  .footer-company {
-    margin-top: 14px;
-    padding-top: 13px;
-    border-top: 1px solid rgba(15,23,42,0.08);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    color: #6B7280;
-  }
-
-  @media (max-width: 600px) {
-    body { padding: 20px 12px 48px; }
-    .hero { padding: 42px 24px 38px; }
-    .lang-switch { top: 16px; right: 18px; }
-    .lang-switch button { font-size: 11px; padding: 3px 10px; }
-    .tab-bar { padding: 0 4px; }
-    .tab-btn { font-size: 11px; letter-spacing: 0.05em; padding: 14px 4px 13px; }
-    .tab-content { padding: 28px 22px 38px; }
-    .contact-block { flex-direction: column; text-align: center; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
+  @media(max-width:640px){
+    nav.links{display:none}
+    .gc-shots{grid-template-columns:1fr}
+    .about-points{grid-template-columns:1fr}
+    .hero{padding-top:120px}
+    section{padding:80px 0}
+    .join-inner{padding:48px 28px}
   }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="hero">
-    <div class="lang-switch" role="group" aria-label="Language">
-      <button type="button" data-lang="zh">中文</button>
-      <button type="button" data-lang="en" class="active">EN</button>
-    </div>
-    <div class="hero-brand">
-      <span class="brand-name">Lynkpin Game</span>
-    </div>
-    <h1><span data-i18n="t1">User Agreement</span> <em class="amp" data-i18n="tAmp">&amp;</em> <span data-i18n="t2">Privacy Policy</span></h1>
-    <p data-i18n="subtitle">Please read the following terms carefully before using this game. By continuing to use the game, you acknowledge that you accept and agree to be bound by all terms of this agreement.</p>
+<div class="grid-overlay"></div>
+
+<!-- ======== 导航 ======== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-logo">L</span>
+      <span>
+        <b>灵品互娱</b>
+        <small>LYNKPIN GAME</small>
+      </span>
+    </a>
+    <nav class="links">
+      <a href="#about">关于我们</a>
+      <a href="#games">游戏作品</a>
+      <a href="#join">加入我们</a>
+      <a href="#contact">联系方式</a>
+    </nav>
   </div>
+</header>
 
-  <div class="tab-bar">
-    <button class="tab-btn active" data-i18n="tab1" onclick="switchTab('intro')">Introduction</button>
-    <button class="tab-btn" data-i18n="tab2" onclick="switchTab('agreement')">User Agreement</button>
-    <button class="tab-btn" data-i18n="tab3" onclick="switchTab('privacy')">Privacy Policy</button>
-    <button class="tab-btn" data-i18n="tab4" onclick="switchTab('other')">Other</button>
-  </div>
-
-  <!-- Introduction -->
-  <div class="tab-content active" id="tab-intro">
-    <div class="section">
-      <div class="highlight-box">
-        <p data-i18n="intro1">Welcome to this game product and its related services. Before using the game, please carefully read the following User Agreement and Privacy Policy. By downloading, installing, registering, logging in, and using this game, you are deemed to have fully read, understood, and agreed to be bound by all terms of this agreement.</p>
-      </div>
-      <p style="margin-top:14px;"><span data-i18n="intro2">This agreement applies to the game and all its features, services, and derived content. </span><strong data-i18n="intro2b">If you do not agree to any term of this agreement, please stop using this game immediately.</strong></p>
+<!-- ======== Hero ======== -->
+<section class="hero" id="top">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="wrap">
+    <div class="hero-tag reveal"><span class="dot"></span>独立游戏工作室 · STEAM 平台发行商</div>
+    <h1 class="reveal reveal-d1">做让人<em class="grad">玩得开心</em>的游戏</h1>
+    <div class="en-name reveal reveal-d1">Guangzhou Lynkpin Game Interactive Co., Ltd.</div>
+    <p class="lead reveal reveal-d2">
+      广州灵品互娱信息科技有限公司（Lynkpin Game）是一家独立游戏开发公司。
+      从硬核爽快的 3D 肉鸽割草，到治愈陪伴的桌面猫宠，再到奇幻烹饪的卡牌构筑——
+      我们相信<b>好的创意，值得被认真做出来</b>，并把它带给全球玩家。
+    </p>
+    <div class="hero-actions reveal reveal-d2">
+      <a class="btn btn-primary" href="#games">浏览游戏作品 →</a>
+      <a class="btn btn-ghost" href="#about">了解工作室</a>
     </div>
-    <div class="info-cards">
-      <div class="info-card">
-        <div class="card-label" data-i18n="info1l">Scope</div>
-        <div class="card-value" data-i18n="info1v">All game features and services</div>
-      </div>
-      <div class="info-card">
-        <div class="card-label" data-i18n="info2l">Game Type</div>
-        <div class="card-value" data-i18n="info2v">Indie casual entertainment</div>
-      </div>
-      <div class="info-card">
-        <div class="card-label" data-i18n="info3l">Contact Email</div>
-        <div class="card-value">lynkpingame@outlook.com</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- User Agreement -->
-  <div class="tab-content" id="tab-agreement">
-    <div class="section">
-      <div class="section-title"><span class="num">1</span><span data-i18n="ag1t">Service Description</span></div>
-      <p data-i18n="ag1">This game is an independently developed casual entertainment game that provides users with features such as gameplay entertainment, content experience, and interactive services. The developer reserves the right to optimize, update, and adjust game features, gameplay, interface, and service content at any time without separate notice to users.</p>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">2</span><span data-i18n="ag2t">User Conduct Rules</span></div>
-      <p data-i18n="ag2">Users agree to comply with the following rules while using this game:</p>
-      <ul>
-        <li data-i18n="ag2l1">Comply with applicable laws, regulations, and online etiquette. Do not use this game for any illegal, infringing, vulgar, or network-security-harming activities.</li>
-        <li data-i18n="ag2l2">Do not use cheats, scripts, hacking tools, client modifications, or game cracking to undermine game fairness.</li>
-        <li data-i18n="ag2l3">Do not spam, harass, insult, defraud, spread inappropriate content, or post advertisements that disrupt the game environment.</li>
-        <li data-i18n="ag2l4">Do not resell, crack, decompile, repackage, or misappropriate game resources and content.</li>
-      </ul>
-      <p data-i18n="ag2b">If a user violates these rules, the developer may take measures including but not limited to warnings, feature restrictions, account bans, and service termination.</p>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">3</span><span data-i18n="ag3t">Intellectual Property</span></div>
-      <p><span data-i18n="ag3a">All intellectual property rights to the text, artwork, sound effects, models, gameplay design, code, and related content within this game belong to the developer. </span><strong data-i18n="ag3b">Without the developer's written permission, no individual or organization may copy, reprint, modify, commercialize, or redistribute these materials.</strong></p>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">4</span><span data-i18n="ag4t">Disclaimer</span></div>
-      <p data-i18n="ag4">This game is a free entertainment product. To the maximum extent permitted by law, the developer is not liable for damages caused by network instability, device issues, system incompatibility, or third-party problems that result in login failures, lag, or data anomalies. Users voluntarily assume all risks associated with using this game.</p>
+    <div class="hero-stats reveal reveal-d3">
+      <div class="stat"><div class="num">3</div><div class="lbl">已发布 / 在研作品</div></div>
+      <div class="stat"><div class="num">2</div><div class="lbl">已上架 Steam</div></div>
+      <div class="stat"><div class="num">1000+</div><div class="lbl">全球玩家好评</div></div>
     </div>
   </div>
+</section>
 
-  <!-- Privacy Policy -->
-  <div class="tab-content" id="tab-privacy">
-    <div class="section">
-      <div class="section-title"><span class="num">1</span><span data-i18n="pr1t">Information Collection</span></div>
-      <div class="highlight-box">
-        <p><span data-i18n="pr1a">This game highly values user privacy and follows the principle of minimum necessity. </span><strong data-i18n="pr1b">We do not actively collect sensitive personal information such as ID numbers, phone numbers, contacts, or location data.</strong></p>
-      </div>
-      <p style="margin-top:12px;" data-i18n="pr1c">Non-sensitive information that may be collected includes:</p>
-      <ul>
-        <li><strong data-i18n="pr1l1a">Basic device information:</strong><span data-i18n="pr1l1b"> Device model, OS version, device identifier (used for anti-cheat and abnormal login detection)</span></li>
-        <li><strong data-i18n="pr1l2a">Game runtime logs:</strong><span data-i18n="pr1l2b"> Crash logs, error reports (used to fix bugs and improve the game experience)</span></li>
-        <li><strong data-i18n="pr1l3a">Local save data:</strong><span data-i18n="pr1l3b"> Stored only on the user's local device, not uploaded to the cloud (if cloud save is available, only game progress data is stored)</span></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">2</span><span data-i18n="pr2t">How We Use Information</span></div>
-      <p data-i18n="pr2">The information we collect is used solely to:</p>
-      <ul>
-        <li data-i18n="pr2l1">Ensure normal game operation, device compatibility, and resolve issues</li>
-        <li data-i18n="pr2l2">Detect cheating and violations to maintain a fair gaming environment</li>
-        <li data-i18n="pr2l3">Optimize gameplay and improve user experience</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">3</span><span data-i18n="pr3t">Information Sharing &amp; Disclosure</span></div>
-      <p><span data-i18n="pr3a">We </span><strong data-i18n="pr3b">do not</strong><span data-i18n="pr3c"> sell, rent, or share your personal information with any third party, except in the following cases:</span></p>
-      <ul>
-        <li data-i18n="pr3l1">With your explicit consent</li>
-        <li data-i18n="pr3l2">When required by law by judicial or administrative authorities</li>
-        <li data-i18n="pr3l3">When necessary to protect the legitimate rights of users, the public, or the developer</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">4</span><span data-i18n="pr4t">Data Storage &amp; Security</span></div>
-      <p data-i18n="pr4">Local game data is stored on the user's device and can be cleared by uninstalling the game. Cloud data is protected with security measures to prevent leakage, tampering, or loss.</p>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">5</span><span data-i18n="pr5t">Minor Protection</span></div>
-      <p data-i18n="pr5">We take the protection of minors online seriously. Minors should use this game under the supervision and with the consent of a guardian. If you become aware of a minor's misuse or any information concerns, please contact us.</p>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">6</span><span data-i18n="pr6t">User Rights</span></div>
-      <p data-i18n="pr6">Users have the right to decline non-essential information authorization and to clear local data by uninstalling the game. For privacy-related inquiries, please contact the developer using the information provided at the end of this document.</p>
-    </div>
-  </div>
-
-  <!-- Other -->
-  <div class="tab-content" id="tab-other">
-    <div class="section">
-      <div class="section-title"><span class="num">!</span><span data-i18n="ot1t">Agreement Updates</span></div>
-      <p><span data-i18n="ot1a">The developer reserves the right to update this User Agreement and Privacy Policy from time to time based on operational and regulatory requirements. Updates will be displayed within the game. </span><strong data-i18n="ot1b">By continuing to use the game after an update, you are deemed to agree to the updated terms.</strong></p>
-    </div>
-
-    <div class="section">
-      <div class="section-title"><span class="num">@</span><span data-i18n="ot2t">Contact</span></div>
-      <p data-i18n="ot2">If you have questions, complaints, or suggestions regarding this agreement or privacy practices, you can reach the developer via the following:</p>
-      <div class="contact-block">
-        <div class="contact-icon">
-          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="4" width="16" height="12" rx="2" stroke="#1E40AF" stroke-width="1.2"/>
-            <path d="M2 7l8 5 8-5" stroke="#1E40AF" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="contact-label" data-i18n="ot2l">Developer Email</div>
-          <div class="contact-value"><a href="mailto:lynkpingame@outlook.com">lynkpingame@outlook.com</a></div>
+<!-- ======== 关于 ======== -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy">
+        <div class="sec-eyebrow reveal">About Us</div>
+        <h3 class="reveal">小而精的独立游戏团队</h3>
+        <p class="reveal reveal-d1">
+          Lynkpin Game 成立于 2023 年，深耕<b>动作肉鸽</b>、<b>治愈养成</b>与<b>策略卡牌</b>等品类，
+          致力于打造「技术 × 艺术」融合的优质 3D 游戏。团队规模不大，但对玩法打磨和玩家体验有着近乎执拗的坚持。
+        </p>
+        <p class="reveal reveal-d1">
+          我们的游戏已面向全球发行，支持简繁中文、英文、日文、韩文、俄文等十余种语言；
+          《萌宠不摸鱼：Lofi猫》更以<b>97% 好评率</b>收获大量玩家的喜爱。每一款作品，都是我们与世界的一次对话。
+        </p>
+        <div class="about-points">
+          <div class="point reveal reveal-d2">
+            <div class="ico">🎮</div>
+            <div><b>玩法驱动</b><span>先好玩，再谈其他</span></div>
+          </div>
+          <div class="point reveal reveal-d2">
+            <div class="ico">🌍</div>
+            <div><b>全球发行</b><span>十余种语言支持</span></div>
+          </div>
+          <div class="point reveal reveal-d2">
+            <div class="ico">🤝</div>
+            <div><b>玩家同行</b><span>认真倾听每一份反馈</span></div>
+          </div>
+          <div class="point reveal reveal-d2">
+            <div class="ico">🚀</div>
+            <div><b>持续更新</b><span>长期运营，不断进化</span></div>
+          </div>
         </div>
       </div>
+      <div class="about-visual reveal reveal-d1">
+        <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼：Lofi猫 游戏画面">
+        <div class="cap">Miino 正在桌面上安静地陪你工作 ——《萌宠不摸鱼：Lofi猫》</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="footer-note">
-    <span data-i18n="foot1">This agreement takes effect upon your first use of the game and is governed by the laws of the People's Republic of China.</span><br>
-    <span data-i18n="foot2">For any questions, please email </span><a href="mailto:lynkpingame@outlook.com">lynkpingame@outlook.com</a>
-    <div class="footer-company">&copy; 2023 - <span id="curYear">2026</span> 广州灵品互娱信息科技有限公司</div>
+<!-- ======== 游戏作品 ======== -->
+<section id="games">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow reveal">Our Games</div>
+      <h2 class="reveal">游戏作品</h2>
+      <p class="reveal reveal-d1">三款风格各异的作品，承载同一个团队对「好玩」的三种理解。</p>
+    </div>
+
+    <!-- 游戏 1：神器行者：重生 -->
+    <article class="game-card reveal">
+      <div class="gc-media">
+        <img class="shot" src="assets/asr_header.jpg" alt="神器行者：重生 封面">
+        <span class="gc-status">已发售</span>
+      </div>
+      <div class="gc-body">
+        <h3 class="gc-title">神器行者：重生</h3>
+        <div class="gc-en">Artifact Seeker: Resurrection</div>
+        <div class="gc-tags">
+          <span class="tag">3D 肉鸽</span><span class="tag">割草</span><span class="tag">动作</span><span class="tag">角色扮演</span><span class="tag">单人</span>
+        </div>
+        <p class="gc-desc">
+          <b>众神的棋局，凡人亦可成神。</b>
+          一款 3D 肉鸽 + 爬塔割草游戏。以奥罗瑞恩大陆为棋盘，击退被腐蚀的敌人获取神器，
+          搭配上百种神器与技能组成羁绊共鸣。数十种可进化技能、极限冲刺走位、终极割草大招——
+          如何利用神器之力参与这场棋局、终结这场棋局，甚至选择<b>成为神明</b>？由你来决定。
+        </p>
+        <div class="gc-shots">
+          <img src="assets/asr_shot_1.jpg" alt="神器行者：重生 截图 1" class="zoomable">
+          <img src="assets/asr_shot_2.jpg" alt="神器行者：重生 截图 2" class="zoomable">
+          <img src="assets/asr_shot_3.jpg" alt="神器行者：重生 截图 3" class="zoomable">
+        </div>
+        <div class="gc-meta">
+          <div><b>发行日期</b>2024.07.26</div>
+          <div><b>评价</b>多半好评 · 79%</div>
+          <div><b>成就</b>205 项</div>
+        </div>
+        <div class="gc-actions">
+          <a class="btn-steam" href="https://store.steampowered.com/app/3054610/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
+            Steam 商店 · ¥42
+          </a>
+          <span class="gc-price">折扣常见 · 含免费 Demo</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 游戏 2：萌宠不摸鱼：Lofi猫 -->
+    <article class="game-card flip reveal">
+      <div class="gc-media">
+        <img class="shot" src="assets/noslack_header.jpg" alt="萌宠不摸鱼：Lofi猫 封面">
+        <span class="gc-status">已发售</span>
+      </div>
+      <div class="gc-body">
+        <h3 class="gc-title">萌宠不摸鱼：Lofi猫</h3>
+        <div class="gc-en">NoSlack Pets: Lo-Fi Paws</div>
+        <div class="gc-tags">
+          <span class="tag">桌面宠物</span><span class="tag">治愈</span><span class="tag">专注工具</span><span class="tag">放置收集</span><span class="tag">在线自习室</span>
+        </div>
+        <p class="gc-desc">
+          <b>让一只安静的小猫，陪你工作、学习和放松。</b>
+          Miino 会待在屏幕边缘陪你敲键盘，内置番茄钟、Lo-Fi 音乐、白噪音与待办清单；
+          专注满 30 分钟即可开礼盒，收集 <b>448 款头饰</b>与 1500+ 装饰，布置专属猫屋与桌面。
+          累了就去在线自习室和全球玩家一起学习，或玩小游戏放松——轻松收集，沉浸专注，治愈陪伴。
+        </p>
+        <div class="gc-shots">
+          <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼 截图 1" class="zoomable">
+          <img src="assets/noslack_shot_2.jpg" alt="萌宠不摸鱼 截图 2" class="zoomable">
+          <img src="assets/noslack_shot_3.jpg" alt="萌宠不摸鱼 截图 3" class="zoomable">
+        </div>
+        <div class="gc-meta">
+          <div><b>发行日期</b>2025.11.03</div>
+          <div><b>评价</b>特别好评 · 97%</div>
+          <div><b>成就</b>77 项</div>
+        </div>
+        <div class="gc-actions">
+          <a class="btn-steam" href="https://store.steampowered.com/app/3714370/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
+            Steam 商店 · ¥26
+          </a>
+          <span class="gc-price">国区史低 ¥18.20 · 好评如潮</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 游戏 3：王牌餐车 -->
+    <article class="game-card reveal">
+      <div class="gc-media">
+        <img class="shot" src="assets/cookwagon_header.jpg" alt="王牌餐车 封面">
+        <span class="gc-status soon">即将推出</span>
+      </div>
+      <div class="gc-body">
+        <h3 class="gc-title">王牌餐车</h3>
+        <div class="gc-en">Cookwagon</div>
+        <div class="gc-tags">
+          <span class="tag">卡牌构筑</span><span class="tag">Roguelike</span><span class="tag">烹饪</span><span class="tag">策略</span><span class="tag">奇幻</span>
+        </div>
+        <p class="gc-desc">
+          <b>把牌打进锅里，端出你的招牌菜！</b>
+          一款没有传统战斗的奇幻烹饪 Roguelike 卡牌构筑游戏。驾驶魔法餐车踏上旅程，
+          在三口锅之间安排料理，用技法牌控火调味、加快成菜，在客人失去耐心前上桌。
+          收集新牌与遗物，激活风味共鸣，围绕慢火增味、三锅联动、招牌菜成长组成你的烹饪流派——
+          这里没有等着被击败的敌人，只有等着被一顿好饭满足的客人。
+        </p>
+        <div class="gc-shots">
+          <img src="assets/cookwagon_shot_1.jpg" alt="王牌餐车 截图 1" class="zoomable">
+          <img src="assets/cookwagon_shot_2.jpg" alt="王牌餐车 截图 2" class="zoomable">
+          <img src="assets/cookwagon_shot_3.jpg" alt="王牌餐车 截图 3" class="zoomable">
+        </div>
+        <div class="gc-meta">
+          <div><b>发行日期</b>敬请期待</div>
+          <div><b>状态</b>开发中</div>
+          <div><b>支持</b>中 / 英 / 日 / 韩 等 14 种语言</div>
+        </div>
+        <div class="gc-actions">
+          <a class="btn-steam" href="https://store.steampowered.com/app/4942150/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
+            Steam 商店页 · 加入愿望单
+          </a>
+          <span class="gc-price">新作情报陆续公开中</span>
+        </div>
+      </div>
+    </article>
   </div>
+</section>
+
+<!-- ======== 加入我们 ======== -->
+<section id="join">
+  <div class="wrap">
+    <div class="join reveal">
+      <div class="join-inner">
+        <div class="sec-eyebrow">Join Us</div>
+        <h2>跟我们一起，做出好玩的游戏</h2>
+        <p>
+          我们相信小团队也能做出打动人心的作品。如果你热爱游戏、热爱创造，
+          欢迎加入 Lynkpin Game，一起把下一个「灵感」变成玩家手中的「快乐」。
+        </p>
+        <div class="chips">
+          <span>游戏策划</span><span>Unity 开发</span><span>3D 美术</span><span>动效设计</span><span>UI 设计</span>
+        </div>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-primary" href="#contact">联系我们投递简历</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 页脚 ======== -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <span class="brand-logo">L</span>
+          <span><b>灵品互娱</b><small>LYNKPIN GAME</small></span>
+        </a>
+        <p>
+          广州灵品互娱信息科技有限公司（Lynkpin Game）
+          是一家专注独立游戏研发的公司，作品已上架 Steam 全球发行。
+        </p>
+      </div>
+      <div class="foot-col">
+        <h4>作品</h4>
+        <a href="https://store.steampowered.com/app/3054610/" target="_blank" rel="noopener">神器行者：重生</a>
+        <a href="https://store.steampowered.com/app/3714370/" target="_blank" rel="noopener">萌宠不摸鱼：Lofi猫</a>
+        <a href="https://store.steampowered.com/app/4942150/" target="_blank" rel="noopener">王牌餐车（即将推出）</a>
+      </div>
+      <div class="foot-col">
+        <h4>联系</h4>
+        <p>📍 广州市番禺区小谷围街明志街 1 号</p>
+        <p>信息枢纽楼 3 楼</p>
+        <a href="https://store.steampowered.com/curator/45260156/" target="_blank" rel="noopener">Steam 开发者主页</a>
+        <a href="https://space.bilibili.com/477798708" target="_blank" rel="noopener">哔哩哔哩官方账号</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2023–2026 广州灵品互娱信息科技有限公司 · Lynkpin Game · 保留所有权利</span>
+      <span>图片与游戏素材版权归广州灵品互娱信息科技有限公司 / Steam 商店页所有</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close" id="lbClose">×</span>
+  <img id="lbImg" src="" alt="预览大图">
 </div>
 
 <script>
-var I18N = {
-  en: {
-    docTitle: 'User Agreement & Privacy Policy',
-    t1: 'User Agreement',
-    tAmp: '&amp;',
-    t2: 'Privacy Policy',
-    subtitle: 'Please read the following terms carefully before using this game. By continuing to use the game, you acknowledge that you accept and agree to be bound by all terms of this agreement.',
-    tab1: 'Introduction',
-    tab2: 'User Agreement',
-    tab3: 'Privacy Policy',
-    tab4: 'Other',
-    intro1: 'Welcome to this game product and its related services. Before using the game, please carefully read the following User Agreement and Privacy Policy. By downloading, installing, registering, logging in, and using this game, you are deemed to have fully read, understood, and agreed to be bound by all terms of this agreement.',
-    intro2: 'This agreement applies to the game and all its features, services, and derived content. ',
-    intro2b: 'If you do not agree to any term of this agreement, please stop using this game immediately.',
-    info1l: 'Scope',
-    info1v: 'All game features and services',
-    info2l: 'Game Type',
-    info2v: 'Indie casual entertainment',
-    info3l: 'Contact Email',
-    ag1t: 'Service Description',
-    ag1: 'This game is an independently developed casual entertainment game that provides users with features such as gameplay entertainment, content experience, and interactive services. The developer reserves the right to optimize, update, and adjust game features, gameplay, interface, and service content at any time without separate notice to users.',
-    ag2t: 'User Conduct Rules',
-    ag2: 'Users agree to comply with the following rules while using this game:',
-    ag2l1: 'Comply with applicable laws, regulations, and online etiquette. Do not use this game for any illegal, infringing, vulgar, or network-security-harming activities.',
-    ag2l2: 'Do not use cheats, scripts, hacking tools, client modifications, or game cracking to undermine game fairness.',
-    ag2l3: 'Do not spam, harass, insult, defraud, spread inappropriate content, or post advertisements that disrupt the game environment.',
-    ag2l4: 'Do not resell, crack, decompile, repackage, or misappropriate game resources and content.',
-    ag2b: 'If a user violates these rules, the developer may take measures including but not limited to warnings, feature restrictions, account bans, and service termination.',
-    ag3t: 'Intellectual Property',
-    ag3a: 'All intellectual property rights to the text, artwork, sound effects, models, gameplay design, code, and related content within this game belong to the developer. ',
-    ag3b: "Without the developer's written permission, no individual or organization may copy, reprint, modify, commercialize, or redistribute these materials.",
-    ag4t: 'Disclaimer',
-    ag4: 'This game is a free entertainment product. To the maximum extent permitted by law, the developer is not liable for damages caused by network instability, device issues, system incompatibility, or third-party problems that result in login failures, lag, or data anomalies. Users voluntarily assume all risks associated with using this game.',
-    pr1t: 'Information Collection',
-    pr1a: 'This game highly values user privacy and follows the principle of minimum necessity. ',
-    pr1b: 'We do not actively collect sensitive personal information such as ID numbers, phone numbers, contacts, or location data.',
-    pr1c: 'Non-sensitive information that may be collected includes:',
-    pr1l1a: 'Basic device information:',
-    pr1l1b: ' Device model, OS version, device identifier (used for anti-cheat and abnormal login detection)',
-    pr1l2a: 'Game runtime logs:',
-    pr1l2b: ' Crash logs, error reports (used to fix bugs and improve the game experience)',
-    pr1l3a: 'Local save data:',
-    pr1l3b: " Stored only on the user's local device, not uploaded to the cloud (if cloud save is available, only game progress data is stored)",
-    pr2t: 'How We Use Information',
-    pr2: 'The information we collect is used solely to:',
-    pr2l1: 'Ensure normal game operation, device compatibility, and resolve issues',
-    pr2l2: 'Detect cheating and violations to maintain a fair gaming environment',
-    pr2l3: 'Optimize gameplay and improve user experience',
-    pr3t: 'Information Sharing &amp; Disclosure',
-    pr3a: 'We ',
-    pr3b: 'do not',
-    pr3c: ' sell, rent, or share your personal information with any third party, except in the following cases:',
-    pr3l1: 'With your explicit consent',
-    pr3l2: 'When required by law by judicial or administrative authorities',
-    pr3l3: 'When necessary to protect the legitimate rights of users, the public, or the developer',
-    pr4t: 'Data Storage &amp; Security',
-    pr4: 'Local game data is stored on the user\'s device and can be cleared by uninstalling the game. Cloud data is protected with security measures to prevent leakage, tampering, or loss.',
-    pr5t: 'Minor Protection',
-    pr5: "We take the protection of minors online seriously. Minors should use this game under the supervision and with the consent of a guardian. If you become aware of a minor's misuse or any information concerns, please contact us.",
-    pr6t: 'User Rights',
-    pr6: 'Users have the right to decline non-essential information authorization and to clear local data by uninstalling the game. For privacy-related inquiries, please contact the developer using the information provided at the end of this document.',
-    ot1t: 'Agreement Updates',
-    ot1a: 'The developer reserves the right to update this User Agreement and Privacy Policy from time to time based on operational and regulatory requirements. Updates will be displayed within the game. ',
-    ot1b: 'By continuing to use the game after an update, you are deemed to agree to the updated terms.',
-    ot2t: 'Contact',
-    ot2: 'If you have questions, complaints, or suggestions regarding this agreement or privacy practices, you can reach the developer via the following:',
-    ot2l: 'Developer Email',
-    foot1: 'This agreement takes effect upon your first use of the game and is governed by the laws of the People\'s Republic of China.',
-    foot2: 'For any questions, please email '
-  },
-  zh: {
-    docTitle: '用户协议与隐私政策',
-    t1: '用户协议',
-    tAmp: '&amp;',
-    t2: '隐私政策',
-    subtitle: '在使用本游戏前，请认真阅读以下条款。继续使用即视为您同意接受本协议全部内容的约束。',
-    tab1: '前言',
-    tab2: '用户协议',
-    tab3: '隐私政策',
-    tab4: '其他',
-    intro1: '欢迎您使用本游戏产品及相关服务。在使用本游戏前，请您认真阅读以下《用户协议》及《隐私政策》。您的下载、安装、注册、登录及使用本游戏的全部行为，均视为您已充分阅读、理解并同意接受本协议全部条款的约束。',
-    intro2: '本协议适用于本游戏及游戏内所有功能、服务、衍生内容。',
-    intro2b: '如果您不同意本协议任意条款，请立即停止使用本游戏。',
-    info1l: '适用范围',
-    info1v: '游戏全部功能及服务',
-    info2l: '游戏类型',
-    info2v: '独立开发休闲娱乐',
-    info3l: '联系邮箱',
-    ag1t: '服务说明',
-    ag1: '本游戏为独立开发休闲娱乐类游戏，为用户提供游戏娱乐、内容体验、互动服务等相关功能。开发者保留随时优化、更新、调整游戏功能、玩法、界面及服务内容的权利，无需单独通知用户。',
-    ag2t: '用户使用规范',
-    ag2: '用户在使用本游戏过程中，承诺遵守以下规则：',
-    ag2l1: '遵守国家法律法规及网络文明规范，不得利用本游戏从事任何违法、违规、侵权、低俗及危害网络安全的行为。',
-    ag2l2: '禁止使用外挂、脚本、作弊工具、篡改客户端、破解游戏等方式破坏游戏公平性。',
-    ag2l3: '禁止恶意刷屏、辱骂、骚扰、欺诈、传播不良信息、引流广告等破坏游戏环境的行为。',
-    ag2l4: '禁止私自倒卖、破解、反编译、二次封装、盗用游戏资源及内容。',
-    ag2b: '如用户存在违规行为，开发者有权采取包括但不限于提醒、限制功能、封禁账号、终止服务等处理措施。',
-    ag3t: '知识产权声明',
-    ag3a: '本游戏内所有文字、美术、音效、模型、玩法设计、代码及相关内容的知识产权均归开发者所有。',
-    ag3b: '未经开发者书面许可，任何个人或组织不得复制、转载、篡改、商用、二次分发。',
-    ag4t: '免责声明',
-    ag4: '本游戏为免费娱乐产品，在法律允许的最大范围内，开发者不对因网络波动、设备问题、系统兼容、第三方问题导致的无法登录、卡顿、数据异常等问题承担赔偿责任。用户自愿承担使用本游戏产生的全部风险。',
-    pr1t: '信息收集说明',
-    pr1a: '本游戏高度重视用户隐私保护，坚持最小必要原则，',
-    pr1b: '不会主动收集用户身份证、手机号、通讯录、位置等敏感个人信息。',
-    pr1c: '可能收集的非敏感信息包括：',
-    pr1l1a: '设备基础信息：',
-    pr1l1b: '设备型号、系统版本、设备标识（用于防作弊、异常登录识别）',
-    pr1l2a: '游戏运行日志：',
-    pr1l2b: '崩溃日志、报错信息（用于修复 BUG、优化游戏体验）',
-    pr1l3a: '本地游戏存档数据：',
-    pr1l3b: '仅保存在用户本地设备，不上传云端（如有云存档功能则仅存储游戏进度数据）',
-    pr2t: '信息使用方式',
-    pr2: '我们收集的信息仅用于：',
-    pr2l1: '保障游戏正常运行、适配设备、修复异常问题',
-    pr2l2: '识别作弊、违规行为，维护游戏公平环境',
-    pr2l3: '优化游戏玩法、提升用户体验',
-    pr3t: '信息共享与披露',
-    pr3a: '我们',
-    pr3b: '不会',
-    pr3c: '向任何第三方出售、出租、分享您的个人信息。以下情况除外：',
-    pr3l1: '经用户本人明确同意授权',
-    pr3l2: '国家司法机关、行政机关依法要求提供的情况',
-    pr3l3: '为保障用户、公众、开发者合法权益所必要的情形',
-    pr4t: '信息存储与安全',
-    pr4: '游戏本地数据存储于用户设备中，用户可自行删除游戏清除所有本地数据。云端数据将采用安全技术保护，防止泄露、篡改、丢失。',
-    pr5t: '未成年人保护',
-    pr5: '我们高度重视未成年人网络保护，未成年人请在监护人陪同及同意前提下使用本游戏。如发现未成年人违规使用或信息问题，可联系我们处理。',
-    pr6t: '用户权利',
-    pr6: '用户有权拒绝非必要信息授权，有权通过删除游戏清除本地数据。如需咨询隐私相关问题，可通过文末联系方式联系开发者。',
-    ot1t: '协议更新',
-    ot1a: '开发者有权根据运营及法规要求不定期更新本用户协议及隐私政策，更新后将通过游戏内页面更新展示，',
-    ot1b: '更新后继续使用游戏即视为同意更新后的协议内容。',
-    ot2t: '联系方式',
-    ot2: '如您对本协议内容、隐私规则有疑问或投诉建议，可通过以下方式联系开发者：',
-    ot2l: '开发者邮箱',
-    foot1: '本协议自用户首次使用本游戏时生效，受中华人民共和国法律管辖。',
-    foot2: '如有任何问题请发送邮件至 '
-  }
-};
+  // 导航滚动背景
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', scrollY > 30);
+  }, { passive: true });
 
-var STORAGE_KEY = 'lynkpin-eula-lang';
+  // 滚动渐入
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-function getInitialLang() {
-  // 1. URL 参数优先：?lang=zh / ?lang=en（不区分大小写）
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var urlLang = (params.get('lang') || '').toLowerCase();
-    if (urlLang === 'zh' || urlLang === 'en') return urlLang;
-  } catch (e) {}
-  // 2. 上次选择（localStorage）
-  try {
-    var saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'zh' || saved === 'en') return saved;
-  } catch (e) {}
-  // 3. 浏览器语言
-  var nav = (navigator.language || 'en').toLowerCase();
-  if (nav.indexOf('zh') === 0) return 'zh';
-  return 'en';
-}
-
-function applyLang(lang) {
-  var dict = I18N[lang] || I18N.en;
-  document.documentElement.lang = (lang === 'zh') ? 'zh-CN' : 'en';
-  document.title = dict.docTitle;
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n');
-    if (dict[key] !== undefined) el.innerHTML = dict[key];
-  });
-  document.querySelectorAll('.lang-switch button').forEach(function(btn) {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
-}
-
-function setLang(lang) {
-  applyLang(lang);
-  try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
-  // 同步 URL 参数，方便分享带语言设定的链接（file:// 下不执行）
-  try {
-    if (window.location.protocol.indexOf('http') === 0) {
-      var url = new URL(window.location.href);
-      url.searchParams.set('lang', lang);
-      window.history.replaceState(null, '', url.toString());
-    }
-  } catch (e) {}
-}
-
-function switchTab(name) {
-  document.querySelectorAll('.tab-btn').forEach(function(btn, i) {
-    var names = ['intro', 'agreement', 'privacy', 'other'];
-    btn.classList.toggle('active', names[i] === name);
-  });
-  document.querySelectorAll('.tab-content').forEach(function(el) {
-    el.classList.toggle('active', el.id === 'tab-' + name);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  var yearEl = document.getElementById('curYear');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-  document.querySelectorAll('.lang-switch button').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      setLang(btn.getAttribute('data-lang'));
+  // 截图 Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  document.querySelectorAll('.zoomable').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lb.classList.add('open');
     });
   });
-  applyLang(getInitialLang());
-});
+  lb.addEventListener('click', e => {
+    if (e.target === lb || e.target.id === 'lbClose') lb.classList.remove('open');
+  });
+  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 </script>
 </body>
 </html>
