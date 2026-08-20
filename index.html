@@ -66,8 +66,8 @@
     transition:background .3s,border-color .3s;
   }
   header.nav.scrolled{background:rgba(10,14,22,.88);border-color:var(--line)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px;flex:none}
   .brand-logo{
     width:38px;height:38px;border-radius:10px;flex:none;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
@@ -77,6 +77,7 @@
   }
   .brand b{font-size:17px}
   .brand small{display:block;font-size:10.5px;color:var(--txt-dim);font-weight:500;letter-spacing:2.5px}
+  .nav-right{display:flex;align-items:center;gap:26px}
   nav.links{display:flex;gap:30px;font-size:14px;color:var(--txt-dim)}
   nav.links a{position:relative;padding:4px 0;transition:color .2s}
   nav.links a::after{
@@ -85,6 +86,18 @@
   }
   nav.links a:hover{color:var(--txt)}
   nav.links a:hover::after{width:100%}
+  .lang-switch{display:flex;align-items:center;gap:6px;flex:none}
+  .lang-switch button{
+    background:none;border:1px solid var(--line);color:var(--txt-dim);
+    padding:5px 13px;border-radius:999px;cursor:pointer;
+    font-size:12.5px;font-weight:700;font-family:inherit;
+    transition:all .2s;letter-spacing:.5px;
+  }
+  .lang-switch button:hover{color:var(--txt);border-color:rgba(255,255,255,.22)}
+  .lang-switch button.active{
+    background:linear-gradient(92deg,var(--accent),var(--accent-2));
+    color:#171006;border-color:transparent;
+  }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -285,6 +298,8 @@
     display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     font-size:12.5px;color:var(--txt-faint);
   }
+  .foot-bottom a{color:var(--txt-faint);transition:color .2s}
+  .foot-bottom a:hover{color:var(--accent)}
 
   /* ---------- Lightbox ---------- */
   .lightbox{
@@ -316,6 +331,7 @@
     .about-grid{grid-template-columns:1fr}
     .hero-stats .stat{padding:14px 20px}
     .foot-grid{grid-template-columns:1fr;gap:30px}
+    .nav-right{gap:16px}
   }
   @media(max-width:640px){
     nav.links{display:none}
@@ -336,16 +352,22 @@
     <a class="brand" href="#top">
       <span class="brand-logo">L</span>
       <span>
-        <b>灵品互娱</b>
+        <b data-i18n="brand_name">灵品互娱</b>
         <small>LYNKPIN GAME</small>
       </span>
     </a>
-    <nav class="links">
-      <a href="#about">关于我们</a>
-      <a href="#games">游戏作品</a>
-      <a href="#join">加入我们</a>
-      <a href="#contact">联系方式</a>
-    </nav>
+    <div class="nav-right">
+      <nav class="links">
+        <a href="#about" data-i18n="nav_about">关于我们</a>
+        <a href="#games" data-i18n="nav_games">游戏作品</a>
+        <a href="#join" data-i18n="nav_join">加入我们</a>
+        <a href="#contact" data-i18n="nav_contact">联系方式</a>
+      </nav>
+      <div class="lang-switch">
+        <button type="button" data-lang="zh" class="active">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -354,22 +376,22 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="wrap">
-    <div class="hero-tag reveal"><span class="dot"></span>独立游戏工作室 · STEAM 平台发行商</div>
-    <h1 class="reveal reveal-d1">做让人<em class="grad">玩得开心</em>的游戏</h1>
+    <div class="hero-tag reveal"><span class="dot"></span><span data-i18n="hero_tag">独立游戏工作室 · STEAM 平台发行商</span></div>
+    <h1 class="reveal reveal-d1" data-i18n="hero_h1">做让人<em class="grad">玩得开心</em>的游戏</h1>
     <div class="en-name reveal reveal-d1">Guangzhou Lynkpin Game Interactive Co., Ltd.</div>
-    <p class="lead reveal reveal-d2">
+    <p class="lead reveal reveal-d2" data-i18n="hero_lead">
       广州灵品互娱信息科技有限公司（Lynkpin Game）是一家独立游戏开发公司。
       从硬核爽快的 3D 肉鸽割草，到治愈陪伴的桌面猫宠，再到奇幻烹饪的卡牌构筑——
       我们相信<b>好的创意，值得被认真做出来</b>，并把它带给全球玩家。
     </p>
     <div class="hero-actions reveal reveal-d2">
-      <a class="btn btn-primary" href="#games">浏览游戏作品 →</a>
-      <a class="btn btn-ghost" href="#about">了解工作室</a>
+      <a class="btn btn-primary" href="#games" data-i18n="hero_btn_games">浏览游戏作品 →</a>
+      <a class="btn btn-ghost" href="#about" data-i18n="hero_btn_about">了解工作室</a>
     </div>
     <div class="hero-stats reveal reveal-d3">
-      <div class="stat"><div class="num">3</div><div class="lbl">已发布 / 在研作品</div></div>
-      <div class="stat"><div class="num">2</div><div class="lbl">已上架 Steam</div></div>
-      <div class="stat"><div class="num">1000+</div><div class="lbl">全球玩家好评</div></div>
+      <div class="stat"><div class="num">3</div><div class="lbl" data-i18n="stat1_lbl">已发布 / 在研作品</div></div>
+      <div class="stat"><div class="num">2</div><div class="lbl" data-i18n="stat2_lbl">已上架 Steam</div></div>
+      <div class="stat"><div class="num">1000+</div><div class="lbl" data-i18n="stat3_lbl">全球玩家好评</div></div>
     </div>
   </div>
 </section>
@@ -379,38 +401,38 @@
   <div class="wrap">
     <div class="about-grid">
       <div class="about-copy">
-        <div class="sec-eyebrow reveal">About Us</div>
-        <h3 class="reveal">小而精的独立游戏团队</h3>
-        <p class="reveal reveal-d1">
+        <div class="sec-eyebrow reveal" data-i18n="about_eyebrow">关于我们</div>
+        <h3 class="reveal" data-i18n="about_h3">小而精的独立游戏团队</h3>
+        <p class="reveal reveal-d1" data-i18n="about_p1">
           Lynkpin Game 成立于 2023 年，深耕<b>动作肉鸽</b>、<b>治愈养成</b>与<b>策略卡牌</b>等品类，
           致力于打造「技术 × 艺术」融合的优质 3D 游戏。团队规模不大，但对玩法打磨和玩家体验有着近乎执拗的坚持。
         </p>
-        <p class="reveal reveal-d1">
+        <p class="reveal reveal-d1" data-i18n="about_p2">
           我们的游戏已面向全球发行，支持简繁中文、英文、日文、韩文、俄文等十余种语言；
           《萌宠不摸鱼：Lofi猫》更以<b>97% 好评率</b>收获大量玩家的喜爱。每一款作品，都是我们与世界的一次对话。
         </p>
         <div class="about-points">
           <div class="point reveal reveal-d2">
             <div class="ico">🎮</div>
-            <div><b>玩法驱动</b><span>先好玩，再谈其他</span></div>
+            <div><b data-i18n="point1_t">玩法驱动</b><span data-i18n="point1_d">先好玩，再谈其他</span></div>
           </div>
           <div class="point reveal reveal-d2">
             <div class="ico">🌍</div>
-            <div><b>全球发行</b><span>十余种语言支持</span></div>
+            <div><b data-i18n="point2_t">全球发行</b><span data-i18n="point2_d">十余种语言支持</span></div>
           </div>
           <div class="point reveal reveal-d2">
             <div class="ico">🤝</div>
-            <div><b>玩家同行</b><span>认真倾听每一份反馈</span></div>
+            <div><b data-i18n="point3_t">玩家同行</b><span data-i18n="point3_d">认真倾听每一份反馈</span></div>
           </div>
           <div class="point reveal reveal-d2">
             <div class="ico">🚀</div>
-            <div><b>持续更新</b><span>长期运营，不断进化</span></div>
+            <div><b data-i18n="point4_t">持续更新</b><span data-i18n="point4_d">长期运营，不断进化</span></div>
           </div>
         </div>
       </div>
       <div class="about-visual reveal reveal-d1">
-        <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼：Lofi猫 游戏画面">
-        <div class="cap">Miino 正在桌面上安静地陪你工作 ——《萌宠不摸鱼：Lofi猫》</div>
+        <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼：Lofi猫 游戏画面" data-i18n-alt="about_alt">
+        <div class="cap" data-i18n="about_cap">Miino 正在桌面上安静地陪你工作 ——《萌宠不摸鱼：Lofi猫》</div>
       </div>
     </div>
   </div>
@@ -420,43 +442,43 @@
 <section id="games">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-eyebrow reveal">Our Games</div>
-      <h2 class="reveal">游戏作品</h2>
-      <p class="reveal reveal-d1">三款风格各异的作品，承载同一个团队对「好玩」的三种理解。</p>
+      <div class="sec-eyebrow reveal" data-i18n="games_eyebrow">游戏作品</div>
+      <h2 class="reveal" data-i18n="games_h2">游戏作品</h2>
+      <p class="reveal reveal-d1" data-i18n="games_p">三款风格各异的作品，承载同一个团队对「好玩」的三种理解。</p>
     </div>
 
     <!-- 游戏 1：神器行者：重生 -->
     <article class="game-card reveal">
       <div class="gc-media">
-        <img class="shot" src="assets/asr_header.jpg" alt="神器行者：重生 封面">
-        <span class="gc-status">已发售</span>
+        <img class="shot" src="assets/asr_header.jpg" alt="神器行者：重生 封面" data-i18n-alt="g1_cover_alt">
+        <span class="gc-status" data-i18n="g1_status">已发售</span>
       </div>
       <div class="gc-body">
-        <h3 class="gc-title">神器行者：重生</h3>
-        <div class="gc-en">Artifact Seeker: Resurrection</div>
+        <h3 class="gc-title" data-i18n="g1_title">神器行者：重生</h3>
+        <div class="gc-en" data-i18n="g1_en">Artifact Seeker: Resurrection</div>
         <div class="gc-tags">
-          <span class="tag">3D 肉鸽</span><span class="tag">割草</span><span class="tag">动作</span><span class="tag">角色扮演</span><span class="tag">单人</span>
+          <span class="tag" data-i18n="g1_tag1">3D 肉鸽</span><span class="tag" data-i18n="g1_tag2">割草</span><span class="tag" data-i18n="g1_tag3">动作</span><span class="tag" data-i18n="g1_tag4">角色扮演</span><span class="tag" data-i18n="g1_tag5">单人</span>
         </div>
-        <p class="gc-desc">
+        <p class="gc-desc" data-i18n="g1_desc">
           <b>众神的棋局，凡人亦可成神。</b>
           一款 3D 肉鸽 + 爬塔割草游戏。以奥罗瑞恩大陆为棋盘，击退被腐蚀的敌人获取神器，
           搭配上百种神器与技能组成羁绊共鸣。数十种可进化技能、极限冲刺走位、终极割草大招——
           如何利用神器之力参与这场棋局、终结这场棋局，甚至选择<b>成为神明</b>？由你来决定。
         </p>
         <div class="gc-shots">
-          <img src="assets/asr_shot_1.jpg" alt="神器行者：重生 截图 1" class="zoomable">
-          <img src="assets/asr_shot_2.jpg" alt="神器行者：重生 截图 2" class="zoomable">
-          <img src="assets/asr_shot_3.jpg" alt="神器行者：重生 截图 3" class="zoomable">
+          <img src="assets/asr_shot_1.jpg" alt="神器行者：重生 截图 1" class="zoomable" data-i18n-alt="g1_shot1_alt">
+          <img src="assets/asr_shot_2.jpg" alt="神器行者：重生 截图 2" class="zoomable" data-i18n-alt="g1_shot2_alt">
+          <img src="assets/asr_shot_3.jpg" alt="神器行者：重生 截图 3" class="zoomable" data-i18n-alt="g1_shot3_alt">
         </div>
         <div class="gc-meta">
-          <div><b>发行日期</b>2024.07.26</div>
-          <div><b>评价</b>多半好评 · 79%</div>
-          <div><b>成就</b>205 项</div>
+          <div><b data-i18n="meta_release">发行日期</b>2024.07.26</div>
+          <div><b data-i18n="meta_rating">评价</b><span data-i18n="g1_rating_val">多半好评 · 79%</span></div>
+          <div><b data-i18n="meta_ach">成就</b><span data-i18n="g1_ach_val">205 项</span></div>
         </div>
         <div class="gc-actions">
           <a class="btn-steam" href="https://store.steampowered.com/app/3054610/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
-            Steam 商店页
+            <span data-i18n="g1_btn">Steam 商店页</span>
           </a>
         </div>
       </div>
@@ -465,35 +487,35 @@
     <!-- 游戏 2：萌宠不摸鱼：Lofi猫 -->
     <article class="game-card flip reveal">
       <div class="gc-media">
-        <img class="shot" src="assets/noslack_header.jpg" alt="萌宠不摸鱼：Lofi猫 封面">
-        <span class="gc-status">已发售</span>
+        <img class="shot" src="assets/noslack_header.jpg" alt="萌宠不摸鱼：Lofi猫 封面" data-i18n-alt="g2_cover_alt">
+        <span class="gc-status" data-i18n="g2_status">已发售</span>
       </div>
       <div class="gc-body">
-        <h3 class="gc-title">萌宠不摸鱼：Lofi猫</h3>
-        <div class="gc-en">NoSlack Pets: Lo-Fi Paws</div>
+        <h3 class="gc-title" data-i18n="g2_title">萌宠不摸鱼：Lofi猫</h3>
+        <div class="gc-en" data-i18n="g2_en">NoSlack Pets: Lo-Fi Paws</div>
         <div class="gc-tags">
-          <span class="tag">桌面宠物</span><span class="tag">治愈</span><span class="tag">专注工具</span><span class="tag">放置收集</span><span class="tag">在线自习室</span>
+          <span class="tag" data-i18n="g2_tag1">桌面宠物</span><span class="tag" data-i18n="g2_tag2">治愈</span><span class="tag" data-i18n="g2_tag3">专注工具</span><span class="tag" data-i18n="g2_tag4">放置收集</span><span class="tag" data-i18n="g2_tag5">在线自习室</span>
         </div>
-        <p class="gc-desc">
+        <p class="gc-desc" data-i18n="g2_desc">
           <b>让一只安静的小猫，陪你工作、学习和放松。</b>
           Miino 会待在屏幕边缘陪你敲键盘，内置番茄钟、Lo-Fi 音乐、白噪音与待办清单；
           专注满 30 分钟即可开礼盒，收集 <b>448 款头饰</b>与 1500+ 装饰，布置专属猫屋与桌面。
           累了就去在线自习室和全球玩家一起学习，或玩小游戏放松——轻松收集，沉浸专注，治愈陪伴。
         </p>
         <div class="gc-shots">
-          <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼 截图 1" class="zoomable">
-          <img src="assets/noslack_shot_2.jpg" alt="萌宠不摸鱼 截图 2" class="zoomable">
-          <img src="assets/noslack_shot_3.jpg" alt="萌宠不摸鱼 截图 3" class="zoomable">
+          <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼 截图 1" class="zoomable" data-i18n-alt="g2_shot1_alt">
+          <img src="assets/noslack_shot_2.jpg" alt="萌宠不摸鱼 截图 2" class="zoomable" data-i18n-alt="g2_shot2_alt">
+          <img src="assets/noslack_shot_3.jpg" alt="萌宠不摸鱼 截图 3" class="zoomable" data-i18n-alt="g2_shot3_alt">
         </div>
         <div class="gc-meta">
-          <div><b>发行日期</b>2025.11.03</div>
-          <div><b>评价</b>特别好评 · 97%</div>
-          <div><b>成就</b>77 项</div>
+          <div><b data-i18n="meta_release">发行日期</b>2025.11.03</div>
+          <div><b data-i18n="meta_rating">评价</b><span data-i18n="g2_rating_val">特别好评 · 97%</span></div>
+          <div><b data-i18n="meta_ach">成就</b><span data-i18n="g2_ach_val">77 项</span></div>
         </div>
         <div class="gc-actions">
           <a class="btn-steam" href="https://store.steampowered.com/app/3714370/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
-            Steam 商店页
+            <span data-i18n="g2_btn">Steam 商店页</span>
           </a>
         </div>
       </div>
@@ -502,16 +524,16 @@
     <!-- 游戏 3：王牌餐车 -->
     <article class="game-card reveal">
       <div class="gc-media">
-        <img class="shot" src="assets/cookwagon_header.jpg" alt="王牌餐车 封面">
-        <span class="gc-status soon">即将推出</span>
+        <img class="shot" src="assets/cookwagon_header.jpg" alt="王牌餐车 封面" data-i18n-alt="g3_cover_alt">
+        <span class="gc-status soon" data-i18n="g3_status">即将推出</span>
       </div>
       <div class="gc-body">
-        <h3 class="gc-title">王牌餐车</h3>
-        <div class="gc-en">Cookwagon</div>
+        <h3 class="gc-title" data-i18n="g3_title">王牌餐车</h3>
+        <div class="gc-en" data-i18n="g3_en">Cookwagon</div>
         <div class="gc-tags">
-          <span class="tag">卡牌构筑</span><span class="tag">Roguelike</span><span class="tag">烹饪</span><span class="tag">策略</span><span class="tag">奇幻</span>
+          <span class="tag" data-i18n="g3_tag1">卡牌构筑</span><span class="tag" data-i18n="g3_tag2">Roguelike</span><span class="tag" data-i18n="g3_tag3">烹饪</span><span class="tag" data-i18n="g3_tag4">策略</span><span class="tag" data-i18n="g3_tag5">奇幻</span>
         </div>
-        <p class="gc-desc">
+        <p class="gc-desc" data-i18n="g3_desc">
           <b>把牌打进锅里，端出你的招牌菜！</b>
           一款没有传统战斗的奇幻烹饪 Roguelike 卡牌构筑游戏。驾驶魔法餐车踏上旅程，
           在三口锅之间安排料理，用技法牌控火调味、加快成菜，在客人失去耐心前上桌。
@@ -519,19 +541,19 @@
           这里没有等着被击败的敌人，只有等着被一顿好饭满足的客人。
         </p>
         <div class="gc-shots">
-          <img src="assets/cookwagon_shot_1.jpg" alt="王牌餐车 截图 1" class="zoomable">
-          <img src="assets/cookwagon_shot_2.jpg" alt="王牌餐车 截图 2" class="zoomable">
-          <img src="assets/cookwagon_shot_3.jpg" alt="王牌餐车 截图 3" class="zoomable">
+          <img src="assets/cookwagon_shot_1.jpg" alt="王牌餐车 截图 1" class="zoomable" data-i18n-alt="g3_shot1_alt">
+          <img src="assets/cookwagon_shot_2.jpg" alt="王牌餐车 截图 2" class="zoomable" data-i18n-alt="g3_shot2_alt">
+          <img src="assets/cookwagon_shot_3.jpg" alt="王牌餐车 截图 3" class="zoomable" data-i18n-alt="g3_shot3_alt">
         </div>
         <div class="gc-meta">
-          <div><b>发行日期</b>敬请期待</div>
-          <div><b>状态</b>开发中</div>
-          <div><b>支持</b>中 / 英 / 日 / 韩 等 14 种语言</div>
+          <div><b data-i18n="meta_release">发行日期</b><span data-i18n="g3_release_val">敬请期待</span></div>
+          <div><b data-i18n="meta_status">状态</b><span data-i18n="g3_status_val">开发中</span></div>
+          <div><b data-i18n="meta_lang">支持</b><span data-i18n="g3_lang_val">中 / 英 / 日 / 韩 等 14 种语言</span></div>
         </div>
         <div class="gc-actions">
           <a class="btn-steam" href="https://store.steampowered.com/app/4942150/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
-            Steam 商店页 · 加入愿望单
+            <span data-i18n="g3_btn">Steam 商店页 · 加入愿望单</span>
           </a>
         </div>
       </div>
@@ -544,17 +566,17 @@
   <div class="wrap">
     <div class="join reveal">
       <div class="join-inner">
-        <div class="sec-eyebrow">Join Us</div>
-        <h2>跟我们一起，做出好玩的游戏</h2>
-        <p>
+        <div class="sec-eyebrow" data-i18n="join_eyebrow">加入我们</div>
+        <h2 data-i18n="join_h2">跟我们一起，做出好玩的游戏</h2>
+        <p data-i18n="join_p">
           我们相信小团队也能做出打动人心的作品。如果你热爱游戏、热爱创造，
           欢迎加入 Lynkpin Game，一起把下一个「灵感」变成玩家手中的「快乐」。
         </p>
         <div class="chips">
-          <span>游戏策划</span><span>Unity 开发</span><span>3D 美术</span><span>动效设计</span><span>UI 设计</span>
+          <span data-i18n="chip1">游戏策划</span><span data-i18n="chip2">Unity 开发</span><span data-i18n="chip3">3D 美术</span><span data-i18n="chip4">动效设计</span><span data-i18n="chip5">UI 设计</span>
         </div>
         <div class="hero-actions" style="justify-content:center">
-          <a class="btn btn-primary" href="#contact">联系我们投递简历</a>
+          <a class="btn btn-primary" href="#contact" data-i18n="join_btn">联系我们投递简历</a>
         </div>
       </div>
     </div>
@@ -568,30 +590,31 @@
       <div class="foot-brand">
         <a class="brand" href="#top">
           <span class="brand-logo">L</span>
-          <span><b>灵品互娱</b><small>LYNKPIN GAME</small></span>
+          <span><b data-i18n="brand_name">灵品互娱</b><small>LYNKPIN GAME</small></span>
         </a>
-        <p>
+        <p data-i18n="foot_desc">
           广州灵品互娱信息科技有限公司（Lynkpin Game）
           是一家专注独立游戏研发的公司，作品已上架 Steam 全球发行。
         </p>
       </div>
       <div class="foot-col">
-        <h4>作品</h4>
-        <a href="https://store.steampowered.com/app/3054610/" target="_blank" rel="noopener">神器行者：重生</a>
-        <a href="https://store.steampowered.com/app/3714370/" target="_blank" rel="noopener">萌宠不摸鱼：Lofi猫</a>
-        <a href="https://store.steampowered.com/app/4942150/" target="_blank" rel="noopener">王牌餐车（即将推出）</a>
+        <h4 data-i18n="foot_games">作品</h4>
+        <a href="https://store.steampowered.com/app/3054610/" target="_blank" rel="noopener" data-i18n="foot_g1">神器行者：重生</a>
+        <a href="https://store.steampowered.com/app/3714370/" target="_blank" rel="noopener" data-i18n="foot_g2">萌宠不摸鱼：Lofi猫</a>
+        <a href="https://store.steampowered.com/app/4942150/" target="_blank" rel="noopener" data-i18n="foot_g3">王牌餐车（即将推出）</a>
       </div>
       <div class="foot-col">
-        <h4>联系</h4>
-        <p>📍 广州市番禺区小谷围街明志街 1 号</p>
-        <p>信息枢纽楼 3 楼</p>
-        <a href="https://store.steampowered.com/curator/45260156/" target="_blank" rel="noopener">Steam 开发者主页</a>
-        <a href="https://space.bilibili.com/477798708" target="_blank" rel="noopener">哔哩哔哩官方账号</a>
+        <h4 data-i18n="foot_contact">联系</h4>
+        <p>📍 <span data-i18n="foot_addr1">广州市番禺区小谷围街明志街 1 号</span></p>
+        <p data-i18n="foot_addr2">信息枢纽楼 3 楼</p>
+        <a href="https://store.steampowered.com/curator/45260156/" target="_blank" rel="noopener" data-i18n="foot_steam">Steam 开发者主页</a>
+        <a href="https://space.bilibili.com/477798708" target="_blank" rel="noopener" data-i18n="foot_bili">哔哩哔哩官方账号</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2023–2026 广州灵品互娱信息科技有限公司 · Lynkpin Game · 保留所有权利</span>
-      <span>图片与游戏素材版权归广州灵品互娱信息科技有限公司 / Steam 商店页所有</span>
+      <span data-i18n="foot_copy">© 2023–2026 广州灵品互娱信息科技有限公司 · Lynkpin Game · 保留所有权利</span>
+      <a href="https://lynkpin.github.io/web/privacy.html" target="_blank" rel="noopener" data-i18n="foot_privacy">隐私协议</a>
+      <span data-i18n="foot_assets">图片与游戏素材版权归广州灵品互娱信息科技有限公司 / Steam 商店页所有</span>
     </div>
   </div>
 </footer>
@@ -603,33 +626,228 @@
 </div>
 
 <script>
-  // 导航滚动背景
-  const nav = document.getElementById('nav');
-  addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', scrollY > 30);
-  }, { passive: true });
+// ========== 中英双语字典 ==========
+const I18N = {
+  doc_title: {
+    zh: '广州灵品互娱信息科技有限公司 · Lynkpin Game — 独立游戏开发工作室',
+    en: 'Guangzhou Lingpin Game Interactive Co., Ltd. · Lynkpin Game — Indie Game Studio'
+  },
+  doc_desc: {
+    zh: '广州灵品互娱信息科技有限公司（Lynkpin Game）——独立游戏开发工作室，代表作《神器行者：重生》《萌宠不摸鱼：Lofi猫》，新作《王牌餐车》即将推出。',
+    en: 'Guangzhou Lingpin Game Interactive Co., Ltd. (Lynkpin Game) — an indie game studio. Titles include Artifact Seeker: Resurrection and NoSlack Pets: Lo-Fi Paws, with Cookwagon coming soon.'
+  },
+  brand_name: { zh: '灵品互娱', en: 'Lynkpin Game' },
+  nav_about: { zh: '关于我们', en: 'About' },
+  nav_games: { zh: '游戏作品', en: 'Games' },
+  nav_join: { zh: '加入我们', en: 'Join Us' },
+  nav_contact: { zh: '联系方式', en: 'Contact' },
 
-  // 滚动渐入
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  hero_tag: { zh: '独立游戏工作室 · STEAM 平台发行商', en: 'INDIE GAME STUDIO · STEAM PUBLISHER' },
+  hero_h1: {
+    zh: '做让人<em class="grad">玩得开心</em>的游戏',
+    en: 'Making games that are <em class="grad">fun to play</em>'
+  },
+  hero_lead: {
+    zh: '广州灵品互娱信息科技有限公司（Lynkpin Game）是一家独立游戏开发公司。从硬核爽快的 3D 肉鸽割草，到治愈陪伴的桌面猫宠，再到奇幻烹饪的卡牌构筑——我们相信<b>好的创意，值得被认真做出来</b>，并把它带给全球玩家。',
+    en: 'Guangzhou Lingpin Game Interactive Co., Ltd. (Lynkpin Game) is an indie game developer. From hardcore 3D roguelike horde-slashing, to a healing desktop cat companion, to fantasy cooking deck-building — we believe <b>great ideas deserve to be made with care</b> and shared with players worldwide.'
+  },
+  hero_btn_games: { zh: '浏览游戏作品 →', en: 'Our Games →' },
+  hero_btn_about: { zh: '了解工作室', en: 'About Us' },
+  stat1_lbl: { zh: '已发布 / 在研作品', en: 'Released / In Dev' },
+  stat2_lbl: { zh: '已上架 Steam', en: 'Titles on Steam' },
+  stat3_lbl: { zh: '全球玩家好评', en: 'Global Reviews' },
 
-  // 截图 Lightbox
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
-  document.querySelectorAll('.zoomable').forEach(img => {
-    img.addEventListener('click', () => {
-      lbImg.src = img.src;
-      lb.classList.add('open');
-    });
+  about_eyebrow: { zh: '关于我们', en: 'About Us' },
+  about_h3: { zh: '小而精的独立游戏团队', en: 'A small team with big passion' },
+  about_p1: {
+    zh: 'Lynkpin Game 成立于 2023 年，深耕<b>动作肉鸽</b>、<b>治愈养成</b>与<b>策略卡牌</b>等品类，致力于打造「技术 × 艺术」融合的优质 3D 游戏。团队规模不大，但对玩法打磨和玩家体验有着近乎执拗的坚持。',
+    en: 'Founded in 2023, Lynkpin Game focuses on <b>action roguelike</b>, <b>healing & raising</b> and <b>strategy card</b> genres, crafting quality 3D games that blend "technology × art". We are a small team, but relentlessly devoted to polish and player experience.'
+  },
+  about_p2: {
+    zh: '我们的游戏已面向全球发行，支持简繁中文、英文、日文、韩文、俄文等十余种语言；《萌宠不摸鱼：Lofi猫》更以<b>97% 好评率</b>收获大量玩家的喜爱。每一款作品，都是我们与世界的一次对话。',
+    en: 'Our games are released worldwide, supporting a dozen-plus languages including Simplified/Traditional Chinese, English, Japanese, Korean and Russian. NoSlack Pets: Lo-Fi Paws has earned <b>a 97% positive rating</b> from players worldwide. Every title is our conversation with the world.'
+  },
+  point1_t: { zh: '玩法驱动', en: 'Gameplay First' },
+  point1_d: { zh: '先好玩，再谈其他', en: 'Great to play above all' },
+  point2_t: { zh: '全球发行', en: 'Global Release' },
+  point2_d: { zh: '十余种语言支持', en: '12+ languages supported' },
+  point3_t: { zh: '玩家同行', en: 'Player-Driven' },
+  point3_d: { zh: '认真倾听每一份反馈', en: 'We listen to every player' },
+  point4_t: { zh: '持续更新', en: 'Continuous Updates' },
+  point4_d: { zh: '长期运营，不断进化', en: 'Always evolving' },
+  about_alt: { zh: '萌宠不摸鱼：Lofi猫 游戏画面', en: 'NoSlack Pets: Lo-Fi Paws gameplay' },
+  about_cap: {
+    zh: 'Miino 正在桌面上安静地陪你工作 ——《萌宠不摸鱼：Lofi猫》',
+    en: 'Miino quietly keeps you company while you work — NoSlack Pets: Lo-Fi Paws'
+  },
+
+  games_eyebrow: { zh: '游戏作品', en: 'Our Games' },
+  games_h2: { zh: '游戏作品', en: 'Our Games' },
+  games_p: {
+    zh: '三款风格各异的作品，承载同一个团队对「好玩」的三种理解。',
+    en: 'Three distinctive titles — three ways the same team understands "fun".'
+  },
+
+  g1_status: { zh: '已发售', en: 'Released' },
+  g1_title: { zh: '神器行者：重生', en: 'Artifact Seeker: Resurrection' },
+  g1_en: { zh: 'Artifact Seeker: Resurrection', en: '神器行者：重生' },
+  g1_tag1: { zh: '3D 肉鸽', en: '3D Roguelike' },
+  g1_tag2: { zh: '割草', en: 'Horde Slash' },
+  g1_tag3: { zh: '动作', en: 'Action' },
+  g1_tag4: { zh: '角色扮演', en: 'RPG' },
+  g1_tag5: { zh: '单人', en: 'Single Player' },
+  g1_desc: {
+    zh: '<b>众神的棋局，凡人亦可成神。</b>一款 3D 肉鸽 + 爬塔割草游戏。以奥罗瑞恩大陆为棋盘，击退被腐蚀的敌人获取神器，搭配上百种神器与技能组成羁绊共鸣。数十种可进化技能、极限冲刺走位、终极割草大招——如何利用神器之力参与这场棋局、终结这场棋局，甚至选择<b>成为神明</b>？由你来决定。',
+    en: '<b>Mortals can ascend to godhood on a chessboard of the gods.</b> A 3D roguelike + tower-climbing horde-slash game set on the continent of Aurorian. Repel corrupted foes to seize Artifacts, and combine hundreds of artifacts and skills into resonant synergies. Dozens of evolvable skills, extreme dash positioning and ultimate horde-clearing moves — will you join this game of the gods, end it, or even <b>become a god</b>? The choice is yours.'
+  },
+  g1_rating_val: { zh: '多半好评 · 79%', en: 'Mostly Positive · 79%' },
+  g1_ach_val: { zh: '205 项', en: '205' },
+  g1_btn: { zh: 'Steam 商店页', en: 'Steam Store Page' },
+  g1_cover_alt: { zh: '神器行者：重生 封面', en: 'Artifact Seeker: Resurrection key art' },
+  g1_shot1_alt: { zh: '神器行者：重生 截图 1', en: 'Artifact Seeker: Resurrection screenshot 1' },
+  g1_shot2_alt: { zh: '神器行者：重生 截图 2', en: 'Artifact Seeker: Resurrection screenshot 2' },
+  g1_shot3_alt: { zh: '神器行者：重生 截图 3', en: 'Artifact Seeker: Resurrection screenshot 3' },
+
+  g2_status: { zh: '已发售', en: 'Released' },
+  g2_title: { zh: '萌宠不摸鱼：Lofi猫', en: 'NoSlack Pets: Lo-Fi Paws' },
+  g2_en: { zh: 'NoSlack Pets: Lo-Fi Paws', en: '萌宠不摸鱼：Lofi猫' },
+  g2_tag1: { zh: '桌面宠物', en: 'Desktop Pet' },
+  g2_tag2: { zh: '治愈', en: 'Healing' },
+  g2_tag3: { zh: '专注工具', en: 'Focus Tool' },
+  g2_tag4: { zh: '放置收集', en: 'Idle Collection' },
+  g2_tag5: { zh: '在线自习室', en: 'Study Rooms' },
+  g2_desc: {
+    zh: '<b>让一只安静的小猫，陪你工作、学习和放松。</b>Miino 会待在屏幕边缘陪你敲键盘，内置番茄钟、Lo-Fi 音乐、白噪音与待办清单；专注满 30 分钟即可开礼盒，收集 <b>448 款头饰</b>与 1500+ 装饰，布置专属猫屋与桌面。累了就去在线自习室和全球玩家一起学习，或玩小游戏放松——轻松收集，沉浸专注，治愈陪伴。',
+    en: '<b>Let a quiet little cat accompany you through work, study and relaxation.</b> Miino stays at the edge of your screen while you type, with a built-in Pomodoro timer, Lo-Fi music, white noise and to-do lists. Focus for 30 minutes to open gift boxes and collect <b>448 headwear items</b> plus 1,500+ decorations for your own cat room and desktop. Tired? Join an online study room with players worldwide, or unwind with mini-games — easy collecting, deep focus, healing company.'
+  },
+  g2_rating_val: { zh: '特别好评 · 97%', en: 'Very Positive · 97%' },
+  g2_ach_val: { zh: '77 项', en: '77' },
+  g2_btn: { zh: 'Steam 商店页', en: 'Steam Store Page' },
+  g2_cover_alt: { zh: '萌宠不摸鱼：Lofi猫 封面', en: 'NoSlack Pets: Lo-Fi Paws key art' },
+  g2_shot1_alt: { zh: '萌宠不摸鱼 截图 1', en: 'NoSlack Pets: Lo-Fi Paws screenshot 1' },
+  g2_shot2_alt: { zh: '萌宠不摸鱼 截图 2', en: 'NoSlack Pets: Lo-Fi Paws screenshot 2' },
+  g2_shot3_alt: { zh: '萌宠不摸鱼 截图 3', en: 'NoSlack Pets: Lo-Fi Paws screenshot 3' },
+
+  g3_status: { zh: '即将推出', en: 'Coming Soon' },
+  g3_title: { zh: '王牌餐车', en: 'Cookwagon' },
+  g3_en: { zh: 'Cookwagon', en: '王牌餐车' },
+  g3_tag1: { zh: '卡牌构筑', en: 'Deck-building' },
+  g3_tag2: { zh: 'Roguelike', en: 'Roguelike' },
+  g3_tag3: { zh: '烹饪', en: 'Cooking' },
+  g3_tag4: { zh: '策略', en: 'Strategy' },
+  g3_tag5: { zh: '奇幻', en: 'Fantasy' },
+  g3_desc: {
+    zh: '<b>把牌打进锅里，端出你的招牌菜！</b>一款没有传统战斗的奇幻烹饪 Roguelike 卡牌构筑游戏。驾驶魔法餐车踏上旅程，在三口锅之间安排料理，用技法牌控火调味、加快成菜，在客人失去耐心前上桌。收集新牌与遗物，激活风味共鸣，围绕慢火增味、三锅联动、招牌菜成长组成你的烹饪流派——这里没有等着被击败的敌人，只有等着被一顿好饭满足的客人。',
+    en: '<b>Play your cards into the pot and serve up your signature dish!</b> A fantasy cooking Roguelike deck-builder with no traditional combat. Drive your magical food truck on a journey, manage three cooking pots, and use technique cards to control heat, season and speed up dishes — serve them before diners lose patience. Collect new cards and relics, unlock flavor synergies, and build your cooking style around slow-simmer, three-pot combos and growing signature dishes. There are no enemies to defeat here — only hungry guests waiting to be satisfied by a good meal.'
+  },
+  g3_release_val: { zh: '敬请期待', en: 'Coming Soon' },
+  g3_status_val: { zh: '开发中', en: 'In Development' },
+  g3_lang_val: { zh: '中 / 英 / 日 / 韩 等 14 种语言', en: 'ZH / EN / JA / KO + 10 more (14 languages)' },
+  g3_btn: { zh: 'Steam 商店页 · 加入愿望单', en: 'Steam Store Page · Wishlist' },
+  g3_cover_alt: { zh: '王牌餐车 封面', en: 'Cookwagon key art' },
+  g3_shot1_alt: { zh: '王牌餐车 截图 1', en: 'Cookwagon screenshot 1' },
+  g3_shot2_alt: { zh: '王牌餐车 截图 2', en: 'Cookwagon screenshot 2' },
+  g3_shot3_alt: { zh: '王牌餐车 截图 3', en: 'Cookwagon screenshot 3' },
+
+  meta_release: { zh: '发行日期', en: 'Release' },
+  meta_rating: { zh: '评价', en: 'Rating' },
+  meta_ach: { zh: '成就', en: 'Achievements' },
+  meta_status: { zh: '状态', en: 'Status' },
+  meta_lang: { zh: '支持', en: 'Languages' },
+
+  join_eyebrow: { zh: '加入我们', en: 'Join Us' },
+  join_h2: { zh: '跟我们一起，做出好玩的游戏', en: 'Make fun games with us' },
+  join_p: {
+    zh: '我们相信小团队也能做出打动人心的作品。如果你热爱游戏、热爱创造，欢迎加入 Lynkpin Game，一起把下一个「灵感」变成玩家手中的「快乐」。',
+    en: 'We believe small teams can create games that touch people\u2019s hearts. If you love games and love creating, join Lynkpin Game — let us turn the next "spark" into the "joy" players hold in their hands.'
+  },
+  chip1: { zh: '游戏策划', en: 'Game Designer' },
+  chip2: { zh: 'Unity 开发', en: 'Unity Developer' },
+  chip3: { zh: '3D 美术', en: '3D Artist' },
+  chip4: { zh: '动效设计', en: 'VFX / Animator' },
+  chip5: { zh: 'UI 设计', en: 'UI Designer' },
+  join_btn: { zh: '联系我们投递简历', en: 'Contact Us & Apply' },
+
+  foot_desc: {
+    zh: '广州灵品互娱信息科技有限公司（Lynkpin Game）是一家专注独立游戏研发的公司，作品已上架 Steam 全球发行。',
+    en: 'Guangzhou Lingpin Game Interactive Co., Ltd. (Lynkpin Game) is an indie game development company whose titles are released worldwide on Steam.'
+  },
+  foot_games: { zh: '作品', en: 'Games' },
+  foot_contact: { zh: '联系', en: 'Contact' },
+  foot_g1: { zh: '神器行者：重生', en: 'Artifact Seeker: Resurrection' },
+  foot_g2: { zh: '萌宠不摸鱼：Lofi猫', en: 'NoSlack Pets: Lo-Fi Paws' },
+  foot_g3: { zh: '王牌餐车（即将推出）', en: 'Cookwagon (Coming Soon)' },
+  foot_addr1: { zh: '广州市番禺区小谷围街明志街 1 号', en: 'No. 1 Mingzhi Street, Xiaoguwei, Panyu District, Guangzhou' },
+  foot_addr2: { zh: '信息枢纽楼 3 楼', en: 'Info Hub Tower, 3F' },
+  foot_steam: { zh: 'Steam 开发者主页', en: 'Steam Developer Page' },
+  foot_bili: { zh: '哔哩哔哩官方账号', en: 'Bilibili Official Account' },
+  foot_copy: {
+    zh: '© 2023–2026 广州灵品互娱信息科技有限公司 · Lynkpin Game · 保留所有权利',
+    en: '© 2023–2026 Guangzhou Lingpin Game Interactive Co., Ltd. · Lynkpin Game · All rights reserved'
+  },
+  foot_assets: {
+    zh: '图片与游戏素材版权归广州灵品互娱信息科技有限公司 / Steam 商店页所有',
+    en: 'Images and game assets © Guangzhou Lingpin Game Interactive Co., Ltd. / Steam Store'
+  },
+  foot_privacy: { zh: '隐私协议', en: 'Privacy Policy' }
+};
+
+// ========== 语言切换 ==========
+const LS_KEY = 'lingpin-lang';
+function applyLang(lang) {
+  const dict = I18N;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const val = dict[el.dataset.i18n];
+    if (val && val[lang]) el.innerHTML = val[lang];
   });
-  lb.addEventListener('click', e => {
-    if (e.target === lb || e.target.id === 'lbClose') lb.classList.remove('open');
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const val = dict[el.dataset.i18nAlt];
+    if (val && val[lang]) el.setAttribute('alt', val[lang]);
   });
-  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+  document.title = dict.doc_title[lang];
+  document.querySelector('meta[name="description"]').setAttribute('content', dict.doc_desc[lang]);
+  document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  localStorage.setItem(LS_KEY, lang);
+}
+
+// 初始化：优先读取本地存储，默认中文
+const savedLang = localStorage.getItem(LS_KEY) || 'zh';
+applyLang(savedLang);
+
+document.querySelectorAll('.lang-switch button').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+
+// 导航滚动背景
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 30);
+}, { passive: true });
+
+// 滚动渐入
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// 截图 Lightbox
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+document.querySelectorAll('.zoomable').forEach(img => {
+  img.addEventListener('click', () => {
+    lbImg.src = img.src;
+    lb.classList.add('open');
+  });
+});
+lb.addEventListener('click', e => {
+  if (e.target === lb || e.target.id === 'lbClose') lb.classList.remove('open');
+});
+addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 </script>
 </body>
 </html>
