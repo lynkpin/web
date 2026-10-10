@@ -52,26 +52,37 @@
     background:radial-gradient(1000px 620px at 50% -6%,rgba(28,102,80,.4),transparent 65%);
   }
 
-  /* ---------- 顶部：居中 logo + 居中导航 ---------- */
-  header.nav{position:relative;padding:24px 0 0}
-  .head-stack{
-    display:flex;flex-direction:column;align-items:center;gap:16px;
-    border-bottom:1px solid rgba(47,208,162,.4);
+  /* ---------- 顶部：banner 通栏 + 叠加导航 ---------- */
+  .topbanner{position:relative;overflow:hidden}
+  .tb-img{
+    display:block;width:100%;height:clamp(150px,16vw,208px);
+    object-fit:cover;object-position:center 62%;
   }
-  .brand{display:flex;align-items:center;justify-content:center;gap:14px}
-  .brand-logo-img{height:52px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+  .topbanner::before{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.42) 48%,transparent 94%);
+  }
+  header.nav{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-start}
+  .head-stack{
+    display:flex;align-items:center;justify-content:space-between;gap:22px;
+    width:100%;
+    padding:13px 0 11px;
+    border-bottom:1px solid rgba(47,208,162,.35);
+  }
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand-logo-img{height:38px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.7))}
   .brand span{text-align:left}
   .brand b{font-size:16px;color:#fff;letter-spacing:.5px;line-height:1.3}
   .brand small{display:block;font-size:10px;color:var(--txt-dim);letter-spacing:3px;font-weight:500}
   nav.links{
-    display:flex;gap:36px;font-size:15px;color:var(--txt);
-    flex-wrap:wrap;justify-content:center;padding-bottom:11px;
+    display:flex;gap:30px;font-size:14.5px;color:var(--txt);
+    text-shadow:0 1px 6px rgba(0,0,0,.8);
   }
   nav.links a{letter-spacing:.5px;transition:color .2s}
   nav.links a:hover{color:var(--accent)}
-  .lang-switch{position:absolute;top:0;right:0;display:flex;gap:6px}
+  .lang-switch{display:flex;gap:6px}
   .lang-switch button{
-    background:none;border:1px solid var(--line);color:var(--txt-dim);
+    background:rgba(0,0,0,.4);border:1px solid var(--line);color:var(--txt-dim);
     padding:4px 12px;border-radius:3px;cursor:pointer;
     font-size:12px;font-weight:700;font-family:inherit;
     transition:all .2s;letter-spacing:.5px;
@@ -137,14 +148,6 @@
   }
   .sec-head p{margin-top:10px;color:var(--txt-dim);font-size:15px}
 
-  /* ---------- Banner ---------- */
-  .banner-strip{padding:22px 0 0}
-  .banner-strip .wrap{padding-top:0}
-  .banner-strip img{
-    width:100%;height:auto;display:block;
-    border:1px solid var(--line);
-  }
-
   /* ---------- 游戏区 ---------- */
   #games{position:relative}
   .game-card{
@@ -198,12 +201,11 @@
     .foot-grid{grid-template-columns:1fr;gap:30px}
   }
   @media(max-width:640px){
-    nav.links{gap:20px;font-size:14px}
-    .lang-switch{position:static;justify-content:center;margin-top:-8px}
-    .head-stack{gap:18px}
-    .brand-logo-img{height:52px}
+    nav.links{gap:16px;font-size:13.5px}
+    .head-stack{flex-wrap:wrap;justify-content:center;gap:10px 18px;padding:10px 0}
+    .brand-logo-img{height:34px}
+    .tb-img{height:132px;object-position:center 60%}
     .hero{padding:44px 0 48px}
-    .banner-strip{padding-top:16px}
     section{padding:44px 0}
   }
 </style>
@@ -211,32 +213,28 @@
 <body>
 <div class="grid-overlay"></div>
 
-<!-- ======== 导航 ======== -->
-<header class="nav" id="nav">
-  <div class="wrap head-stack">
-    <a class="brand" href="#top">
-      <img class="brand-logo-img" src="assets/LP%20logo_white.png" alt="Lynkpin Game" data-i18n-alt="logo_alt">
-    </a>
-    <nav class="links">
-      <a href="#games" data-i18n="nav_games">游戏作品</a>
-      <a href="#contact" data-i18n="nav_contact">联系方式</a>
-    </nav>
-    <div class="lang-switch">
-      <button type="button" data-lang="zh" class="active">中文</button>
-      <button type="button" data-lang="en">EN</button>
+<!-- ======== 顶部：banner 通栏 + 叠加导航 ======== -->
+<section class="topbanner" id="top">
+  <img class="tb-img" src="assets/banner_1500x220_20260930.png" alt="Lynkpin Game 角色横幅" data-i18n-alt="banner_alt">
+  <header class="nav" id="nav">
+    <div class="wrap head-stack">
+      <a class="brand" href="#top">
+        <img class="brand-logo-img" src="assets/LP%20logo_white.png" alt="Lynkpin Game" data-i18n-alt="logo_alt">
+      </a>
+      <nav class="links">
+        <a href="#games" data-i18n="nav_games">游戏作品</a>
+        <a href="#contact" data-i18n="nav_contact">联系方式</a>
+      </nav>
+      <div class="lang-switch">
+        <button type="button" data-lang="zh" class="active">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
     </div>
-  </div>
-</header>
-
-<!-- ======== Banner ======== -->
-<section class="banner-strip" aria-label="Lynkpin Game banner">
-  <div class="wrap">
-    <img src="assets/banner_1500x220_20260930.png" alt="Lynkpin Game 角色横幅" class="reveal in" data-i18n-alt="banner_alt">
-  </div>
+  </header>
 </section>
 
 <!-- ======== Hero ======== -->
-<section class="hero" id="top">
+<section class="hero">
   <div class="wrap">
     <div class="hero-tag reveal"><span data-i18n="hero_tag">独立游戏工作室 · STEAM 平台发行商</span></div>
     <h1 class="reveal reveal-d1" data-i18n="hero_h1">做让人<em class="grad">玩得开心</em>的游戏</h1>
@@ -483,12 +481,6 @@ document.querySelectorAll('.lang-switch button').forEach(btn => {
     history.replaceState(null, '', url);
   });
 });
-
-// 导航滚动背景
-const nav = document.getElementById('nav');
-addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', scrollY > 30);
-}, { passive: true });
 
 // 滚动渐入
 const io = new IntersectionObserver((entries) => {
