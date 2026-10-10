@@ -142,11 +142,6 @@
   }
   .hero p.lead b{color:var(--txt)}
   .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
-  .join-mail{
-    width:100%;text-align:center;font-size:13px;color:var(--txt-dim);
-    letter-spacing:.3px;transition:color .2s;
-  }
-  .join-mail:hover{color:var(--accent)}
   .btn{
     display:inline-flex;align-items:center;gap:9px;
     padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;
@@ -285,20 +280,6 @@
   }
   .gc-shots img:hover{transform:scale(1.04);box-shadow:0 10px 22px rgba(0,0,0,.4)}
 
-  /* ---------- 联系/加入 ---------- */
-  .join{
-    border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative;
-    background:linear-gradient(120deg,rgba(255,184,77,.08),rgba(102,192,244,.06)),var(--card);
-  }
-  .join-inner{padding:70px 60px;text-align:center;position:relative;z-index:1}
-  .join h2{font-size:clamp(26px,3.6vw,36px);font-weight:900}
-  .join p{color:var(--txt-dim);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto;font-size:15px}
-  .join .chips{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-  .chips span{
-    font-size:13px;color:var(--txt);border:1px solid var(--line);
-    background:rgba(255,255,255,.05);padding:8px 18px;border-radius:999px;
-  }
-
   /* ---------- 页脚 ---------- */
   footer{border-top:1px solid var(--line);background:rgba(8,11,18,.6);padding:60px 0 40px;margin-top:40px}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
@@ -353,7 +334,6 @@
     .hero{padding:56px 0 70px}
     .banner-strip{padding-top:80px}
     section{padding:80px 0}
-    .join-inner{padding:48px 28px}
   }
 </style>
 </head>
@@ -374,7 +354,6 @@
       <nav class="links">
         <a href="#about" data-i18n="nav_about">关于我们</a>
         <a href="#games" data-i18n="nav_games">游戏作品</a>
-        <a href="#join" data-i18n="nav_join">加入我们</a>
         <a href="#contact" data-i18n="nav_contact">联系方式</a>
       </nav>
       <div class="lang-switch">
@@ -578,29 +557,6 @@
   </div>
 </section>
 
-<!-- ======== 加入我们 ======== -->
-<section id="join">
-  <div class="wrap">
-    <div class="join reveal">
-      <div class="join-inner">
-        <div class="sec-eyebrow" data-i18n="join_eyebrow">加入我们</div>
-        <h2 data-i18n="join_h2">跟我们一起，做出好玩的游戏</h2>
-        <p data-i18n="join_p">
-          我们相信小团队也能做出打动人心的作品。如果你热爱游戏、热爱创造，
-          欢迎加入 Lynkpin Game，一起把下一个「灵感」变成玩家手中的「快乐」。
-        </p>
-        <div class="chips">
-          <span data-i18n="chip1">游戏策划</span><span data-i18n="chip2">Unity 开发</span><span data-i18n="chip3">3D 美术</span><span data-i18n="chip4">动效设计</span><span data-i18n="chip5">UI 设计</span>
-        </div>
-        <div class="hero-actions" style="justify-content:center">
-          <a class="btn btn-primary" href="mailto:lynkpingame@outlook.com" data-i18n="join_btn">联系我们投递简历</a>
-          <a class="join-mail" href="mailto:lynkpingame@outlook.com">lynkpingame@outlook.com</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ======== 页脚 ======== -->
 <footer id="contact">
   <div class="wrap">
@@ -660,7 +616,6 @@ const I18N = {
   banner_alt: { zh: 'Lynkpin Game 旗下游戏角色横幅', en: 'Characters from Lynkpin Game titles' },
   nav_about: { zh: '关于我们', en: 'About' },
   nav_games: { zh: '游戏作品', en: 'Games' },
-  nav_join: { zh: '加入我们', en: 'Join Us' },
   nav_contact: { zh: '联系方式', en: 'Contact' },
 
   hero_tag: { zh: '独立游戏工作室 · STEAM 平台发行商', en: 'INDIE GAME STUDIO · STEAM PUBLISHER' },
@@ -775,19 +730,6 @@ const I18N = {
   meta_ach: { zh: '成就', en: 'Achievements' },
   meta_status: { zh: '状态', en: 'Status' },
   meta_lang: { zh: '支持', en: 'Languages' },
-
-  join_eyebrow: { zh: '加入我们', en: 'Join Us' },
-  join_h2: { zh: '跟我们一起，做出好玩的游戏', en: 'Make fun games with us' },
-  join_p: {
-    zh: '我们相信小团队也能做出打动人心的作品。如果你热爱游戏、热爱创造，欢迎加入 Lynkpin Game，一起把下一个「灵感」变成玩家手中的「快乐」。',
-    en: 'We believe small teams can create games that touch people\u2019s hearts. If you love games and love creating, join Lynkpin Game — let us turn the next "spark" into the "joy" players hold in their hands.'
-  },
-  chip1: { zh: '游戏策划', en: 'Game Designer' },
-  chip2: { zh: 'Unity 开发', en: 'Unity Developer' },
-  chip3: { zh: '3D 美术', en: '3D Artist' },
-  chip4: { zh: '动效设计', en: 'VFX / Animator' },
-  chip5: { zh: 'UI 设计', en: 'UI Designer' },
-  join_btn: { zh: '联系我们投递简历', en: 'Contact Us & Apply' },
 
   foot_desc: {
     zh: '广州灵品互娱信息科技有限公司（Lynkpin Game）是一家专注独立游戏研发的公司，作品已上架 Steam 全球发行。',
