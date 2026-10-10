@@ -145,33 +145,6 @@
     border:1px solid var(--line);
   }
 
-  /* ---------- 关于 ---------- */
-  .about-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:52px;align-items:center}
-  .about-copy h3{
-    font-family:"Roboto Condensed",Oxygen,"PingFang SC","Microsoft YaHei",sans-serif;
-    font-size:24px;font-weight:700;text-transform:uppercase;color:#fff;
-    letter-spacing:.5px;margin-bottom:18px;
-  }
-  .about-copy p{color:var(--txt-dim);margin-bottom:16px;font-size:15px}
-  .about-copy p b{color:#fff}
-  .about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
-  .point{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:14px 16px;transition:border-color .2s;
-  }
-  .point:hover{border-color:rgba(47,208,162,.55)}
-  .point b{display:block;font-size:13.5px;color:#fff;margin-bottom:2px}
-  .point span{font-size:12px;color:var(--txt-dim)}
-  .about-visual{
-    position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
-  }
-  .about-visual img{width:100%;height:100%;object-fit:cover;min-height:340px}
-  .about-visual .cap{
-    position:absolute;left:0;right:0;bottom:0;padding:30px 20px 14px;
-    background:linear-gradient(transparent,rgba(0,0,0,.92));
-    font-size:12px;color:var(--txt-dim);
-  }
-
   /* ---------- 游戏区 ---------- */
   #games{position:relative}
   .game-card{
@@ -284,7 +257,6 @@
     .game-card.flip .gc-media{order:-1}
     .game-card.flip .gc-body{order:1}
     .gc-body{padding:32px 26px}
-    .about-grid{grid-template-columns:1fr}
     .hero-stats .stat{padding:14px 20px}
     .foot-grid{grid-template-columns:1fr;gap:30px}
   }
@@ -294,7 +266,6 @@
     .head-stack{gap:18px}
     .brand-logo-img{height:52px}
     .gc-shots{grid-template-columns:1fr}
-    .about-points{grid-template-columns:1fr}
     .hero{padding:70px 0 80px}
     .banner-strip{padding-top:24px}
     section{padding:70px 0}
@@ -311,7 +282,6 @@
       <img class="brand-logo-img" src="assets/LP%20logo_white.png" alt="Lynkpin Game" data-i18n-alt="logo_alt">
     </a>
     <nav class="links">
-      <a href="#about" data-i18n="nav_about">关于我们</a>
       <a href="#games" data-i18n="nav_games">游戏作品</a>
       <a href="#contact" data-i18n="nav_contact">联系方式</a>
     </nav>
@@ -342,50 +312,11 @@
     </p>
     <div class="hero-actions reveal reveal-d2">
       <a class="btn btn-primary" href="#games" data-i18n="hero_btn_games">浏览游戏作品 →</a>
-      <a class="btn btn-ghost" href="#about" data-i18n="hero_btn_about">了解工作室</a>
     </div>
     <div class="hero-stats reveal reveal-d3">
       <div class="stat"><div class="num">3</div><div class="lbl" data-i18n="stat1_lbl">已发布 / 在研作品</div></div>
       <div class="stat"><div class="num">2</div><div class="lbl" data-i18n="stat2_lbl">已上架 Steam</div></div>
       <div class="stat"><div class="num">1000+</div><div class="lbl" data-i18n="stat3_lbl">全球玩家好评</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== 关于 ======== -->
-<section id="about">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="about-copy">
-        <div class="sec-eyebrow reveal" data-i18n="about_eyebrow">关于我们</div>
-        <h3 class="reveal" data-i18n="about_h3">小而精的独立游戏团队</h3>
-        <p class="reveal reveal-d1" data-i18n="about_p1">
-          Lynkpin Game 成立于 2023 年，深耕<b>动作肉鸽</b>、<b>治愈养成</b>与<b>策略卡牌</b>等品类，
-          致力于打造「技术 × 艺术」融合的优质 3D 游戏。团队规模不大，但对玩法打磨和玩家体验有着近乎执拗的坚持。
-        </p>
-        <p class="reveal reveal-d1" data-i18n="about_p2">
-          我们的游戏已面向全球发行，支持简繁中文、英文、日文、韩文、俄文等十余种语言；
-          《萌宠不摸鱼：Lofi猫》更以<b>97% 好评率</b>收获大量玩家的喜爱。每一款作品，都是我们与世界的一次对话。
-        </p>
-        <div class="about-points">
-          <div class="point reveal reveal-d2">
-            <div><b data-i18n="point1_t">玩法驱动</b><span data-i18n="point1_d">先好玩，再谈其他</span></div>
-          </div>
-          <div class="point reveal reveal-d2">
-            <div><b data-i18n="point2_t">全球发行</b><span data-i18n="point2_d">十余种语言支持</span></div>
-          </div>
-          <div class="point reveal reveal-d2">
-            <div><b data-i18n="point3_t">玩家同行</b><span data-i18n="point3_d">认真倾听每一份反馈</span></div>
-          </div>
-          <div class="point reveal reveal-d2">
-            <div><b data-i18n="point4_t">持续更新</b><span data-i18n="point4_d">长期运营，不断进化</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="about-visual reveal reveal-d1">
-        <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼：Lofi猫 游戏画面" data-i18n-alt="about_alt">
-        <div class="cap" data-i18n="about_cap">Miino 正在桌面上安静地陪你工作 ——《萌宠不摸鱼：Lofi猫》</div>
-      </div>
     </div>
   </div>
 </section>
@@ -561,7 +492,6 @@ const I18N = {
   brand_name: { zh: '灵品互娱', en: 'Lynkpin Game' },
   logo_alt: { zh: 'Lynkpin Game 标志', en: 'Lynkpin Game logo' },
   banner_alt: { zh: 'Lynkpin Game 旗下游戏角色横幅', en: 'Characters from Lynkpin Game titles' },
-  nav_about: { zh: '关于我们', en: 'About' },
   nav_games: { zh: '游戏作品', en: 'Games' },
   nav_contact: { zh: '联系方式', en: 'Contact' },
 
@@ -575,7 +505,6 @@ const I18N = {
     en: 'Guangzhou Lingpin Game Interactive Co., Ltd. (Lynkpin Game) is an indie game developer. From hardcore 3D roguelike horde-slashing, to a healing desktop cat companion, to fantasy cooking deck-building — we believe <b>great ideas deserve to be made with care</b> and shared with players worldwide.'
   },
   hero_btn_games: { zh: '浏览游戏作品 →', en: 'Our Games →' },
-  hero_btn_about: { zh: '了解工作室', en: 'About Us' },
   stat1_lbl: { zh: '已发布 / 在研作品', en: 'Released / In Dev' },
   stat2_lbl: { zh: '已上架 Steam', en: 'Titles on Steam' },
   stat3_lbl: { zh: '全球玩家好评', en: 'Global Reviews' },
@@ -729,11 +658,11 @@ function applyLang(lang) {
   localStorage.setItem(LS_KEY, lang);
 }
 
-// 初始化：优先 URL 参数 ?lang=en|zh，其次本地存储，默认中文
+// 初始化：优先 URL 参数 ?lang=en|zh，其次本地存储，首次访问默认英文
 const urlLang = new URLSearchParams(location.search).get('lang');
 const savedLang = (urlLang === 'zh' || urlLang === 'en')
   ? urlLang
-  : (localStorage.getItem(LS_KEY) || 'zh');
+  : (localStorage.getItem(LS_KEY) || 'en');
 applyLang(savedLang);
 
 document.querySelectorAll('.lang-switch button').forEach(btn => {
