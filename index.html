@@ -183,6 +183,17 @@
     padding:14px 0 2px;
   }
   .gc-video .vd-fail a{color:var(--accent);border-bottom:1px solid rgba(47,208,162,.5)}
+  /* 首帧缓冲提示 */
+  .gc-video.is-loading::after{
+    content:'';position:absolute;inset:0;background:rgba(0,0,0,.5);pointer-events:none;
+  }
+  .gc-video.is-loading::before{
+    content:'';position:absolute;z-index:2;left:50%;top:50%;
+    width:32px;height:32px;margin:-16px 0 0 -16px;border-radius:50%;
+    border:2px solid rgba(255,255,255,.22);border-top-color:var(--accent);
+    animation:vspin .8s linear infinite;pointer-events:none;
+  }
+  @keyframes vspin{to{transform:rotate(360deg)}}
 
   /* ---------- 页脚 ---------- */
   footer{border-top:1px solid var(--line);background:#000;padding:40px 0 26px;margin-top:10px}
@@ -261,11 +272,6 @@
     </p>
     <div class="hero-actions reveal reveal-d2">
       <a class="btn btn-primary" href="#games" data-i18n="hero_btn_games">浏览游戏作品 →</a>
-    </div>
-    <div class="hero-stats reveal reveal-d3">
-      <div class="stat"><div class="num">3</div><div class="lbl" data-i18n="stat1_lbl">已发布 / 在研作品</div></div>
-      <div class="stat"><div class="num">2</div><div class="lbl" data-i18n="stat2_lbl">已上架 Steam</div></div>
-      <div class="stat"><div class="num">1000+</div><div class="lbl" data-i18n="stat3_lbl">全球玩家好评</div></div>
     </div>
   </div>
 </section>
@@ -526,10 +532,15 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Steam 宣传片：首次交互时按需加载 HLS（hls.js 本地引入，Safari 走原生 HLS）
+// Steam 宣传片：HLS 按需加载
+// 1) 页面空闲时预取 hls.js（不拉视频流）
+// 2) 视频接近视口时预挂载媒体源（仅拉 m3u8 清单，autoStartLoad:false 不下载分片）
+// 3) 首次点击即播放：未挂载则挂载完成后自动 play，不再需要点第二下
 (() => {
   const videos = Array.from(document.querySelectorAll('video.steam-video'));
   if (!videos.length) return;
+
+  const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1200));
 
   let hlsPromise = null;
   const loadHls = () => {
@@ -555,32 +566,80 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     video.parentElement.appendChild(link);
   };
 
-  videos.forEach((video) => {
-    let started = false;
-    const start = async () => {
-      if (started) return;
-      started = true;
-      const src = video.dataset.hls;
-      if (!src) return;
-      // 优先 hls.js（MSE），不可用再回退到 Safari / iOS 原生 HLS
-      const useNative = () => {
-        if (video.canPlayType('application/vnd.apple.mpegurl')) video.src = src;
-        else fallback(video);
-      };
-      try {
-        const Hls = await loadHls();
-        if (!Hls || !Hls.isSupported()) { useNative(); return; }
-        const hls = new Hls({ maxBufferLength: 20 });
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.ERROR, (e, data) => { if (data.fatal) fallback(video); });
-      } catch (err) {
-        useNative();
+  const busy = (video, on) => video.parentElement.classList.toggle('is-loading', on);
+
+  // 真正开始下载分片（准备阶段不下载）
+  const startLoad = (video) => {
+    if (video._hlsStarted) return;
+    video._hlsStarted = true;
+    if (video._hls) video._hls.startLoad();
+  };
+
+  // 挂载媒体源；wantPlay=true 时挂载完成后自动播放
+  const attach = async (video, wantPlay) => {
+    if (video.dataset.ready === '1') { startLoad(video); if (wantPlay) video.play().catch(() => {}); return; }
+    if (video.dataset.attaching === '1') return;
+    video.dataset.attaching = '1';
+
+    const src = video.dataset.hls;
+    if (!src) return;
+    if (wantPlay) busy(video, true);
+
+    const useNative = () => {
+      if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+        video.dataset.ready = '1';
+        if (wantPlay) video.play().catch(() => {});
+      } else {
+        fallback(video);
       }
+      busy(video, false);
     };
-    video.addEventListener('pointerdown', start, { once: true });
-    video.addEventListener('play', start, { once: true });
+
+    try {
+      const Hls = await loadHls();
+      if (!Hls || !Hls.isSupported()) { useNative(); return; }
+      // autoStartLoad:false —— 预挂载阶段不消耗流量，等用户真的要播再 startLoad
+      const hls = new Hls({ maxBufferLength: 20, autoStartLoad: false });
+      video._hls = hls;
+      hls.on(Hls.Events.ERROR, (e, data) => {
+        if (data.fatal) { busy(video, false); fallback(video); }
+      });
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.dataset.ready = '1';
+        busy(video, false);
+        if (wantPlay) { startLoad(video); video.play().catch(() => {}); }
+      });
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      if (wantPlay) startLoad(video);
+    } catch (err) {
+      useNative();
+    }
+  };
+
+  videos.forEach((video) => {
+    // 点击/触摸：未挂载则挂载并自动播放；已挂载则直接开始取流
+    const onIntent = () => {
+      if (video.dataset.ready === '1') { startLoad(video); return; }
+      attach(video, true);
+    };
+    video.addEventListener('pointerdown', onIntent);
+    video.addEventListener('play', onIntent);
+
+    // 接近视口时预挂载，滚到跟前时控件已是可用状态
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { attach(video, false); io.disconnect(); }
+        });
+      }, { rootMargin: '350px 0px' });
+      io.observe(video);
+    }
   });
+
+  // 空闲时预取 hls.js，避免首次点击还要等脚本下载
+  idle(() => { loadHls().catch(() => {}); });
 })();
 
 </script>
