@@ -148,71 +148,27 @@
   /* ---------- 游戏区 ---------- */
   #games{position:relative}
   .game-card{
-    display:grid;grid-template-columns:440px 1fr;gap:0;
     background:var(--panel);border:1px solid var(--line);
-    border-radius:var(--radius);overflow:hidden;margin-bottom:48px;
+    border-radius:var(--radius);overflow:hidden;margin-bottom:36px;
     transition:border-color .25s;
   }
+  .game-card:last-child{margin-bottom:0}
   .game-card:hover{border-color:rgba(47,208,162,.5)}
-  .game-card.flip{grid-template-columns:1fr 440px}
-  .game-card.flip .gc-media{order:2}
-  .game-card.flip .gc-body{order:1}
-  .gc-media{position:relative;overflow:hidden;background:#0a0d0c}
-  .gc-media .shot{
-    width:100%;aspect-ratio:16/9;object-fit:cover;
-    transition:transform .5s cubic-bezier(.2,.7,.2,1);
-  }
-  .game-card:hover .gc-media .shot{transform:scale(1.04)}
-  .gc-media::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,transparent 65%,rgba(16,21,19,.6));
-    pointer-events:none;
-  }
-  .game-card.flip .gc-media::after{background:linear-gradient(-90deg,transparent 65%,rgba(16,21,19,.6))}
-  .gc-status{
-    position:absolute;top:16px;left:16px;z-index:2;
-    font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-    padding:6px 12px;border-radius:2px;color:#04140e;background:var(--accent);
-  }
-  .gc-status.soon{
-    background:#15201b;color:var(--accent);border:1px solid rgba(47,208,162,.4);
-  }
-  .gc-body{padding:42px 44px;display:flex;flex-direction:column;justify-content:center}
+  .gc-body{padding:38px 40px 32px}
   .gc-title{
     font-family:"Roboto Condensed",Oxygen,"PingFang SC","Microsoft YaHei",sans-serif;
     font-size:28px;font-weight:700;color:#fff;letter-spacing:.5px;
   }
   .gc-en{margin-top:4px;font-size:12.5px;color:var(--txt-faint);letter-spacing:2.5px;text-transform:uppercase;font-weight:700}
-  .gc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-  .tag{
-    font-size:11.5px;color:var(--txt-dim);
-    border:1px solid var(--line);
-    padding:4px 11px;border-radius:2px;letter-spacing:.5px;
-  }
-  .gc-desc{margin-top:18px;font-size:14px;color:var(--txt-dim)}
+  .gc-desc{margin-top:16px;font-size:14.5px;color:var(--txt-dim);max-width:780px}
   .gc-desc b{color:#fff}
-  .gc-meta{
-    display:flex;gap:26px;margin-top:20px;font-size:12.5px;color:var(--txt-faint);
-    border-top:1px dashed var(--line);padding-top:16px;
-  }
-  .gc-meta b{color:var(--txt);font-size:12px;display:block;margin-bottom:2px;text-transform:uppercase;letter-spacing:1.5px}
   .gc-widget{
-    grid-column:1/-1;
     border-top:1px solid var(--line);
     background:#0b100e;
     padding:26px 24px;
     display:flex;justify-content:center;
   }
   .gc-widget iframe{width:100%;max-width:646px;height:190px;border:0}
-
-  /* 截图预览 */
-  .gc-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
-  .gc-shots img{
-    width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;
-    cursor:zoom-in;border:1px solid var(--line);
-    transition:border-color .2s,transform .2s;
-  }
-  .gc-shots img:hover{border-color:rgba(47,208,162,.6);transform:scale(1.03)}
 
   /* ---------- 页脚 ---------- */
   footer{border-top:1px solid var(--line);background:#000;padding:56px 0 36px;margin-top:20px}
@@ -230,22 +186,6 @@
   .foot-bottom a{color:var(--txt-faint);transition:color .2s}
   .foot-bottom a:hover{color:var(--accent)}
 
-  /* ---------- Lightbox ---------- */
-  .lightbox{
-    position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.95);
-    display:flex;align-items:center;justify-content:center;
-    opacity:0;pointer-events:none;transition:opacity .25s;
-    padding:4vh 4vw;
-  }
-  .lightbox.open{opacity:1;pointer-events:auto}
-  .lightbox img{max-width:100%;max-height:92vh;border:1px solid var(--line)}
-  .lightbox .close{
-    position:absolute;top:20px;right:24px;color:#fff;font-size:32px;cursor:pointer;
-    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(255,255,255,.25);transition:border-color .2s,color .2s;
-  }
-  .lightbox .close:hover{border-color:var(--accent);color:var(--accent)}
-
   /* ---------- 动画 ---------- */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
@@ -253,9 +193,6 @@
 
   /* ---------- 响应式 ---------- */
   @media(max-width:960px){
-    .game-card,.game-card.flip{grid-template-columns:1fr}
-    .game-card.flip .gc-media{order:-1}
-    .game-card.flip .gc-body{order:1}
     .gc-body{padding:32px 26px}
     .hero-stats .stat{padding:14px 20px}
     .foot-grid{grid-template-columns:1fr;gap:30px}
@@ -265,7 +202,6 @@
     .lang-switch{position:static;justify-content:center;margin-top:-8px}
     .head-stack{gap:18px}
     .brand-logo-img{height:52px}
-    .gc-shots{grid-template-columns:1fr}
     .hero{padding:70px 0 80px}
     .banner-strip{padding-top:24px}
     section{padding:70px 0}
@@ -332,32 +268,14 @@
 
     <!-- 游戏 1：神器行者：重生 -->
     <article class="game-card reveal">
-      <div class="gc-media">
-        <img class="shot" src="assets/asr_header.jpg" alt="神器行者：重生 封面" data-i18n-alt="g1_cover_alt">
-        <span class="gc-status" data-i18n="g1_status">已发售</span>
-      </div>
       <div class="gc-body">
         <h3 class="gc-title" data-i18n="g1_title">神器行者：重生</h3>
         <div class="gc-en" data-i18n="g1_en">Artifact Seeker: Resurrection</div>
-        <div class="gc-tags">
-          <span class="tag" data-i18n="g1_tag1">3D 肉鸽</span><span class="tag" data-i18n="g1_tag2">割草</span><span class="tag" data-i18n="g1_tag3">动作</span><span class="tag" data-i18n="g1_tag4">角色扮演</span><span class="tag" data-i18n="g1_tag5">单人</span>
-        </div>
         <p class="gc-desc" data-i18n="g1_desc">
           <b>众神的棋局，凡人亦可成神。</b>
-          一款 3D 肉鸽 + 爬塔割草游戏。以奥罗瑞恩大陆为棋盘，击退被腐蚀的敌人获取神器，
-          搭配上百种神器与技能组成羁绊共鸣。数十种可进化技能、极限冲刺走位、终极割草大招——
-          如何利用神器之力参与这场棋局、终结这场棋局，甚至选择<b>成为神明</b>？由你来决定。
+          一款 3D 肉鸽爬塔割草游戏：击退被腐蚀的敌人夺取神器，搭配上百种神器与技能组成羁绊共鸣；
+          数十种可进化技能、极限冲刺走位、终极割草大招——这场棋局的结局，由你来决定。
         </p>
-        <div class="gc-shots">
-          <img src="assets/asr_shot_1.jpg" alt="神器行者：重生 截图 1" class="zoomable" data-i18n-alt="g1_shot1_alt">
-          <img src="assets/asr_shot_2.jpg" alt="神器行者：重生 截图 2" class="zoomable" data-i18n-alt="g1_shot2_alt">
-          <img src="assets/asr_shot_3.jpg" alt="神器行者：重生 截图 3" class="zoomable" data-i18n-alt="g1_shot3_alt">
-        </div>
-        <div class="gc-meta">
-          <div><b data-i18n="meta_release">发行日期</b>2024.07.26</div>
-          <div><b data-i18n="meta_rating">评价</b><span data-i18n="g1_rating_val">多半好评 · 79%</span></div>
-          <div><b data-i18n="meta_ach">成就</b><span data-i18n="g1_ach_val">205 项</span></div>
-        </div>
       </div>
       <div class="gc-widget">
         <iframe src="https://store.steampowered.com/widget/3054610/?l=schinese" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Artifact Seeker: Resurrection — Steam"></iframe>
@@ -365,33 +283,15 @@
     </article>
 
     <!-- 游戏 2：萌宠不摸鱼：Lofi猫 -->
-    <article class="game-card flip reveal">
-      <div class="gc-media">
-        <img class="shot" src="assets/noslack_header.jpg" alt="萌宠不摸鱼：Lofi猫 封面" data-i18n-alt="g2_cover_alt">
-        <span class="gc-status" data-i18n="g2_status">已发售</span>
-      </div>
+    <article class="game-card reveal">
       <div class="gc-body">
         <h3 class="gc-title" data-i18n="g2_title">萌宠不摸鱼：Lofi猫</h3>
         <div class="gc-en" data-i18n="g2_en">NoSlack Pets: Lo-Fi Paws</div>
-        <div class="gc-tags">
-          <span class="tag" data-i18n="g2_tag1">桌面宠物</span><span class="tag" data-i18n="g2_tag2">治愈</span><span class="tag" data-i18n="g2_tag3">专注工具</span><span class="tag" data-i18n="g2_tag4">放置收集</span><span class="tag" data-i18n="g2_tag5">在线自习室</span>
-        </div>
         <p class="gc-desc" data-i18n="g2_desc">
           <b>让一只安静的小猫，陪你工作、学习和放松。</b>
-          Miino 会待在屏幕边缘陪你敲键盘，内置番茄钟、Lo-Fi 音乐、白噪音与待办清单；
+          Miino 会待在屏幕边缘陪你敲键盘，内置番茄钟、Lo-Fi 音乐与待办清单；
           专注满 30 分钟即可开礼盒，收集 <b>448 款头饰</b>与 1500+ 装饰，布置专属猫屋与桌面。
-          累了就去在线自习室和全球玩家一起学习，或玩小游戏放松——轻松收集，沉浸专注，治愈陪伴。
         </p>
-        <div class="gc-shots">
-          <img src="assets/noslack_shot_1.jpg" alt="萌宠不摸鱼 截图 1" class="zoomable" data-i18n-alt="g2_shot1_alt">
-          <img src="assets/noslack_shot_2.jpg" alt="萌宠不摸鱼 截图 2" class="zoomable" data-i18n-alt="g2_shot2_alt">
-          <img src="assets/noslack_shot_3.jpg" alt="萌宠不摸鱼 截图 3" class="zoomable" data-i18n-alt="g2_shot3_alt">
-        </div>
-        <div class="gc-meta">
-          <div><b data-i18n="meta_release">发行日期</b>2025.11.03</div>
-          <div><b data-i18n="meta_rating">评价</b><span data-i18n="g2_rating_val">特别好评 · 97%</span></div>
-          <div><b data-i18n="meta_ach">成就</b><span data-i18n="g2_ach_val">77 项</span></div>
-        </div>
       </div>
       <div class="gc-widget">
         <iframe src="https://store.steampowered.com/widget/3714370/?l=schinese" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="NoSlack Pets: Lo-Fi Paws — Steam"></iframe>
@@ -400,33 +300,15 @@
 
     <!-- 游戏 3：王牌餐车 -->
     <article class="game-card reveal">
-      <div class="gc-media">
-        <img class="shot" src="assets/cookwagon_header.jpg" alt="王牌餐车 封面" data-i18n-alt="g3_cover_alt">
-        <span class="gc-status soon" data-i18n="g3_status">即将推出</span>
-      </div>
       <div class="gc-body">
         <h3 class="gc-title" data-i18n="g3_title">王牌餐车</h3>
         <div class="gc-en" data-i18n="g3_en">Cookwagon</div>
-        <div class="gc-tags">
-          <span class="tag" data-i18n="g3_tag1">卡牌构筑</span><span class="tag" data-i18n="g3_tag2">Roguelike</span><span class="tag" data-i18n="g3_tag3">烹饪</span><span class="tag" data-i18n="g3_tag4">策略</span><span class="tag" data-i18n="g3_tag5">奇幻</span>
-        </div>
         <p class="gc-desc" data-i18n="g3_desc">
           <b>把牌打进锅里，端出你的招牌菜！</b>
-          一款没有传统战斗的奇幻烹饪 Roguelike 卡牌构筑游戏。驾驶魔法餐车踏上旅程，
-          在三口锅之间安排料理，用技法牌控火调味、加快成菜，在客人失去耐心前上桌。
-          收集新牌与遗物，激活风味共鸣，围绕慢火增味、三锅联动、招牌菜成长组成你的烹饪流派——
+          一款没有传统战斗的奇幻烹饪 Roguelike 卡牌构筑游戏：驾驶魔法餐车踏上旅程，
+          在三口锅之间安排料理，收集新牌与遗物组成你的烹饪流派——
           这里没有等着被击败的敌人，只有等着被一顿好饭满足的客人。
         </p>
-        <div class="gc-shots">
-          <img src="assets/cookwagon_shot_1.jpg" alt="王牌餐车 截图 1" class="zoomable" data-i18n-alt="g3_shot1_alt">
-          <img src="assets/cookwagon_shot_2.jpg" alt="王牌餐车 截图 2" class="zoomable" data-i18n-alt="g3_shot2_alt">
-          <img src="assets/cookwagon_shot_3.jpg" alt="王牌餐车 截图 3" class="zoomable" data-i18n-alt="g3_shot3_alt">
-        </div>
-        <div class="gc-meta">
-          <div><b data-i18n="meta_release">发行日期</b><span data-i18n="g3_release_val">敬请期待</span></div>
-          <div><b data-i18n="meta_status">状态</b><span data-i18n="g3_status_val">开发中</span></div>
-          <div><b data-i18n="meta_lang">支持</b><span data-i18n="g3_lang_val">中 / 英 / 日 / 韩 等 14 种语言</span></div>
-        </div>
       </div>
       <div class="gc-widget">
         <iframe src="https://store.steampowered.com/widget/4942150/?l=schinese" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Cookwagon — Steam"></iframe>
@@ -472,12 +354,6 @@
   </div>
 </footer>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="close" id="lbClose">×</span>
-  <img id="lbImg" src="" alt="预览大图">
-</div>
-
 <script>
 // ========== 中英双语字典 ==========
 const I18N = {
@@ -509,30 +385,6 @@ const I18N = {
   stat2_lbl: { zh: '已上架 Steam', en: 'Titles on Steam' },
   stat3_lbl: { zh: '全球玩家好评', en: 'Global Reviews' },
 
-  about_eyebrow: { zh: '关于我们', en: 'About Us' },
-  about_h3: { zh: '小而精的独立游戏团队', en: 'A small team with big passion' },
-  about_p1: {
-    zh: 'Lynkpin Game 成立于 2023 年，深耕<b>动作肉鸽</b>、<b>治愈养成</b>与<b>策略卡牌</b>等品类，致力于打造「技术 × 艺术」融合的优质 3D 游戏。团队规模不大，但对玩法打磨和玩家体验有着近乎执拗的坚持。',
-    en: 'Founded in 2023, Lynkpin Game focuses on <b>action roguelike</b>, <b>healing & raising</b> and <b>strategy card</b> genres, crafting quality 3D games that blend "technology × art". We are a small team, but relentlessly devoted to polish and player experience.'
-  },
-  about_p2: {
-    zh: '我们的游戏已面向全球发行，支持简繁中文、英文、日文、韩文、俄文等十余种语言；《萌宠不摸鱼：Lofi猫》更以<b>97% 好评率</b>收获大量玩家的喜爱。每一款作品，都是我们与世界的一次对话。',
-    en: 'Our games are released worldwide, supporting a dozen-plus languages including Simplified/Traditional Chinese, English, Japanese, Korean and Russian. NoSlack Pets: Lo-Fi Paws has earned <b>a 97% positive rating</b> from players worldwide. Every title is our conversation with the world.'
-  },
-  point1_t: { zh: '玩法驱动', en: 'Gameplay First' },
-  point1_d: { zh: '先好玩，再谈其他', en: 'Great to play above all' },
-  point2_t: { zh: '全球发行', en: 'Global Release' },
-  point2_d: { zh: '十余种语言支持', en: '12+ languages supported' },
-  point3_t: { zh: '玩家同行', en: 'Player-Driven' },
-  point3_d: { zh: '认真倾听每一份反馈', en: 'We listen to every player' },
-  point4_t: { zh: '持续更新', en: 'Continuous Updates' },
-  point4_d: { zh: '长期运营，不断进化', en: 'Always evolving' },
-  about_alt: { zh: '萌宠不摸鱼：Lofi猫 游戏画面', en: 'NoSlack Pets: Lo-Fi Paws gameplay' },
-  about_cap: {
-    zh: 'Miino 正在桌面上安静地陪你工作 ——《萌宠不摸鱼：Lofi猫》',
-    en: 'Miino quietly keeps you company while you work — NoSlack Pets: Lo-Fi Paws'
-  },
-
   games_eyebrow: { zh: '游戏作品', en: 'Our Games' },
   games_h2: { zh: '游戏作品', en: 'Our Games' },
   games_p: {
@@ -540,69 +392,26 @@ const I18N = {
     en: 'Three distinctive titles — three ways the same team understands "fun".'
   },
 
-  g1_status: { zh: '已发售', en: 'Released' },
   g1_title: { zh: '神器行者：重生', en: 'Artifact Seeker: Resurrection' },
   g1_en: { zh: 'Artifact Seeker: Resurrection', en: '神器行者：重生' },
-  g1_tag1: { zh: '3D 肉鸽', en: '3D Roguelike' },
-  g1_tag2: { zh: '割草', en: 'Horde Slash' },
-  g1_tag3: { zh: '动作', en: 'Action' },
-  g1_tag4: { zh: '角色扮演', en: 'RPG' },
-  g1_tag5: { zh: '单人', en: 'Single Player' },
   g1_desc: {
-    zh: '<b>众神的棋局，凡人亦可成神。</b>一款 3D 肉鸽 + 爬塔割草游戏。以奥罗瑞恩大陆为棋盘，击退被腐蚀的敌人获取神器，搭配上百种神器与技能组成羁绊共鸣。数十种可进化技能、极限冲刺走位、终极割草大招——如何利用神器之力参与这场棋局、终结这场棋局，甚至选择<b>成为神明</b>？由你来决定。',
-    en: '<b>Mortals can ascend to godhood on a chessboard of the gods.</b> A 3D roguelike + tower-climbing horde-slash game set on the continent of Aurorian. Repel corrupted foes to seize Artifacts, and combine hundreds of artifacts and skills into resonant synergies. Dozens of evolvable skills, extreme dash positioning and ultimate horde-clearing moves — will you join this game of the gods, end it, or even <b>become a god</b>? The choice is yours.'
+    zh: '<b>众神的棋局，凡人亦可成神。</b>一款 3D 肉鸽爬塔割草游戏：击退被腐蚀的敌人夺取神器，搭配上百种神器与技能组成羁绊共鸣；数十种可进化技能、极限冲刺走位、终极割草大招——这场棋局的结局，由你来决定。',
+    en: '<b>Mortals can ascend to godhood on a chessboard of the gods.</b> A 3D roguelike tower-climbing horde-slasher: seize Artifacts from corrupted foes and combine hundreds of artifacts and skills into resonant synergies. Dozens of evolvable skills, extreme dash positioning and ultimate horde-clearing moves — the fate of this game of the gods is yours to decide.'
   },
-  g1_rating_val: { zh: '多半好评 · 79%', en: 'Mostly Positive · 79%' },
-  g1_ach_val: { zh: '205 项', en: '205' },
-  g1_cover_alt: { zh: '神器行者：重生 封面', en: 'Artifact Seeker: Resurrection key art' },
-  g1_shot1_alt: { zh: '神器行者：重生 截图 1', en: 'Artifact Seeker: Resurrection screenshot 1' },
-  g1_shot2_alt: { zh: '神器行者：重生 截图 2', en: 'Artifact Seeker: Resurrection screenshot 2' },
-  g1_shot3_alt: { zh: '神器行者：重生 截图 3', en: 'Artifact Seeker: Resurrection screenshot 3' },
 
-  g2_status: { zh: '已发售', en: 'Released' },
   g2_title: { zh: '萌宠不摸鱼：Lofi猫', en: 'NoSlack Pets: Lo-Fi Paws' },
   g2_en: { zh: 'NoSlack Pets: Lo-Fi Paws', en: '萌宠不摸鱼：Lofi猫' },
-  g2_tag1: { zh: '桌面宠物', en: 'Desktop Pet' },
-  g2_tag2: { zh: '治愈', en: 'Healing' },
-  g2_tag3: { zh: '专注工具', en: 'Focus Tool' },
-  g2_tag4: { zh: '放置收集', en: 'Idle Collection' },
-  g2_tag5: { zh: '在线自习室', en: 'Study Rooms' },
   g2_desc: {
-    zh: '<b>让一只安静的小猫，陪你工作、学习和放松。</b>Miino 会待在屏幕边缘陪你敲键盘，内置番茄钟、Lo-Fi 音乐、白噪音与待办清单；专注满 30 分钟即可开礼盒，收集 <b>448 款头饰</b>与 1500+ 装饰，布置专属猫屋与桌面。累了就去在线自习室和全球玩家一起学习，或玩小游戏放松——轻松收集，沉浸专注，治愈陪伴。',
-    en: '<b>Let a quiet little cat accompany you through work, study and relaxation.</b> Miino stays at the edge of your screen while you type, with a built-in Pomodoro timer, Lo-Fi music, white noise and to-do lists. Focus for 30 minutes to open gift boxes and collect <b>448 headwear items</b> plus 1,500+ decorations for your own cat room and desktop. Tired? Join an online study room with players worldwide, or unwind with mini-games — easy collecting, deep focus, healing company.'
+    zh: '<b>让一只安静的小猫，陪你工作、学习和放松。</b>Miino 会待在屏幕边缘陪你敲键盘，内置番茄钟、Lo-Fi 音乐与待办清单；专注满 30 分钟即可开礼盒，收集 <b>448 款头饰</b>与 1500+ 装饰，布置专属猫屋与桌面。',
+    en: '<b>Let a quiet little cat accompany you through work, study and relaxation.</b> Miino stays at the edge of your screen while you type, with a built-in Pomodoro timer, Lo-Fi music and to-do lists. Focus for 30 minutes to open gift boxes and collect <b>448 headwear items</b> plus 1,500+ decorations for your own cat room and desktop.'
   },
-  g2_rating_val: { zh: '特别好评 · 97%', en: 'Very Positive · 97%' },
-  g2_ach_val: { zh: '77 项', en: '77' },
-  g2_cover_alt: { zh: '萌宠不摸鱼：Lofi猫 封面', en: 'NoSlack Pets: Lo-Fi Paws key art' },
-  g2_shot1_alt: { zh: '萌宠不摸鱼 截图 1', en: 'NoSlack Pets: Lo-Fi Paws screenshot 1' },
-  g2_shot2_alt: { zh: '萌宠不摸鱼 截图 2', en: 'NoSlack Pets: Lo-Fi Paws screenshot 2' },
-  g2_shot3_alt: { zh: '萌宠不摸鱼 截图 3', en: 'NoSlack Pets: Lo-Fi Paws screenshot 3' },
 
-  g3_status: { zh: '即将推出', en: 'Coming Soon' },
   g3_title: { zh: '王牌餐车', en: 'Cookwagon' },
   g3_en: { zh: 'Cookwagon', en: '王牌餐车' },
-  g3_tag1: { zh: '卡牌构筑', en: 'Deck-building' },
-  g3_tag2: { zh: 'Roguelike', en: 'Roguelike' },
-  g3_tag3: { zh: '烹饪', en: 'Cooking' },
-  g3_tag4: { zh: '策略', en: 'Strategy' },
-  g3_tag5: { zh: '奇幻', en: 'Fantasy' },
   g3_desc: {
-    zh: '<b>把牌打进锅里，端出你的招牌菜！</b>一款没有传统战斗的奇幻烹饪 Roguelike 卡牌构筑游戏。驾驶魔法餐车踏上旅程，在三口锅之间安排料理，用技法牌控火调味、加快成菜，在客人失去耐心前上桌。收集新牌与遗物，激活风味共鸣，围绕慢火增味、三锅联动、招牌菜成长组成你的烹饪流派——这里没有等着被击败的敌人，只有等着被一顿好饭满足的客人。',
-    en: '<b>Play your cards into the pot and serve up your signature dish!</b> A fantasy cooking Roguelike deck-builder with no traditional combat. Drive your magical food truck on a journey, manage three cooking pots, and use technique cards to control heat, season and speed up dishes — serve them before diners lose patience. Collect new cards and relics, unlock flavor synergies, and build your cooking style around slow-simmer, three-pot combos and growing signature dishes. There are no enemies to defeat here — only hungry guests waiting to be satisfied by a good meal.'
+    zh: '<b>把牌打进锅里，端出你的招牌菜！</b>一款没有传统战斗的奇幻烹饪 Roguelike 卡牌构筑游戏：驾驶魔法餐车踏上旅程，在三口锅之间安排料理，收集新牌与遗物组成你的烹饪流派——这里没有等着被击败的敌人，只有等着被一顿好饭满足的客人。',
+    en: '<b>Play your cards into the pot and serve up your signature dish!</b> A fantasy cooking Roguelike deck-builder with no traditional combat: drive your magical food truck, manage three cooking pots, and collect new cards and relics to build your own cooking style — there are no enemies here, only guests waiting for a good meal.'
   },
-  g3_release_val: { zh: '敬请期待', en: 'Coming Soon' },
-  g3_status_val: { zh: '开发中', en: 'In Development' },
-  g3_lang_val: { zh: '中 / 英 / 日 / 韩 等 14 种语言', en: 'ZH / EN / JA / KO + 10 more (14 languages)' },
-  g3_cover_alt: { zh: '王牌餐车 封面', en: 'Cookwagon key art' },
-  g3_shot1_alt: { zh: '王牌餐车 截图 1', en: 'Cookwagon screenshot 1' },
-  g3_shot2_alt: { zh: '王牌餐车 截图 2', en: 'Cookwagon screenshot 2' },
-  g3_shot3_alt: { zh: '王牌餐车 截图 3', en: 'Cookwagon screenshot 3' },
-
-  meta_release: { zh: '发行日期', en: 'Release' },
-  meta_rating: { zh: '评价', en: 'Rating' },
-  meta_ach: { zh: '成就', en: 'Achievements' },
-  meta_status: { zh: '状态', en: 'Status' },
-  meta_lang: { zh: '支持', en: 'Languages' },
 
   foot_desc: {
     zh: '广州灵品互娱信息科技有限公司（Lynkpin Game）是一家专注独立游戏研发的公司，作品已上架 Steam 全球发行。',
@@ -689,19 +498,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// 截图 Lightbox
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-document.querySelectorAll('.zoomable').forEach(img => {
-  img.addEventListener('click', () => {
-    lbImg.src = img.src;
-    lb.classList.add('open');
-  });
-});
-lb.addEventListener('click', e => {
-  if (e.target === lb || e.target.id === 'lbClose') lb.classList.remove('open');
-});
-addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 </script>
 </body>
 </html>
