@@ -429,7 +429,7 @@
         </div>
       </div>
       <div class="gc-widget">
-        <iframe src="https://store.steampowered.com/widget/3054610/" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Artifact Seeker: Resurrection — Steam"></iframe>
+        <iframe src="https://store.steampowered.com/widget/3054610/?l=schinese" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Artifact Seeker: Resurrection — Steam"></iframe>
       </div>
     </article>
 
@@ -463,7 +463,7 @@
         </div>
       </div>
       <div class="gc-widget">
-        <iframe src="https://store.steampowered.com/widget/3714370/" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="NoSlack Pets: Lo-Fi Paws — Steam"></iframe>
+        <iframe src="https://store.steampowered.com/widget/3714370/?l=schinese" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="NoSlack Pets: Lo-Fi Paws — Steam"></iframe>
       </div>
     </article>
 
@@ -498,7 +498,7 @@
         </div>
       </div>
       <div class="gc-widget">
-        <iframe src="https://store.steampowered.com/widget/4942150/" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Cookwagon — Steam"></iframe>
+        <iframe src="https://store.steampowered.com/widget/4942150/?l=schinese" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Cookwagon — Steam"></iframe>
       </div>
     </article>
   </div>
@@ -714,6 +714,15 @@ function applyLang(lang) {
   document.title = dict.doc_title[lang];
   document.querySelector('meta[name="description"]').setAttribute('content', dict.doc_desc[lang]);
   document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+  // 同步 Steam 小组件语言：EN → ?l=english，中文 → ?l=schinese（不依赖访客 Steam 偏好）
+  document.querySelectorAll('.gc-widget iframe').forEach(f => {
+    try {
+      const url = new URL(f.src);
+      if (lang === 'en') url.searchParams.set('l', 'english');
+      else url.searchParams.set('l', 'schinese');
+      if (url.href !== f.src) f.src = url.href;
+    } catch (e) { /* ignore */ }
+  });
   document.querySelectorAll('.lang-switch button').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
