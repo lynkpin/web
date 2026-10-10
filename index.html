@@ -5,314 +5,278 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>广州灵品互娱信息科技有限公司 · Lynkpin Game — 独立游戏开发工作室</title>
 <meta name="description" content="广州灵品互娱信息科技有限公司（Lynkpin Game）——独立游戏开发工作室，代表作《神器行者：重生》《萌宠不摸鱼：Lofi猫》，新作《王牌餐车》即将推出。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230e1420'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23ffb84d'>L</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230e1420'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%232fd0a2'>L</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a0e16;
-    --bg-soft:#0e1420;
-    --card:#121a28;
-    --card-2:#16202f;
-    --line:rgba(255,255,255,.08);
-    --txt:#e8ecf3;
-    --txt-dim:#9aa6b8;
-    --txt-faint:#66738a;
-    --accent:#ffb84d;
-    --accent-2:#ff8a5c;
-    --steam:#1b2838;
-    --steam-btn:#66c0f4;
-    --radius:16px;
-    --shadow:0 20px 50px rgba(0,0,0,.45);
+    --bg:#000000;
+    --panel:#101513;
+    --panel-2:#161c19;
+    --line:rgba(255,255,255,.14);
+    --txt:#d9d9d9;
+    --txt-dim:#9b9b9b;
+    --txt-faint:#6e6e6e;
+    --accent:#2fd0a2;
+    --steam-btn:#5c9e31;
+    --radius:4px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     background:var(--bg);
     color:var(--txt);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    line-height:1.7;
+    font-family:Oxygen,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.75;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  ::selection{background:rgba(255,184,77,.3)}
+  ::selection{background:rgba(47,208,162,.35)}
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 28px}
 
-  /* ---------- 背景装饰 ---------- */
+  /* ---------- 背景：暗绿网格纹理 + 顶部绿光 ---------- */
+  .grid-overlay{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      linear-gradient(rgba(47,208,162,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(47,208,162,.05) 1px,transparent 1px);
+    background-size:14px 14px;
+    mask-image:radial-gradient(ellipse 110% 80% at 50% 0%,#000 30%,rgba(0,0,0,.25) 85%);
+    -webkit-mask-image:radial-gradient(ellipse 110% 80% at 50% 0%,#000 30%,rgba(0,0,0,.25) 85%);
+  }
   body::before{
     content:"";position:fixed;inset:0;z-index:-2;
-    background:
-      radial-gradient(900px 500px at 85% -10%,rgba(255,138,92,.10),transparent 60%),
-      radial-gradient(800px 480px at -10% 25%,rgba(102,192,244,.08),transparent 60%),
-      radial-gradient(700px 500px at 60% 110%,rgba(255,184,77,.07),transparent 60%),
-      var(--bg);
-  }
-  .grid-overlay{
-    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
-    background-image:
-      linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:56px 56px;
-    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);
-    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 75%);
+    background:radial-gradient(1000px 620px at 50% -6%,rgba(28,102,80,.4),transparent 65%);
   }
 
-  /* ---------- 顶部导航 ---------- */
-  header.nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    background:rgba(10,14,22,.55);
-    border-bottom:1px solid transparent;
-    transition:background .3s,border-color .3s;
+  /* ---------- 顶部：居中 logo + 居中导航 ---------- */
+  header.nav{position:relative;padding:36px 0 0}
+  .head-stack{
+    display:flex;flex-direction:column;align-items:center;gap:24px;
+    border-bottom:1px solid rgba(47,208,162,.4);
   }
-  header.nav.scrolled{background:rgba(10,14,22,.88);border-color:var(--line)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px;flex:none}
-  .brand-logo{
-    width:38px;height:38px;border-radius:10px;flex:none;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    display:flex;align-items:center;justify-content:center;
-    color:#14100a;font-weight:900;font-size:19px;
-    box-shadow:0 4px 14px rgba(255,184,77,.35);
+  .brand{display:flex;align-items:center;justify-content:center;gap:14px}
+  .brand-logo-img{height:64px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+  .brand span{text-align:left}
+  .brand b{font-size:16px;color:#fff;letter-spacing:.5px;line-height:1.3}
+  .brand small{display:block;font-size:10px;color:var(--txt-dim);letter-spacing:3px;font-weight:500}
+  nav.links{
+    display:flex;gap:40px;font-size:15px;color:var(--txt);
+    flex-wrap:wrap;justify-content:center;padding-bottom:16px;
   }
-  .brand-logo-img{
-    height:40px;width:auto;flex:none;display:block;
-    filter:drop-shadow(0 2px 6px rgba(0,0,0,.35));
-  }
-  .brand b{font-size:17px}
-  .brand small{display:block;font-size:10.5px;color:var(--txt-dim);font-weight:500;letter-spacing:2.5px}
-  .nav-right{display:flex;align-items:center;gap:26px}
-  nav.links{display:flex;gap:30px;font-size:14px;color:var(--txt-dim)}
-  nav.links a{position:relative;padding:4px 0;transition:color .2s}
-  nav.links a::after{
-    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
-    background:var(--accent);transition:width .25s;border-radius:2px;
-  }
-  nav.links a:hover{color:var(--txt)}
-  nav.links a:hover::after{width:100%}
-  .lang-switch{display:flex;align-items:center;gap:6px;flex:none}
+  nav.links a{letter-spacing:.5px;transition:color .2s}
+  nav.links a:hover{color:var(--accent)}
+  .lang-switch{position:absolute;top:0;right:0;display:flex;gap:6px}
   .lang-switch button{
     background:none;border:1px solid var(--line);color:var(--txt-dim);
-    padding:5px 13px;border-radius:999px;cursor:pointer;
-    font-size:12.5px;font-weight:700;font-family:inherit;
+    padding:4px 12px;border-radius:3px;cursor:pointer;
+    font-size:12px;font-weight:700;font-family:inherit;
     transition:all .2s;letter-spacing:.5px;
   }
-  .lang-switch button:hover{color:var(--txt);border-color:rgba(255,255,255,.22)}
+  .lang-switch button:hover{color:var(--txt);border-color:rgba(255,255,255,.35)}
   .lang-switch button.active{
-    background:linear-gradient(92deg,var(--accent),var(--accent-2));
-    color:#171006;border-color:transparent;
+    background:var(--accent);color:#04140e;border-color:transparent;
   }
 
   /* ---------- Hero ---------- */
-  .hero{
-    position:relative;min-height:calc(100vh - 180px);
-    display:flex;align-items:center;
-    padding:72px 0 90px;overflow:hidden;
-  }
-  .hero .orb{
-    position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;z-index:-1;
-  }
-  .orb-1{width:420px;height:420px;background:rgba(255,184,77,.16);top:-80px;right:-60px;animation:float1 14s ease-in-out infinite}
-  .orb-2{width:340px;height:340px;background:rgba(102,192,244,.13);bottom:-100px;left:8%;animation:float2 18s ease-in-out infinite}
-  @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
-  @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-30px)}}
-
+  .hero{padding:96px 0 100px;text-align:center}
   .hero-tag{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:12.5px;letter-spacing:2px;color:var(--accent);
-    border:1px solid rgba(255,184,77,.35);border-radius:999px;
-    padding:7px 16px;background:rgba(255,184,77,.07);margin-bottom:26px;
+    display:inline-block;font-size:12.5px;letter-spacing:3px;color:var(--accent);
+    text-transform:uppercase;font-weight:700;margin-bottom:28px;
   }
-  .hero-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
   .hero h1{
-    font-size:clamp(38px,6vw,64px);font-weight:900;line-height:1.15;
-    letter-spacing:.5px;
+    font-family:"Roboto Condensed",Oxygen,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:clamp(34px,5.5vw,60px);font-weight:700;line-height:1.2;
+    letter-spacing:1px;text-transform:uppercase;color:#fff;
   }
-  .hero h1 .grad{
-    background:linear-gradient(92deg,var(--accent) 10%,var(--accent-2) 90%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
+  .hero h1 .grad{color:var(--accent)}
   .hero .en-name{
-    margin-top:14px;font-size:clamp(15px,2vw,19px);color:var(--txt-dim);
-    letter-spacing:3px;text-transform:uppercase;font-weight:600;
+    margin-top:16px;font-size:14px;color:var(--txt-dim);
+    letter-spacing:4px;text-transform:uppercase;
   }
-  .hero p.lead{
-    margin-top:26px;max-width:640px;font-size:16.5px;color:var(--txt-dim);
-  }
-  .hero p.lead b{color:var(--txt)}
-  .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
+  .hero p.lead{margin:28px auto 0;max-width:640px;font-size:16px;color:var(--txt-dim)}
+  .hero p.lead b{color:#fff}
+  .hero-actions{display:flex;gap:16px;margin-top:44px;justify-content:center;flex-wrap:wrap}
   .btn{
     display:inline-flex;align-items:center;gap:9px;
-    padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;
-    transition:transform .2s,box-shadow .2s,background .2s;
-    cursor:pointer;border:none;
+    padding:13px 30px;border-radius:3px;font-size:13.5px;font-weight:700;
+    letter-spacing:1.5px;text-transform:uppercase;
+    transition:background .2s,color .2s,border-color .2s,transform .2s;
+    cursor:pointer;border:1px solid transparent;
   }
-  .btn-primary{
-    background:linear-gradient(92deg,var(--accent),var(--accent-2));color:#171006;
-    box-shadow:0 10px 26px rgba(255,184,77,.3);
-  }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,184,77,.42)}
-  .btn-ghost{
-    background:rgba(255,255,255,.05);color:var(--txt);
-    border:1px solid var(--line);
-  }
-  .btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+  .btn-primary{background:var(--accent);color:#04140e}
+  .btn-primary:hover{background:#43e4b5;transform:translateY(-2px)}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
   .hero-stats{
-    display:flex;gap:0;margin-top:56px;
-    border:1px solid var(--line);border-radius:var(--radius);
-    background:rgba(255,255,255,.03);overflow:hidden;
-    width:fit-content;
+    display:flex;margin:60px auto 0;width:fit-content;
+    border:1px solid var(--line);background:rgba(255,255,255,.02);
   }
-  .hero-stats .stat{padding:18px 34px;border-left:1px solid var(--line);text-align:center}
+  .hero-stats .stat{padding:18px 36px;border-left:1px solid var(--line);text-align:center}
   .hero-stats .stat:first-child{border-left:none}
-  .hero-stats .num{font-size:26px;font-weight:900;color:var(--accent)}
-  .hero-stats .lbl{font-size:12px;color:var(--txt-dim);letter-spacing:1px;margin-top:2px}
+  .hero-stats .num{
+    font-family:"Roboto Condensed","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:28px;font-weight:700;color:var(--accent);line-height:1.2;
+  }
+  .hero-stats .lbl{font-size:11px;color:var(--txt-dim);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
 
   /* ---------- 通用区 ---------- */
-  section{padding:110px 0}
-  .sec-head{text-align:center;max-width:680px;margin:0 auto 64px}
+  section{padding:90px 0}
+  .sec-head{text-align:center;max-width:680px;margin:0 auto 60px}
   .sec-eyebrow{
     font-size:12.5px;letter-spacing:3px;color:var(--accent);font-weight:700;
     text-transform:uppercase;margin-bottom:14px;
   }
-  .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:.5px}
-  .sec-head p{margin-top:14px;color:var(--txt-dim);font-size:15.5px}
+  .sec-head h2{
+    font-family:"Roboto Condensed",Oxygen,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:1px;
+    text-transform:uppercase;color:#fff;
+  }
+  .sec-head p{margin-top:14px;color:var(--txt-dim);font-size:15px}
 
   /* ---------- Banner ---------- */
-  .banner-strip{padding:96px 0 0}
+  .banner-strip{padding:36px 0 0}
   .banner-strip .wrap{padding-top:0}
   .banner-strip img{
     width:100%;height:auto;display:block;
-    border-radius:var(--radius);border:1px solid var(--line);
-    box-shadow:var(--shadow);
+    border:1px solid var(--line);
   }
 
   /* ---------- 关于 ---------- */
-  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center}
-  .about-copy h3{font-size:26px;font-weight:800;margin-bottom:18px}
-  .about-copy p{color:var(--txt-dim);margin-bottom:16px;font-size:15.5px}
-  .about-copy p b{color:var(--txt)}
-  .about-points{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+  .about-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:52px;align-items:center}
+  .about-copy h3{
+    font-family:"Roboto Condensed",Oxygen,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:24px;font-weight:700;text-transform:uppercase;color:#fff;
+    letter-spacing:.5px;margin-bottom:18px;
+  }
+  .about-copy p{color:var(--txt-dim);margin-bottom:16px;font-size:15px}
+  .about-copy p b{color:#fff}
+  .about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
   .point{
-    display:flex;gap:12px;align-items:flex-start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;
-    padding:16px 18px;transition:transform .2s,border-color .2s;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;transition:border-color .2s;
   }
-  .point:hover{transform:translateY(-3px);border-color:rgba(255,184,77,.4)}
-  .point b{display:block;font-size:14px;margin-bottom:2px}
-  .point span{font-size:12.5px;color:var(--txt-dim)}
+  .point:hover{border-color:rgba(47,208,162,.55)}
+  .point b{display:block;font-size:13.5px;color:#fff;margin-bottom:2px}
+  .point span{font-size:12px;color:var(--txt-dim)}
   .about-visual{
-    position:relative;border-radius:var(--radius);overflow:hidden;
-    border:1px solid var(--line);box-shadow:var(--shadow);
+    position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
   }
-  .about-visual img{width:100%;height:100%;object-fit:cover;min-height:360px}
+  .about-visual img{width:100%;height:100%;object-fit:cover;min-height:340px}
   .about-visual .cap{
-    position:absolute;left:0;right:0;bottom:0;padding:34px 22px 18px;
-    background:linear-gradient(transparent,rgba(5,8,14,.9));
-    font-size:12.5px;color:var(--txt-dim);
+    position:absolute;left:0;right:0;bottom:0;padding:30px 20px 14px;
+    background:linear-gradient(transparent,rgba(0,0,0,.92));
+    font-size:12px;color:var(--txt-dim);
   }
 
   /* ---------- 游戏区 ---------- */
   #games{position:relative}
   .game-card{
-    display:grid;grid-template-columns:460px 1fr;gap:0;
-    background:var(--card);border:1px solid var(--line);
-    border-radius:20px;overflow:hidden;margin-bottom:44px;
-    box-shadow:var(--shadow);transition:transform .35s,border-color .35s;
+    display:grid;grid-template-columns:440px 1fr;gap:0;
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;margin-bottom:48px;
+    transition:border-color .25s;
   }
-  .game-card:hover{border-color:rgba(255,184,77,.35);transform:translateY(-4px)}
-  .game-card.flip{grid-template-columns:1fr 460px}
+  .game-card:hover{border-color:rgba(47,208,162,.5)}
+  .game-card.flip{grid-template-columns:1fr 440px}
   .game-card.flip .gc-media{order:2}
   .game-card.flip .gc-body{order:1}
-  .gc-media{position:relative;overflow:hidden;background:#0c1220}
+  .gc-media{position:relative;overflow:hidden;background:#0a0d0c}
   .gc-media .shot{
     width:100%;aspect-ratio:16/9;object-fit:cover;
-    transition:transform .6s cubic-bezier(.2,.7,.2,1);
+    transition:transform .5s cubic-bezier(.2,.7,.2,1);
   }
-  .game-card:hover .gc-media .shot{transform:scale(1.05)}
+  .game-card:hover .gc-media .shot{transform:scale(1.04)}
   .gc-media::after{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(90deg,transparent 60%,rgba(18,26,40,.55));
+    background:linear-gradient(90deg,transparent 65%,rgba(16,21,19,.6));
     pointer-events:none;
   }
-  .game-card.flip .gc-media::after{background:linear-gradient(-90deg,transparent 60%,rgba(18,26,40,.55))}
+  .game-card.flip .gc-media::after{background:linear-gradient(-90deg,transparent 65%,rgba(16,21,19,.6))}
   .gc-status{
-    position:absolute;top:18px;left:18px;z-index:2;
-    font-size:12px;font-weight:800;letter-spacing:1.5px;
-    padding:7px 14px;border-radius:999px;color:#0c0f16;
-    background:linear-gradient(92deg,var(--accent),var(--accent-2));
-    box-shadow:0 6px 16px rgba(0,0,0,.35);
+    position:absolute;top:16px;left:16px;z-index:2;
+    font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    padding:6px 12px;border-radius:2px;color:#04140e;background:var(--accent);
   }
-  .gc-status.soon{background:linear-gradient(92deg,#66c0f4,#4b8fd6);color:#071018}
-  .gc-body{padding:44px 46px;display:flex;flex-direction:column;justify-content:center}
-  .gc-title{font-size:30px;font-weight:900;letter-spacing:.5px}
-  .gc-en{margin-top:4px;font-size:13px;color:var(--txt-faint);letter-spacing:2px;text-transform:uppercase;font-weight:600}
-  .gc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .gc-status.soon{
+    background:#15201b;color:var(--accent);border:1px solid rgba(47,208,162,.4);
+  }
+  .gc-body{padding:42px 44px;display:flex;flex-direction:column;justify-content:center}
+  .gc-title{
+    font-family:"Roboto Condensed",Oxygen,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:28px;font-weight:700;color:#fff;letter-spacing:.5px;
+  }
+  .gc-en{margin-top:4px;font-size:12.5px;color:var(--txt-faint);letter-spacing:2.5px;text-transform:uppercase;font-weight:700}
+  .gc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
   .tag{
-    font-size:12px;color:var(--txt-dim);
-    border:1px solid var(--line);background:rgba(255,255,255,.04);
-    padding:5px 12px;border-radius:999px;
+    font-size:11.5px;color:var(--txt-dim);
+    border:1px solid var(--line);
+    padding:4px 11px;border-radius:2px;letter-spacing:.5px;
   }
-  .gc-desc{margin-top:20px;font-size:14.5px;color:var(--txt-dim)}
-  .gc-desc b{color:var(--txt)}
+  .gc-desc{margin-top:18px;font-size:14px;color:var(--txt-dim)}
+  .gc-desc b{color:#fff}
   .gc-meta{
-    display:flex;gap:26px;margin-top:22px;font-size:13px;color:var(--txt-faint);
-    border-top:1px dashed var(--line);padding-top:18px;
+    display:flex;gap:26px;margin-top:20px;font-size:12.5px;color:var(--txt-faint);
+    border-top:1px dashed var(--line);padding-top:16px;
   }
-  .gc-meta b{color:var(--txt);font-size:14px;display:block;margin-bottom:1px}
-  .gc-actions{display:flex;align-items:center;gap:14px;margin-top:28px}
+  .gc-meta b{color:var(--txt);font-size:12px;display:block;margin-bottom:2px;text-transform:uppercase;letter-spacing:1.5px}
+  .gc-actions{display:flex;align-items:center;gap:14px;margin-top:26px}
   .btn-steam{
     display:inline-flex;align-items:center;gap:10px;
-    padding:13px 26px;border-radius:10px;font-size:14.5px;font-weight:800;
-    background:var(--steam-btn);color:#0b141f;
-    transition:transform .2s,box-shadow .2s,background .2s;
+    padding:12px 24px;border-radius:3px;font-size:13px;font-weight:700;
+    letter-spacing:1px;text-transform:uppercase;
+    background:var(--steam-btn);color:#fff;
+    transition:background .2s,transform .2s;
   }
-  .btn-steam:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(102,192,244,.35);background:#7bc8f7}
-  .btn-steam svg{width:18px;height:18px}
+  .btn-steam:hover{background:#6cb23c;transform:translateY(-2px)}
+  .btn-steam svg{width:17px;height:17px}
 
   /* 截图预览 */
-  .gc-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+  .gc-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
   .gc-shots img{
-    width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;
+    width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;
     cursor:zoom-in;border:1px solid var(--line);
-    transition:transform .25s,box-shadow .25s;
+    transition:border-color .2s,transform .2s;
   }
-  .gc-shots img:hover{transform:scale(1.04);box-shadow:0 10px 22px rgba(0,0,0,.4)}
+  .gc-shots img:hover{border-color:rgba(47,208,162,.6);transform:scale(1.03)}
 
   /* ---------- 页脚 ---------- */
-  footer{border-top:1px solid var(--line);background:rgba(8,11,18,.6);padding:60px 0 40px;margin-top:40px}
+  footer{border-top:1px solid var(--line);background:#000;padding:56px 0 36px;margin-top:20px}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
-  .foot-brand p{font-size:13.5px;color:var(--txt-dim);margin-top:14px;max-width:340px}
-  .foot-col h4{font-size:13px;letter-spacing:2px;color:var(--txt);margin-bottom:16px;text-transform:uppercase}
-  .foot-col a,.foot-col p{display:block;font-size:13.5px;color:var(--txt-dim);margin-bottom:10px;transition:color .2s}
+  .foot-brand .brand-logo-img{height:40px}
+  .foot-brand p{font-size:13px;color:var(--txt-dim);margin-top:14px;max-width:340px}
+  .foot-col h4{font-size:12px;letter-spacing:2.5px;color:#fff;margin-bottom:16px;text-transform:uppercase}
+  .foot-col a,.foot-col p{display:block;font-size:13px;color:var(--txt-dim);margin-bottom:10px;transition:color .2s}
   .foot-col a:hover{color:var(--accent)}
   .foot-bottom{
-    margin-top:46px;padding-top:22px;border-top:1px solid var(--line);
+    margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
     display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    font-size:12.5px;color:var(--txt-faint);
+    font-size:12px;color:var(--txt-faint);
   }
   .foot-bottom a{color:var(--txt-faint);transition:color .2s}
   .foot-bottom a:hover{color:var(--accent)}
 
   /* ---------- Lightbox ---------- */
   .lightbox{
-    position:fixed;inset:0;z-index:200;background:rgba(4,6,10,.92);
+    position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.95);
     display:flex;align-items:center;justify-content:center;
     opacity:0;pointer-events:none;transition:opacity .25s;
     padding:4vh 4vw;
   }
   .lightbox.open{opacity:1;pointer-events:auto}
-  .lightbox img{max-width:100%;max-height:92vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lightbox img{max-width:100%;max-height:92vh;border:1px solid var(--line)}
   .lightbox .close{
-    position:absolute;top:22px;right:26px;color:#fff;font-size:34px;cursor:pointer;
-    width:46px;height:46px;display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(255,255,255,.2);border-radius:50%;transition:background .2s;
+    position:absolute;top:20px;right:24px;color:#fff;font-size:32px;cursor:pointer;
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.25);transition:border-color .2s,color .2s;
   }
-  .lightbox .close:hover{background:rgba(255,255,255,.12)}
+  .lightbox .close:hover{border-color:var(--accent);color:var(--accent)}
 
   /* ---------- 动画 ---------- */
-  .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
 
@@ -321,19 +285,21 @@
     .game-card,.game-card.flip{grid-template-columns:1fr}
     .game-card.flip .gc-media{order:-1}
     .game-card.flip .gc-body{order:1}
-    .gc-body{padding:34px 28px}
+    .gc-body{padding:32px 26px}
     .about-grid{grid-template-columns:1fr}
     .hero-stats .stat{padding:14px 20px}
     .foot-grid{grid-template-columns:1fr;gap:30px}
-    .nav-right{gap:16px}
   }
   @media(max-width:640px){
-    nav.links{display:none}
+    nav.links{gap:20px;font-size:14px}
+    .lang-switch{position:static;justify-content:center;margin-top:-8px}
+    .head-stack{gap:18px}
+    .brand-logo-img{height:52px}
     .gc-shots{grid-template-columns:1fr}
     .about-points{grid-template-columns:1fr}
-    .hero{padding:56px 0 70px}
-    .banner-strip{padding-top:80px}
-    section{padding:80px 0}
+    .hero{padding:70px 0 80px}
+    .banner-strip{padding-top:24px}
+    section{padding:70px 0}
   }
 </style>
 </head>
@@ -342,24 +308,18 @@
 
 <!-- ======== 导航 ======== -->
 <header class="nav" id="nav">
-  <div class="wrap nav-inner">
+  <div class="wrap head-stack">
     <a class="brand" href="#top">
       <img class="brand-logo-img" src="assets/LP%20logo_white.png" alt="Lynkpin Game" data-i18n-alt="logo_alt">
-      <span>
-        <b data-i18n="brand_name">灵品互娱</b>
-        <small>LYNKPIN GAME</small>
-      </span>
     </a>
-    <div class="nav-right">
-      <nav class="links">
-        <a href="#about" data-i18n="nav_about">关于我们</a>
-        <a href="#games" data-i18n="nav_games">游戏作品</a>
-        <a href="#contact" data-i18n="nav_contact">联系方式</a>
-      </nav>
-      <div class="lang-switch">
-        <button type="button" data-lang="zh" class="active">中文</button>
-        <button type="button" data-lang="en">EN</button>
-      </div>
+    <nav class="links">
+      <a href="#about" data-i18n="nav_about">关于我们</a>
+      <a href="#games" data-i18n="nav_games">游戏作品</a>
+      <a href="#contact" data-i18n="nav_contact">联系方式</a>
+    </nav>
+    <div class="lang-switch">
+      <button type="button" data-lang="zh" class="active">中文</button>
+      <button type="button" data-lang="en">EN</button>
     </div>
   </div>
 </header>
@@ -373,10 +333,8 @@
 
 <!-- ======== Hero ======== -->
 <section class="hero" id="top">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
   <div class="wrap">
-    <div class="hero-tag reveal"><span class="dot"></span><span data-i18n="hero_tag">独立游戏工作室 · STEAM 平台发行商</span></div>
+    <div class="hero-tag reveal"><span data-i18n="hero_tag">独立游戏工作室 · STEAM 平台发行商</span></div>
     <h1 class="reveal reveal-d1" data-i18n="hero_h1">做让人<em class="grad">玩得开心</em>的游戏</h1>
     <div class="en-name reveal reveal-d1">Guangzhou Lynkpin Game Interactive Co., Ltd.</div>
     <p class="lead reveal reveal-d2" data-i18n="hero_lead">
