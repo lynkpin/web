@@ -223,16 +223,14 @@
     border-top:1px dashed var(--line);padding-top:16px;
   }
   .gc-meta b{color:var(--txt);font-size:12px;display:block;margin-bottom:2px;text-transform:uppercase;letter-spacing:1.5px}
-  .gc-actions{display:flex;align-items:center;gap:14px;margin-top:26px}
-  .btn-steam{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:12px 24px;border-radius:3px;font-size:13px;font-weight:700;
-    letter-spacing:1px;text-transform:uppercase;
-    background:var(--steam-btn);color:#fff;
-    transition:background .2s,transform .2s;
+  .gc-widget{
+    grid-column:1/-1;
+    border-top:1px solid var(--line);
+    background:#0b100e;
+    padding:26px 24px;
+    display:flex;justify-content:center;
   }
-  .btn-steam:hover{background:#6cb23c;transform:translateY(-2px)}
-  .btn-steam svg{width:17px;height:17px}
+  .gc-widget iframe{width:100%;max-width:646px;height:190px;border:0}
 
   /* 截图预览 */
   .gc-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
@@ -429,12 +427,9 @@
           <div><b data-i18n="meta_rating">评价</b><span data-i18n="g1_rating_val">多半好评 · 79%</span></div>
           <div><b data-i18n="meta_ach">成就</b><span data-i18n="g1_ach_val">205 项</span></div>
         </div>
-        <div class="gc-actions">
-          <a class="btn-steam" href="https://store.steampowered.com/app/3054610/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
-            <span data-i18n="g1_btn">Steam 商店页</span>
-          </a>
-        </div>
+      </div>
+      <div class="gc-widget">
+        <iframe src="https://store.steampowered.com/widget/3054610/" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Artifact Seeker: Resurrection — Steam"></iframe>
       </div>
     </article>
 
@@ -466,12 +461,9 @@
           <div><b data-i18n="meta_rating">评价</b><span data-i18n="g2_rating_val">特别好评 · 97%</span></div>
           <div><b data-i18n="meta_ach">成就</b><span data-i18n="g2_ach_val">77 项</span></div>
         </div>
-        <div class="gc-actions">
-          <a class="btn-steam" href="https://store.steampowered.com/app/3714370/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
-            <span data-i18n="g2_btn">Steam 商店页</span>
-          </a>
-        </div>
+      </div>
+      <div class="gc-widget">
+        <iframe src="https://store.steampowered.com/widget/3714370/" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="NoSlack Pets: Lo-Fi Paws — Steam"></iframe>
       </div>
     </article>
 
@@ -504,12 +496,9 @@
           <div><b data-i18n="meta_status">状态</b><span data-i18n="g3_status_val">开发中</span></div>
           <div><b data-i18n="meta_lang">支持</b><span data-i18n="g3_lang_val">中 / 英 / 日 / 韩 等 14 种语言</span></div>
         </div>
-        <div class="gc-actions">
-          <a class="btn-steam" href="https://store.steampowered.com/app/4942150/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.77 9.54.5-.27.68-.68.68-1.5v-2.69c-2.74.6-3.32-1.32-3.32-1.32-.45-1.14-1.1-1.44-1.1-1.44-.9-.61.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.88 1.51 2.32 1.08 2.88.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.73c0 .82.18 1.23.69 1.5A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/></svg>
-            <span data-i18n="g3_btn">Steam 商店页 · 加入愿望单</span>
-          </a>
-        </div>
+      </div>
+      <div class="gc-widget">
+        <iframe src="https://store.steampowered.com/widget/4942150/" frameborder="0" width="646" height="190" scrolling="no" loading="lazy" title="Cookwagon — Steam"></iframe>
       </div>
     </article>
   </div>
@@ -636,7 +625,6 @@ const I18N = {
   },
   g1_rating_val: { zh: '多半好评 · 79%', en: 'Mostly Positive · 79%' },
   g1_ach_val: { zh: '205 项', en: '205' },
-  g1_btn: { zh: 'Steam 商店页', en: 'Steam Store Page' },
   g1_cover_alt: { zh: '神器行者：重生 封面', en: 'Artifact Seeker: Resurrection key art' },
   g1_shot1_alt: { zh: '神器行者：重生 截图 1', en: 'Artifact Seeker: Resurrection screenshot 1' },
   g1_shot2_alt: { zh: '神器行者：重生 截图 2', en: 'Artifact Seeker: Resurrection screenshot 2' },
@@ -656,7 +644,6 @@ const I18N = {
   },
   g2_rating_val: { zh: '特别好评 · 97%', en: 'Very Positive · 97%' },
   g2_ach_val: { zh: '77 项', en: '77' },
-  g2_btn: { zh: 'Steam 商店页', en: 'Steam Store Page' },
   g2_cover_alt: { zh: '萌宠不摸鱼：Lofi猫 封面', en: 'NoSlack Pets: Lo-Fi Paws key art' },
   g2_shot1_alt: { zh: '萌宠不摸鱼 截图 1', en: 'NoSlack Pets: Lo-Fi Paws screenshot 1' },
   g2_shot2_alt: { zh: '萌宠不摸鱼 截图 2', en: 'NoSlack Pets: Lo-Fi Paws screenshot 2' },
@@ -677,7 +664,6 @@ const I18N = {
   g3_release_val: { zh: '敬请期待', en: 'Coming Soon' },
   g3_status_val: { zh: '开发中', en: 'In Development' },
   g3_lang_val: { zh: '中 / 英 / 日 / 韩 等 14 种语言', en: 'ZH / EN / JA / KO + 10 more (14 languages)' },
-  g3_btn: { zh: 'Steam 商店页 · 加入愿望单', en: 'Steam Store Page · Wishlist' },
   g3_cover_alt: { zh: '王牌餐车 封面', en: 'Cookwagon key art' },
   g3_shot1_alt: { zh: '王牌餐车 截图 1', en: 'Cookwagon screenshot 1' },
   g3_shot2_alt: { zh: '王牌餐车 截图 2', en: 'Cookwagon screenshot 2' },
