@@ -69,11 +69,13 @@
     padding:13px 0 11px;
     border-bottom:1px solid rgba(47,208,162,.35);
   }
-  .brand{display:flex;align-items:center;gap:14px}
+  .brand{display:flex;align-items:center;gap:11px}
   .brand-logo-img{height:38px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.7))}
   .brand span{text-align:left}
   .brand b{font-size:16px;color:#fff;letter-spacing:.5px;line-height:1.3}
   .brand small{display:block;font-size:10px;color:var(--txt-dim);letter-spacing:3px;font-weight:500}
+  .head-stack .brand span{text-shadow:0 1px 8px rgba(0,0,0,.9)}
+  .head-stack .brand small{color:rgba(255,255,255,.62)}
   nav.links{
     display:flex;gap:30px;font-size:14.5px;color:var(--txt);
     text-shadow:0 1px 6px rgba(0,0,0,.8);
@@ -204,6 +206,8 @@
     nav.links{gap:16px;font-size:13.5px}
     .head-stack{flex-wrap:wrap;justify-content:center;gap:10px 18px;padding:10px 0}
     .brand-logo-img{height:34px}
+    .head-stack .brand b{font-size:14px}
+    .head-stack .brand small{display:none}
     .tb-img{height:132px;object-position:center 60%}
     .hero{padding:44px 0 48px}
     section{padding:44px 0}
@@ -220,6 +224,7 @@
     <div class="wrap head-stack">
       <a class="brand" href="#top">
         <img class="brand-logo-img" src="assets/LP%20logo_white.png" alt="Lynkpin Game" data-i18n-alt="logo_alt">
+        <span><b data-i18n="brand_name">灵品互娱</b><small>LYNKPIN GAME</small></span>
       </a>
       <nav class="links">
         <a href="#games" data-i18n="nav_games">游戏作品</a>
