@@ -75,6 +75,10 @@
     color:#14100a;font-weight:900;font-size:19px;
     box-shadow:0 4px 14px rgba(255,184,77,.35);
   }
+  .brand-logo-img{
+    height:40px;width:auto;flex:none;display:block;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,.35));
+  }
   .brand b{font-size:17px}
   .brand small{display:block;font-size:10.5px;color:var(--txt-dim);font-weight:500;letter-spacing:2.5px}
   .nav-right{display:flex;align-items:center;gap:26px}
@@ -101,9 +105,9 @@
 
   /* ---------- Hero ---------- */
   .hero{
-    position:relative;min-height:100vh;
+    position:relative;min-height:calc(100vh - 180px);
     display:flex;align-items:center;
-    padding:140px 0 90px;overflow:hidden;
+    padding:72px 0 90px;overflow:hidden;
   }
   .hero .orb{
     position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;z-index:-1;
@@ -179,6 +183,15 @@
   }
   .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:.5px}
   .sec-head p{margin-top:14px;color:var(--txt-dim);font-size:15.5px}
+
+  /* ---------- Banner ---------- */
+  .banner-strip{padding:96px 0 0}
+  .banner-strip .wrap{padding-top:0}
+  .banner-strip img{
+    width:100%;height:auto;display:block;
+    border-radius:var(--radius);border:1px solid var(--line);
+    box-shadow:var(--shadow);
+  }
 
   /* ---------- 关于 ---------- */
   .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center}
@@ -337,7 +350,8 @@
     nav.links{display:none}
     .gc-shots{grid-template-columns:1fr}
     .about-points{grid-template-columns:1fr}
-    .hero{padding-top:120px}
+    .hero{padding:56px 0 70px}
+    .banner-strip{padding-top:80px}
     section{padding:80px 0}
     .join-inner{padding:48px 28px}
   }
@@ -350,7 +364,7 @@
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#top">
-      <span class="brand-logo">L</span>
+      <img class="brand-logo-img" src="assets/LP%20logo_white.png" alt="Lynkpin Game" data-i18n-alt="logo_alt">
       <span>
         <b data-i18n="brand_name">灵品互娱</b>
         <small>LYNKPIN GAME</small>
@@ -370,6 +384,13 @@
     </div>
   </div>
 </header>
+
+<!-- ======== Banner ======== -->
+<section class="banner-strip" aria-label="Lynkpin Game banner">
+  <div class="wrap">
+    <img src="assets/banner_1500x220_20260930.png" alt="Lynkpin Game 角色横幅" class="reveal in" data-i18n-alt="banner_alt">
+  </div>
+</section>
 
 <!-- ======== Hero ======== -->
 <section class="hero" id="top">
@@ -586,7 +607,7 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="brand" href="#top">
-          <span class="brand-logo">L</span>
+          <img class="brand-logo-img" src="assets/LP%20logo_white.png" alt="Lynkpin Game" data-i18n-alt="logo_alt">
           <span><b data-i18n="brand_name">灵品互娱</b><small>LYNKPIN GAME</small></span>
         </a>
         <p data-i18n="foot_desc">
@@ -635,6 +656,8 @@ const I18N = {
     en: 'Guangzhou Lingpin Game Interactive Co., Ltd. (Lynkpin Game) — an indie game studio. Titles include Artifact Seeker: Resurrection and NoSlack Pets: Lo-Fi Paws, with Cookwagon coming soon.'
   },
   brand_name: { zh: '灵品互娱', en: 'Lynkpin Game' },
+  logo_alt: { zh: 'Lynkpin Game 标志', en: 'Lynkpin Game logo' },
+  banner_alt: { zh: 'Lynkpin Game 旗下游戏角色横幅', en: 'Characters from Lynkpin Game titles' },
   nav_about: { zh: '关于我们', en: 'About' },
   nav_games: { zh: '游戏作品', en: 'Games' },
   nav_join: { zh: '加入我们', en: 'Join Us' },
