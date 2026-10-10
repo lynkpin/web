@@ -153,24 +153,22 @@
   /* ---------- 游戏区 ---------- */
   #games{position:relative}
   .game-card{
-    background:var(--panel);border:1px solid var(--line);
-    border-radius:var(--radius);overflow:hidden;margin-bottom:24px;
-    transition:border-color .25s;
+    border-top:1px solid var(--line);
+    padding:34px 0 38px;
   }
-  .game-card:last-child{margin-bottom:0}
-  .game-card:hover{border-color:rgba(47,208,162,.5)}
-  .gc-body{padding:28px 32px 22px}
+  .game-card:first-child{border-top:none;padding-top:0}
+  .gc-body{padding:0}
   .gc-title{
     font-family:"Roboto Condensed",Oxygen,"PingFang SC","Microsoft YaHei",sans-serif;
     font-size:28px;font-weight:700;color:#fff;letter-spacing:.5px;
+    transition:color .25s;
   }
+  .game-card:hover .gc-title{color:var(--accent)}
   .gc-en{margin-top:4px;font-size:12.5px;color:var(--txt-faint);letter-spacing:2.5px;text-transform:uppercase;font-weight:700}
   .gc-desc{margin-top:12px;font-size:14.5px;color:var(--txt-dim);max-width:820px}
   .gc-desc b{color:#fff}
   .gc-widget{
-    border-top:1px solid var(--line);
-    background:#0b100e;
-    padding:18px 20px;
+    margin-top:20px;
     display:flex;justify-content:center;
   }
   .gc-widget iframe{width:100%;height:190px;border:0}
@@ -198,7 +196,6 @@
 
   /* ---------- 响应式 ---------- */
   @media(max-width:960px){
-    .gc-body{padding:24px 20px}
     .hero-stats .stat{padding:14px 20px}
     .foot-grid{grid-template-columns:1fr;gap:30px}
   }
