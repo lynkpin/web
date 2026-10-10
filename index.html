@@ -156,7 +156,6 @@
     border-top:1px solid var(--line);
     padding:34px 0 38px;
   }
-  .game-card:first-child{border-top:none;padding-top:0}
   .gc-body{padding:0}
   .gc-title{
     font-family:"Roboto Condensed",Oxygen,"PingFang SC","Microsoft YaHei",sans-serif;
@@ -172,6 +171,18 @@
     display:flex;justify-content:center;
   }
   .gc-widget iframe{width:100%;height:190px;border:0}
+
+  /* 宣传片 */
+  .gc-video{margin-top:14px;position:relative}
+  .gc-video video{
+    display:block;width:100%;aspect-ratio:16/9;
+    background:#000;border:1px solid var(--line);
+  }
+  .gc-video .vd-fail{
+    font-size:13px;color:var(--txt-dim);text-align:center;
+    padding:14px 0 2px;
+  }
+  .gc-video .vd-fail a{color:var(--accent);border-bottom:1px solid rgba(47,208,162,.5)}
 
   /* ---------- 页脚 ---------- */
   footer{border-top:1px solid var(--line);background:#000;padding:40px 0 26px;margin-top:10px}
@@ -206,6 +217,7 @@
     .head-stack .brand b{font-size:14px}
     .head-stack .brand small{display:none}
     .tb-img{height:132px;object-position:center 60%}
+    .game-card{padding:24px 0 28px}
     .hero{padding:26px 0 28px}
     section{padding:44px 0}
     #games{padding-top:32px}
@@ -281,6 +293,13 @@
       <div class="gc-widget">
         <iframe src="https://store.steampowered.com/widget/3054610/?l=schinese" frameborder="0" width="100%" height="190" scrolling="no" loading="lazy" title="Artifact Seeker: Resurrection — Steam"></iframe>
       </div>
+      <div class="gc-video">
+        <video class="steam-video" controls preload="none" playsinline
+               poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/257039033/movie.293x165.jpg?t=1721899609"
+               data-hls="https://video.akamai.steamstatic.com/store_trailers/3054610/728175/981ca672c52311adfc3d8b1cf58cb1ff3fa4a9cb/1750823263/hls_264_master.m3u8?t=1721899609"
+               data-steam="https://store.steampowered.com/app/3054610/"
+               title="神器行者：重生 宣传片"></video>
+      </div>
     </article>
 
     <!-- 游戏 2：萌宠不摸鱼：Lofi猫 -->
@@ -296,6 +315,13 @@
       </div>
       <div class="gc-widget">
         <iframe src="https://store.steampowered.com/widget/3714370/?l=schinese" frameborder="0" width="100%" height="190" scrolling="no" loading="lazy" title="NoSlack Pets: Lo-Fi Paws — Steam"></iframe>
+      </div>
+      <div class="gc-video">
+        <video class="steam-video" controls preload="none" playsinline
+               poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/257252211/457b5cafb4c2e0057c94b2df09df8513eacaffad/movie_600x337.jpg?t=1766211182"
+               data-hls="https://video.akamai.steamstatic.com/store_trailers/3714370/1120806770/55407c26e0708323420b0565d7b3f2a7724510cc/1766076125/hls_264_master.m3u8?t=1766211182"
+               data-steam="https://store.steampowered.com/app/3714370/"
+               title="萌宠不摸鱼：Lofi猫 官方宣传片"></video>
       </div>
     </article>
 
@@ -313,6 +339,13 @@
       </div>
       <div class="gc-widget">
         <iframe src="https://store.steampowered.com/widget/4942150/?l=schinese" frameborder="0" width="100%" height="190" scrolling="no" loading="lazy" title="Cookwagon — Steam"></iframe>
+      </div>
+      <div class="gc-video">
+        <video class="steam-video" controls preload="none" playsinline
+               poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/257446640/a086720de4f3976436a079f5d34a16e3fd7840d2/movie_600x337.jpg?t=1791173506"
+               data-hls="https://video.akamai.steamstatic.com/store_trailers/4942150/1756091679/87d6c61866e7adc092869fa82ea1f59fff4837f5/1791171298/hls_264_master.m3u8?t=1791173506"
+               data-steam="https://store.steampowered.com/app/4942150/"
+               title="王牌餐车 宣传片"></video>
       </div>
     </article>
   </div>
@@ -492,6 +525,63 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Steam 宣传片：首次交互时按需加载 HLS（hls.js 本地引入，Safari 走原生 HLS）
+(() => {
+  const videos = Array.from(document.querySelectorAll('video.steam-video'));
+  if (!videos.length) return;
+
+  let hlsPromise = null;
+  const loadHls = () => {
+    if (window.Hls) return Promise.resolve(window.Hls);
+    if (!hlsPromise) {
+      hlsPromise = new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'assets/hls.min.js';
+        s.onload = () => (window.Hls ? resolve(window.Hls) : reject(new Error('Hls missing')));
+        s.onerror = () => reject(new Error('hls.js load failed'));
+        document.head.appendChild(s);
+      });
+    }
+    return hlsPromise;
+  };
+
+  const fallback = (video) => {
+    if (video.dataset.failed) return;
+    video.dataset.failed = '1';
+    const link = document.createElement('div');
+    link.className = 'vd-fail';
+    link.innerHTML = '<a href="' + video.dataset.steam + '" target="_blank" rel="noopener">视频加载失败，前往 Steam 观看 →</a>';
+    video.parentElement.appendChild(link);
+  };
+
+  videos.forEach((video) => {
+    let started = false;
+    const start = async () => {
+      if (started) return;
+      started = true;
+      const src = video.dataset.hls;
+      if (!src) return;
+      // 优先 hls.js（MSE），不可用再回退到 Safari / iOS 原生 HLS
+      const useNative = () => {
+        if (video.canPlayType('application/vnd.apple.mpegurl')) video.src = src;
+        else fallback(video);
+      };
+      try {
+        const Hls = await loadHls();
+        if (!Hls || !Hls.isSupported()) { useNative(); return; }
+        const hls = new Hls({ maxBufferLength: 20 });
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.ERROR, (e, data) => { if (data.fatal) fallback(video); });
+      } catch (err) {
+        useNative();
+      }
+    };
+    video.addEventListener('pointerdown', start, { once: true });
+    video.addEventListener('play', start, { once: true });
+  });
+})();
 
 </script>
 </body>
