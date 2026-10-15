@@ -113,6 +113,29 @@
   .hero p.lead{margin:20px auto 0;max-width:700px;font-size:16px;color:var(--txt-dim)}
   .hero p.lead b{color:#fff}
 
+  /* ---------- 获奖 ---------- */
+  #awards{padding:6px 0 14px}
+  .awards-wrap{
+    display:flex;align-items:center;justify-content:center;gap:34px;
+    width:fit-content;margin:0 auto;
+    text-decoration:none;color:inherit;
+  }
+  .awards-badge{
+    height:118px;width:auto;display:block;
+    filter:drop-shadow(0 0 22px rgba(117,176,34,.18));
+    transition:transform .25s;
+  }
+  .awards-wrap:hover .awards-badge{transform:scale(1.04)}
+  .awards-eyebrow{
+    font-size:12px;letter-spacing:3px;color:var(--accent);
+    text-transform:uppercase;font-weight:700;
+  }
+  .awards-name{
+    margin-top:8px;font-family:"Roboto Condensed","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:20px;font-weight:700;color:#fff;letter-spacing:.5px;
+  }
+  .awards-sub{margin-top:5px;font-size:13px;color:var(--txt-dim);letter-spacing:1.5px}
+
   /* ---------- 通用区 ---------- */
   section{padding:58px 0}
   #games{padding-top:42px}
@@ -261,6 +284,20 @@
       从硬核爽快的 3D 肉鸽割草，到治愈陪伴的桌面猫宠，再到奇幻烹饪的卡牌构筑——
       我们相信<b>好的创意，值得被认真做出来</b>，并把它带给全球玩家。
     </p>
+  </div>
+</section>
+
+<!-- ======== 获奖 ======== -->
+<section id="awards">
+  <div class="wrap">
+    <a class="awards-wrap reveal" href="https://eaigc.filtergame.com/" target="_blank" rel="noopener">
+      <img class="awards-badge" src="assets/BadgeOfHonor2026.png" alt="EAIGC 2026 东亚独立游戏庆典 荣誉徽章" data-i18n-alt="awards_alt">
+      <div class="awards-txt">
+        <div class="awards-eyebrow" data-i18n="awards_eyebrow">获奖荣誉</div>
+        <div class="awards-name" data-i18n="awards_name">EAIGC 2026 东亚独立游戏庆典</div>
+        <div class="awards-sub" data-i18n="awards_sub">荣获 Badge of Honor 大奖</div>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -421,6 +458,10 @@ const I18N = {
     en: 'Guangzhou Lingpin Game Interactive Co., Ltd. (Lynkpin Game) is an indie game developer. From hardcore 3D roguelike horde-slashing, to a healing desktop cat companion, to fantasy cooking deck-building — we believe <b>great ideas deserve to be made with care</b> and shared with players worldwide.'
   },
   assets_btn: { zh: '媒体资料包', en: 'Press Kit' },
+  awards_eyebrow: { zh: '获奖荣誉', en: 'Awards' },
+  awards_name: { zh: 'EAIGC 2026 东亚独立游戏庆典', en: 'EAIGC 2026 — East Asian Indie Game Carnival' },
+  awards_sub: { zh: '荣获 Badge of Honor 大奖', en: 'Winner of the Badge of Honor' },
+  awards_alt: { zh: 'EAIGC 2026 东亚独立游戏庆典 荣誉徽章', en: 'EAIGC 2026 Badge of Honor' },
 
   games_eyebrow: { zh: '游戏作品', en: 'Our Games' },
   games_h2: { zh: '艺术+技术+商业', en: 'Art+Tech+Business' },
