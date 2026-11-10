@@ -193,6 +193,11 @@
     display:block;width:100%;aspect-ratio:16/9;
     background:#000;border:1px solid var(--line);
   }
+  /* 中文模式下的 B 站播放器 */
+  .gc-video .gc-bili{
+    display:none;width:100%;aspect-ratio:16/9;
+    background:#000;border:1px solid var(--line);
+  }
   .gc-video .vd-fail{
     font-size:13px;color:var(--txt-dim);text-align:center;
     padding:14px 0 2px;
@@ -334,6 +339,7 @@
                data-hls="https://video.akamai.steamstatic.com/store_trailers/3054610/728175/981ca672c52311adfc3d8b1cf58cb1ff3fa4a9cb/1750823263/hls_264_master.m3u8?t=1721899609"
                data-steam="https://store.steampowered.com/app/3054610/"
                title="神器行者：重生 宣传片"></video>
+        <iframe class="gc-bili" src="https://player.bilibili.com/player.html?bvid=BV14142187Zv&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1" scrolling="no" frameborder="0" allowfullscreen loading="lazy" title="神器行者：重生 宣传片"></iframe>
       </div>
     </article>
 
@@ -361,6 +367,7 @@
                data-hls="https://video.akamai.steamstatic.com/store_trailers/3714370/1120806770/55407c26e0708323420b0565d7b3f2a7724510cc/1766076125/hls_264_master.m3u8?t=1766211182"
                data-steam="https://store.steampowered.com/app/3714370/"
                title="萌宠不摸鱼：Lofi猫 官方宣传片"></video>
+        <iframe class="gc-bili" src="https://player.bilibili.com/player.html?bvid=BV1owqQBYEYt&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1" scrolling="no" frameborder="0" allowfullscreen loading="lazy" title="萌宠不摸鱼：Lofi猫 官方宣传片"></iframe>
       </div>
     </article>
 
@@ -389,6 +396,7 @@
                data-hls="https://video.akamai.steamstatic.com/store_trailers/4942150/1756091679/87d6c61866e7adc092869fa82ea1f59fff4837f5/1791171298/hls_264_master.m3u8?t=1791173506"
                data-steam="https://store.steampowered.com/app/4942150/"
                title="王牌餐车 宣传片"></video>
+        <iframe class="gc-bili" src="https://player.bilibili.com/player.html?bvid=BV164a96KEHf&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1" scrolling="no" frameborder="0" allowfullscreen loading="lazy" title="王牌餐车 宣传片"></iframe>
       </div>
     </article>
   </div>
@@ -541,6 +549,16 @@ function applyLang(lang) {
   });
   document.querySelectorAll('.lang-switch button').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  // 视频源切换：中文用 B 站播放器，英文用 Steam 宣传片
+  const zhMode = lang !== 'en';
+  document.querySelectorAll('.gc-video').forEach(g => {
+    const bili = g.querySelector('.gc-bili');
+    const steam = g.querySelector('video.steam-video');
+    const fail = g.querySelector('.vd-fail');
+    if (bili) bili.style.display = zhMode ? 'block' : 'none';
+    if (steam) steam.style.display = zhMode ? 'none' : '';
+    if (fail) fail.style.display = zhMode ? 'none' : '';
   });
   localStorage.setItem(LS_KEY, lang);
 }
