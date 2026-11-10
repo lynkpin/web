@@ -198,6 +198,12 @@
     display:none;width:100%;aspect-ratio:16/9;
     background:#000;border:1px solid var(--line);
   }
+  .gc-bili-hd{
+    display:none;margin-top:9px;font-size:12.5px;color:var(--txt-dim);
+    text-decoration:none;letter-spacing:.5px;
+  }
+  html[lang="zh-CN"] .gc-bili-hd{display:inline-block}
+  .gc-bili-hd:hover{color:var(--accent)}
   .gc-video .vd-fail{
     font-size:13px;color:var(--txt-dim);text-align:center;
     padding:14px 0 2px;
@@ -340,6 +346,7 @@
                data-steam="https://store.steampowered.com/app/3054610/"
                title="神器行者：重生 宣传片"></video>
         <iframe class="gc-bili" src="https://player.bilibili.com/player.html?bvid=BV14142187Zv&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1" scrolling="no" frameborder="0" allowfullscreen loading="lazy" title="神器行者：重生 宣传片"></iframe>
+        <a class="gc-bili-hd" href="https://www.bilibili.com/video/BV14142187Zv" target="_blank" rel="noopener" data-i18n="bili_hd">前往 B 站观看 1080P 高清 →</a>
       </div>
     </article>
 
@@ -368,6 +375,7 @@
                data-steam="https://store.steampowered.com/app/3714370/"
                title="萌宠不摸鱼：Lofi猫 官方宣传片"></video>
         <iframe class="gc-bili" src="https://player.bilibili.com/player.html?bvid=BV1owqQBYEYt&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1" scrolling="no" frameborder="0" allowfullscreen loading="lazy" title="萌宠不摸鱼：Lofi猫 官方宣传片"></iframe>
+        <a class="gc-bili-hd" href="https://www.bilibili.com/video/BV1owqQBYEYt" target="_blank" rel="noopener" data-i18n="bili_hd">前往 B 站观看 1080P 高清 →</a>
       </div>
     </article>
 
@@ -397,6 +405,7 @@
                data-steam="https://store.steampowered.com/app/4942150/"
                title="王牌餐车 宣传片"></video>
         <iframe class="gc-bili" src="https://player.bilibili.com/player.html?bvid=BV164a96KEHf&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1" scrolling="no" frameborder="0" allowfullscreen loading="lazy" title="王牌餐车 宣传片"></iframe>
+        <a class="gc-bili-hd" href="https://www.bilibili.com/video/BV164a96KEHf" target="_blank" rel="noopener" data-i18n="bili_hd">前往 B 站观看 1080P 高清 →</a>
       </div>
     </article>
   </div>
@@ -470,6 +479,7 @@ const I18N = {
   awards_name: { zh: 'EAIGC 2026 东亚独立游戏庆典', en: 'EAIGC 2026 — East Asian Indie Game Carnival' },
   awards_sub: { zh: '荣获 Badge of Honor 大奖', en: 'Winner of the Badge of Honor' },
   awards_alt: { zh: 'EAIGC 2026 东亚独立游戏庆典 荣誉徽章', en: 'EAIGC 2026 Badge of Honor' },
+  bili_hd: { zh: '前往 B 站观看 1080P 高清 →', en: 'Watch in 1080P on Bilibili →' },
 
   games_eyebrow: { zh: '游戏作品', en: 'Our Games' },
   games_h2: { zh: '艺术+技术+商业', en: 'Art+Tech+Business' },
